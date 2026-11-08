@@ -184,6 +184,12 @@ jobs:
         test -s "$dir/$file"
         ls -l "$dir/$file"
         echo "ELECTRON_DIST=$dir/$file" >> "$GITHUB_ENV"
+        # `npm run build` requires the electron module (it reports the paths it
+        # was installed with), so unpack the same zip into the package. The
+        # installer itself is built from the zip, not from this copy.
+        main/node_modules/7zip-bin/win/x64/7za.exe x -y -bd \
+          -o"main/node_modules/electron/dist" "$dir/$file" > /dev/null
+        printf 'electron.exe' > main/node_modules/electron/path.txt
     - run: npm run build
       working-directory: ./main
     # electron-builder pulls nsis and winCodeSign from the same 504-prone host.
