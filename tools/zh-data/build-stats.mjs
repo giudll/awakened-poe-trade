@@ -13,6 +13,7 @@ import { listZipEntries, readZipEntry } from './lib/zip.mjs'
 import { parseStatDescriptions, buildTextPairs } from './lib/statdesc.mjs'
 import { readDatc64 } from './lib/datc64.mjs'
 import { getPatchZip } from './lib/patch.mjs'
+import ANOINT_ZH from './data/anoint-zh.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
@@ -49,6 +50,11 @@ function readNdjson (text) {
 // price check shows "unrecognised modifier" for every medium/large cluster
 // jewel enchant. Rebuild the sentence the client renders.
 const GRANT_PREFIX = 'Added Small Passive Skills grant: '
+
+// Anointments have the same problem: `Allocates Vampirism` is one line in the
+// trade data, but the client builds it from `配置 {0}` plus the passive's name
+// out of `PassiveSkills.dat`. See `data/anoint-zh.mjs`.
+const ALLOCATES_PREFIX = 'Allocates '
 
 /** @returns {string | null} the Chinese prefix, `{0}` already stripped */
 export function readClusterGrantPrefix (zipBuffer) {
@@ -108,6 +114,10 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
   const blocks = await readStatBlocksFromPatch(zipBuffer)
   const { pairs, stats: pairStats } = buildTextPairs(blocks, TARGET_LANG)
   const grantPrefixCn = readClusterGrantPrefix(zipBuffer)
+  const allocatesPrefix = (() => {
+    const first = [...(pairs.get('Allocates #') ?? [])][0]
+    return first?.endsWith('#') ? first.slice(0, -1) : '配置 '
+  })()
 
   const enText = await readFile(path.join(DATA, 'en/stats.ndjson'), 'utf-8')
   const records = readNdjson(enText)
@@ -125,6 +135,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     enStringCollisions: 0,
     coverageByType: {},
     clusterGrant: { prefix: grantPrefixCn, synthesized: 0, failed: [] },
+    anoints: { prefix: allocatesPrefix, synthesized: 0, known: Object.keys(ANOINT_ZH).length },
     realMods: { total: 0, translated: 0 }
   }
 
@@ -171,6 +182,13 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
             report.clusterGrant.synthesized += 1
           } else {
             report.clusterGrant.failed.push(matcher.string)
+          }
+        }
+        if (!cn && matcher.string.startsWith(ALLOCATES_PREFIX)) {
+          const zhName = ANOINT_ZH[matcher.string.slice(ALLOCATES_PREFIX.length)]
+          if (zhName) {
+            cn = new Set([allocatesPrefix + zhName])
+            report.anoints.synthesized += 1
           }
         }
         if (!cn) continue

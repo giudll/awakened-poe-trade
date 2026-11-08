@@ -6,8 +6,8 @@
   "translatedBlocks": 14959,
   "enToCnTexts": 20632,
   "records": 9178,
-  "recordsTranslated": 5850,
-  "matchersAdded": 8027,
+  "recordsTranslated": 6352,
+  "matchersAdded": 8529,
   "recordsUntranslated": [
     {
       "ref": "# Crafted Modifiers",
@@ -1554,210 +1554,6 @@
       "types": "pseudo"
     },
     {
-      "ref": "Added Small Passive Skills grant: +12% to Chaos Resistance",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: +15% to Cold Resistance",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: +15% to Fire Resistance",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: +15% to Lightning Resistance",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: +2% Chance to Block Attack Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: +4% chance to Suppress Spell Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Area Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Attack Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Damage over Time",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Damage while affected by a Herald",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Effect of Non-Damaging Ailments",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Elemental Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Life Recovery from Flasks\nAdded Small Passive Skills grant: 10% increased Mana Recovery from Flasks",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Projectile Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 10% increased Spell Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Attack Damage while Dual Wielding",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Attack Damage while holding a Shield",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Brand Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Burning Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Chaos Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Chaos Damage over Time",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Cold Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Cold Damage over Time",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Damage with Bows\nAdded Small Passive Skills grant: 12% increased Damage Over Time with Bow Skills",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Damage with Two Handed Weapons",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Fire Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Lightning Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Physical Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Physical Damage over Time",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Totem Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 12% increased Trap Damage\nAdded Small Passive Skills grant: 12% increased Mine Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 15% increased Armour",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 15% increased Critical Strike Chance",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 15% increased Evasion Rating",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 2% Chance to Block Spell Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 2% increased Effect of your Curses",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 3% increased effect of Non-Curse Auras from your Skills",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 4% increased maximum Life",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 6% increased Flask Effect Duration",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 6% increased maximum Energy Shield",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: 6% increased maximum Mana",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Axe Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Sword Attacks deal 12% increased Damage with Hits and Ailments",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Channelling Skills deal 12% increased Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Claw Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Dagger Attacks deal 12% increased Damage with Hits and Ailments",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Exerted Attacks deal 20% increased Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Minions deal 10% increased Damage",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Minions deal 10% increased Damage while you are affected by a Herald",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Minions have 12% increased maximum Life",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Staff Attacks deal 12% increased Damage with Hits and Ailments\nAdded Small Passive Skills grant: Mace or Sceptre Attacks deal 12% increased Damage with Hits and Ailments",
-      "types": "enchant"
-    },
-    {
-      "ref": "Added Small Passive Skills grant: Wand Attacks deal 12% increased Damage with Hits and Ailments",
-      "types": "enchant"
-    },
-    {
       "ref": "Adds # to # Damage",
       "types": "pseudo"
     },
@@ -1794,47 +1590,7 @@
       "types": "pseudo"
     },
     {
-      "ref": "Allocates Acrimony",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Acuity",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Adamant",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Adaptive Steel",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Adder's Touch",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Adjacent Animosity",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Admonisher",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Aggressive Bastion",
-      "types": "enchant"
-    },
-    {
       "ref": "Allocates Always Angry",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Ambidexterity",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Amplify",
       "types": "enchant"
     },
     {
@@ -1846,88 +1602,12 @@
       "types": "explicit"
     },
     {
-      "ref": "Allocates Annihilation",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Anointed Flesh",
-      "types": "enchant"
-    },
-    {
       "ref": "Allocates Arcane Blessing if you have the matching modifier on Forbidden Flame",
       "types": "explicit"
     },
     {
       "ref": "Allocates Arcane Blessing if you have the matching modifier on Forbidden Flesh",
       "types": "explicit"
-    },
-    {
-      "ref": "Allocates Arcane Capacitor",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Chemistry",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Conservation",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Expanse",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Focus",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Guarding",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Potency",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Retaliation",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Sanctuary",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcane Will",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcanist's Dominion",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arcing Blows",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Arsonist",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Art of the Gladiator",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates As The Mountain",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates As The Thunder",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Ash, Frost and Storm",
-      "types": "enchant"
     },
     {
       "ref": "Allocates Aspect of Carnage if you have the matching modifier on Forbidden Flame",
@@ -1938,18 +1618,6 @@
       "types": "explicit"
     },
     {
-      "ref": "Allocates Aspect of Stone",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Aspect of the Eagle",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Aspect of the Lynx",
-      "types": "enchant"
-    },
-    {
       "ref": "Allocates Assassin if you have the matching modifier on Forbidden Flame",
       "types": "explicit"
     },
@@ -1958,32 +1626,12 @@
       "types": "explicit"
     },
     {
-      "ref": "Allocates Assassination",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Assured Strike",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Asylum",
-      "types": "enchant"
-    },
-    {
-      "ref": "Allocates Atrophy",
-      "types": "enchant"
-    },
-    {
       "ref": "Allocates Augury of Penitence if you have the matching modifier on Forbidden Flame",
       "types": "explicit"
     },
     {
       "ref": "Allocates Augury of Penitence if you have the matching modifier on Forbidden Flesh",
       "types": "explicit"
-    },
-    {
-      "ref": "Allocates Avatar of the Hunt",
-      "types": "enchant"
     },
     {
       "ref": "Allocates Avatar of the Wilds if you have the matching modifier on Forbidden Flame",
@@ -2007,6 +1655,358 @@
     },
     {
       "ref": "Allocates Backstabbing",
+      "types": "enchant"
+    },
+    {
+      "ref": "Allocates Ballistics",
+      "types": "enchant"
+    },
+    {
+      "ref": "Allocates Bane of Legends if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bane of Legends if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bastion of Elements if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bastion of Elements if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bastion of Hope if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bastion of Hope if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Berserker if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Berserker if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bladedancer",
+      "types": "enchant"
+    },
+    {
+      "ref": "Allocates Bomb Specialist if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bomb Specialist if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bone Barrier if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bone Barrier if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Born in the Shadows if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Born in the Shadows if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bringer of Ruin if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Bringer of Ruin if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Brutal Fervour if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Brutal Fervour if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Calculated Risk if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Calculated Risk if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Chain Reaction if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Chain Reaction if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Champion if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Champion if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Chieftain if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Chieftain if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Commander of Darkness if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Commander of Darkness if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Contemplative Meditation",
+      "types": "enchant"
+    },
+    {
+      "ref": "Allocates Conviction of Power if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Conviction of Power if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Corpse Pact if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Corpse Pact if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Crave the Slaughter if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Crave the Slaughter if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Deadeye if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Deadeye if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Deathmarked if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Deathmarked if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Defy Pain if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Defy Pain if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Demolitions Specialist if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Demolitions Specialist if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Determined Survivor if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Determined Survivor if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Devastating Devices",
+      "types": "enchant"
+    },
+    {
+      "ref": "Allocates Divine Guidance if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Divine Guidance if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Elementalist if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Elementalist if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Endless Hunger if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Endless Hunger if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Endless Munitions if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Endless Munitions if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Enduring Suffusion if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Enduring Suffusion if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Escape Artist if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Escape Artist if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Essence Glutton if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Essence Glutton if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Experienced Herbalist if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Experienced Herbalist if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Explosive Runes",
+      "types": "enchant"
+    },
+    {
+      "ref": "Allocates Far Shot if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Far Shot if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Fatal Flourish if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Fatal Flourish if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates First to Strike, Last to Fall if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates First to Strike, Last to Fall if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Focal Point if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Focal Point if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates For the Jugular if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates For the Jugular if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Forbidden Power if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Forbidden Power if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Fortitude if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Fortitude if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Frigid Wake if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Frigid Wake if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Fury of Nature if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Fury of Nature if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Gathering Winds if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Gathering Winds if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Gladiator if you have the matching modifier on Forbidden Flame",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Gladiator if you have the matching modifier on Forbidden Flesh",
+      "types": "explicit"
+    },
+    {
+      "ref": "Allocates Glory of Command",
       "types": "enchant"
     }
   ],
@@ -2057,6 +2057,22 @@
     },
     {
       "text": "所有魔卫复苏技能石等级 #",
+      "records": 2
+    },
+    {
+      "text": "配置 毒蛇之牙",
+      "records": 2
+    },
+    {
+      "text": "配置 电能之击",
+      "records": 2
+    },
+    {
+      "text": "配置 汲血者",
+      "records": 2
+    },
+    {
+      "text": "配置 复仇",
       "records": 2
     },
     {
@@ -2468,7 +2484,7 @@
     },
     "enchant": {
       "total": 738,
-      "translated": 214
+      "translated": 716
     },
     "enchant+implicit": {
       "total": 33,
@@ -2527,8 +2543,18 @@
       "translated": 1
     }
   },
+  "clusterGrant": {
+    "prefix": "增加的小天赋获得：",
+    "synthesized": 51,
+    "failed": []
+  },
+  "anoints": {
+    "prefix": "配置 ",
+    "synthesized": 451,
+    "known": 451
+  },
   "realMods": {
     "total": 6294,
-    "translated": 5689
+    "translated": 5740
   }
 }
