@@ -3,6 +3,7 @@ import { ItemCategory } from '@/parser'
 import { ModifierType } from '@/parser/modifiers'
 import { _resolveTranslation } from '@/parser/stat-translations'
 import { StatFilter, FilterTag } from '../interfaces'
+import { pseudoLabel } from './labels'
 
 type ResolveHint =
   | { expected: 'percent-merge', pick: 'percent' | 'value' }
@@ -59,12 +60,16 @@ export function statToNotFilter (opts: {
   negateString?: boolean
   disabled: StatFilter['disabled']
 }): StatFilter {
+  const text = (opts.stat.matchers.find(
+    matcher => Boolean(matcher.negate) === Boolean(opts.negateString)
+  ) ?? opts.stat.matchers[0]).string
   return {
     tradeId: opts.stat.trade.ids[opts.type],
     statRef: opts.stat.ref,
-    text: (opts.stat.matchers.find(
-      matcher => Boolean(matcher.negate) === Boolean(opts.negateString)
-    ) ?? opts.stat.matchers[0]).string,
+    // The heist rules (`# Enchant Modifiers` on blueprints) build their filter
+    // here rather than in `filterPseudo`, so without this the row kept the
+    // English trade-site wording while everything around it was Chinese.
+    text: pseudoLabel(opts.stat.ref, text),
     tag: opts.type,
     sources: [],
     disabled: opts.disabled,
