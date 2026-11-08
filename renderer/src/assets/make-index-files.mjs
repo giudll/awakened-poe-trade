@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export function makeIndexFiles () {
-  const LANGUAGES = ['en', 'ru', 'cmn-Hant', 'ko']
+  const LANGUAGES = ['en', 'ru', 'cmn-Hant', 'ko', 'zh_CN']
 
   for (const lang of LANGUAGES) {
     const lineStarts = {

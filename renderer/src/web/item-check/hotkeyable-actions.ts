@@ -6,7 +6,9 @@ const POEDB_LANGS: Record<Config['language'], string> = {
   'en': 'us',
   'ru': 'ru',
   'cmn-Hant': 'tw',
-  'ko': 'kr'
+  'ko': 'kr',
+  // 编年史 hosts the Simplified Chinese database under /cn/
+  'zh_CN': 'cn'
 }
 
 export function registerActions () {

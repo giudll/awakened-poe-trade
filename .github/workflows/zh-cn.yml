@@ -1,0 +1,180 @@
+name: zh-cn
+
+# Builds and publishes the Simplified Chinese fork.
+#
+# The data bundle in `renderer/public/data/zh_CN/` is committed, so a plain
+# checkout is enough to build. `zh-data.yml` refreshes it when the 编年史 patch
+# changes, `upstream-watch.yml` merges new upstream code - both dispatch this
+# workflow afterwards.
+#
+# Every build gets its own version and GitHub release, because that is what makes
+# a running copy show "update available" (electron-updater compares versions and
+# ignores pre-releases). The version is derived by `tools/zh-data/next-version.mjs`
+# from the highest existing tag, so it only grows.
+on:
+  push:
+    branches:
+      - 'feat/zh-cn'
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish a GitHub release (turn off for a build-only check)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zh-cn-build
+  cancel-in-progress: false
+
+jobs:
+  renderer:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
+      with:
+        node-version: 22
+    - run: npm ci
+      working-directory: ./renderer
+    - run: npm run lint
+      working-directory: ./renderer
+    - name: Parse the Chinese regression fixtures
+      run: npm run check:items
+      working-directory: ./renderer
+    - name: The UI translation must match upstream's keys exactly
+      run: node build-app-i18n.mjs --check
+      working-directory: ./tools/zh-data
+    - run: npm run build
+      working-directory: ./renderer
+    - uses: actions/upload-artifact@v7
+      with:
+        name: renderer-dist
+        path: ./renderer/dist
+        retention-days: 1
+
+  version:
+    needs: renderer
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.calc.outputs.version }}
+      tag: ${{ steps.calc.outputs.tag }}
+      upstream: ${{ steps.calc.outputs.upstream }}
+    steps:
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
+      with:
+        node-version: 22
+    - name: Compute the next version
+      id: calc
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        set -euo pipefail
+        gh release list --limit 100 --json tagName --jq '.[].tagName' > tags.txt || true
+        upstream=$(node -p "require('./main/package.json').version")
+        node tools/zh-data/next-version.mjs "$upstream" tags.txt | tee -a "$GITHUB_OUTPUT"
+
+  package-windows:
+    needs: [renderer, version]
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
+      with:
+        node-version: 22
+    - uses: actions/download-artifact@v8
+      with:
+        name: renderer-dist
+        path: ./renderer/dist
+    # The version and the release repository are written into `package.json`
+    # here, never committed: electron-builder reads both, the version ends up in
+    # `latest.yml` and the repository becomes the `app-update.yml` feed, i.e. the
+    # place a running copy asks for the next update.
+    - name: Stamp the version and the release repository
+      shell: bash
+      env:
+        APP_VERSION: ${{ needs.version.outputs.version }}
+        REPO: ${{ github.repository }}
+      run: |
+        node -e '
+          const fs = require("fs")
+          const file = "main/package.json"
+          const pkg = JSON.parse(fs.readFileSync(file, "utf8"))
+          pkg.version = process.env.APP_VERSION
+          pkg.repository.url = `https://github.com/${process.env.REPO}.git`
+          fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n")
+        '
+        node -p "require('./main/package.json').version"
+    - run: npm ci
+      working-directory: ./main
+    - run: npm run build
+      working-directory: ./main
+    - name: Package the installers
+      working-directory: ./main
+      run: npx electron-builder build --win --x64 -p never
+    - name: Collect artifacts
+      shell: bash
+      run: |
+        mkdir -p artifacts
+        cp main/dist/*.exe artifacts/
+        cp main/dist/*.blockmap artifacts/ 2>/dev/null || true
+        cp main/dist/latest.yml artifacts/
+        ls -lh artifacts
+    - uses: actions/upload-artifact@v7
+      with:
+        name: windows-build
+        path: ./artifacts
+        retention-days: 7
+
+  release:
+    needs: [package-windows, version]
+    if: github.event_name == 'push' || inputs.publish
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v8
+      with:
+        name: windows-build
+        path: ./artifacts
+    - name: Publish the release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ github.repository }}
+        VERSION: ${{ needs.version.outputs.version }}
+        TAG: ${{ needs.version.outputs.tag }}
+        UPSTREAM: ${{ needs.version.outputs.upstream }}
+      run: |
+        set -euo pipefail
+        {
+          echo "简体中文版，基于上游 Awakened PoE Trade \`${UPSTREAM}\`，词缀与物品名来自编年史简中补丁。"
+          echo
+          echo "- 安装版：\`AwakenedPoE-Trade-zh-Setup-*.exe\`（开始菜单 / 桌面快捷方式）"
+          echo "- 便携版：\`AwakenedPoE-Trade-zh-Portable-*.exe\`（解压即用，不写注册表）"
+          echo
+          echo "已经装过旧版本的，程序运行时会自己提示有新版本，点一下即可；也可以直接下载覆盖安装。"
+        } > notes.md
+        gh release create "$TAG" artifacts/* \
+          --title "简中版 ${VERSION}" \
+          --notes-file notes.md \
+          --latest
+    # GitHub does not enforce a quota but keeps every asset forever. Keep the
+    # downloads page readable and drop everything beyond the last few builds.
+    - name: Prune old releases
+      if: ${{ success() }}
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ github.repository }}
+      run: |
+        set -euo pipefail
+        gh release list --limit 100 --json tagName,isLatest --jq '.[].tagName' \
+          | tail -n +6 \
+          | while read -r tag; do
+              [ -z "$tag" ] && continue
+              echo "deleting $tag"
+              gh release delete "$tag" --yes --cleanup-tag
+            done

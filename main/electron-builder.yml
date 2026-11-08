@@ -2,6 +2,9 @@ publish:
   - "github"
 productName: "Awakened PoE Trade"
 npmRebuild: false
+# Keep the Chinese build distinguishable in the Releases list. The version is
+# rewritten by CI, see `.github/workflows/zh-cn.yml`.
+artifactName: "AwakenedPoE-Trade-zh-${version}-${arch}.${ext}"
 toolsets:
   appimage: 1.0.3
 artifactBuildCompleted: "build/apprun-patch.test.mjs"
@@ -17,6 +20,9 @@ extraMetadata:
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
+  artifactName: "AwakenedPoE-Trade-zh-Setup-${version}.${ext}"
+portable:
+  artifactName: "AwakenedPoE-Trade-zh-Portable-${version}.${ext}"
 win:
   target:
   - "nsis"

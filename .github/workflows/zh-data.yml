@@ -1,0 +1,92 @@
+name: zh-data
+
+# Daily probe of the 编年史 patch. `pin_cn.json` is a tiny JSON file
+# (`{ version, md5, pin }`), so the check costs one request. When the md5 differs
+# from `tools/zh-data/zh-data.lock.json` the whole data bundle is regenerated,
+# verified and committed back - which in turn triggers `zh-cn.yml` to rebuild the
+# installers.
+on:
+  schedule:
+    - cron: '17 2 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Rebuild even if the patch md5 did not change'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: zh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        ref: feat/zh-cn
+        fetch-depth: 0
+
+    - uses: actions/setup-node@v6
+      with:
+        node-version: 22
+
+    - name: Read the upstream patch version
+      id: pin
+      run: |
+        set -euo pipefail
+        curl -fsS --max-time 30 -A 'awakened-poe-trade-zh-cn' \
+          https://poedb.tw/fg/pin_cn.json -o pin_cn.json
+        cat pin_cn.json
+        upstream=$(node -p "require('./pin_cn.json').md5")
+        version=$(node -p "require('./pin_cn.json').version")
+        locked=$(node -p "require('./tools/zh-data/zh-data.lock.json').md5" || echo '')
+        echo "upstream=$upstream"
+        echo "locked=$locked"
+        echo "version=$version" >> "$GITHUB_OUTPUT"
+        echo "md5=$upstream" >> "$GITHUB_OUTPUT"
+        if [ "$upstream" = "$locked" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
+          echo "changed=false" >> "$GITHUB_OUTPUT"
+        else
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Regenerate the data bundle
+      if: steps.pin.outputs.changed == 'true'
+      working-directory: ./tools/zh-data
+      run: node build-all.mjs
+
+    - name: Verify the regenerated bundle parses Chinese items
+      if: steps.pin.outputs.changed == 'true'
+      working-directory: ./renderer
+      run: |
+        npm ci
+        npm run check:items
+
+    - name: Commit
+      if: steps.pin.outputs.changed == 'true'
+      run: |
+        set -euo pipefail
+        rm -f pin_cn.json
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        git add renderer/public/data/zh_CN tools/zh-data/zh-data.lock.json
+        if git diff --cached --quiet; then
+          echo 'nothing to commit'
+          exit 0
+        fi
+        git commit -m "data: update zh_CN bundle (patch ${{ steps.pin.outputs.version }})"
+        git push
+
+    # A push made with GITHUB_TOKEN does not trigger other workflows, so the
+    # installer build has to be dispatched explicitly.
+    - name: Rebuild the installers
+      if: steps.pin.outputs.changed == 'true'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh workflow run zh-cn.yml --ref feat/zh-cn

@@ -1,3 +1,7 @@
+> **简体中文版：** 本仓库是国际服 + 编年史简体补丁的中文化分支，界面与词缀查询均为简体中文。
+> 下载与使用说明见 **[README.zh-CN.md](./README.zh-CN.md)**，成品在
+> **[Releases](../../releases/latest)** 页面。
+
 # ![Awakener's Orb](https://web.poecdn.com/image/Art/2DItems/Currency/TransferOrb.png) Awakened PoE Trade
 
 [![](https://user-images.githubusercontent.com/4292308/153364874-dde23599-278c-4350-8d86-dadbc4b978b3.svg)](https://somsubhra.github.io/github-release-stats/?username=SnosMe&repository=awakened-poe-trade)

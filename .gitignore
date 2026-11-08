@@ -26,3 +26,6 @@ yarn-error.log*
 # vitepress
 docs/.vitepress/dist
 docs/.vitepress/cache
+
+# zh-data: downloaded 编年史 patches
+/tools/zh-data/.cache

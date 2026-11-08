@@ -2,16 +2,16 @@
   <ui-popover tag-name="div" trigger="click" placement="bottom" boundary="#price-window">
     <template #target>
       <button class="bg-gray-700 px-2 py-1 text-gray-400 leading-none opacity-50" :class="{ 'rounded-l': option === 'low', 'rounded-r': option === 'high' }"
-        >{{ option }}</button>
+        >{{ t(`extra.prediction_${option}`, option) }}</button>
     </template>
     <template #content>
       <form @submit.prevent="submit" class="w-64 p-2">
         <div>{{ text }}</div>
         <textarea v-if="option !== 'fair'"
           v-model="feedbackText"
-          placeholder="Why do you think so? (Not required)"
+          :placeholder="t('extra.feedback_reason', 'Why do you think so? (Not required)')"
           rows="5" class="w-full bg-gray-700 text-gray-100 p-1"></textarea>
-        <button class="btn" type="submit">Send feedback</button>
+        <button class="btn" type="submit">{{ t('extra.feedback_send', 'Send feedback') }}</button>
         <span class="ml-2">to poeprices.info</span>
       </form>
     </template>
@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import UiPopover from '@/web/ui/Popover.vue'
 import { ParsedItem } from '@/parser'
 import { sendFeedback } from './poeprices'
@@ -42,15 +43,16 @@ export default defineComponent({
     }
   },
   setup (props, ctx) {
+    const { t } = useI18n()
     const feedbackText = ref('')
 
     const text = computed(() => {
       if (props.option === 'low') {
-        return 'Predicted price is too low.'
+        return t('extra.prediction_too_low', 'Predicted price is too low.')
       } else if (props.option === 'high') {
-        return 'Predicted price is too high.'
+        return t('extra.prediction_too_high', 'Predicted price is too high.')
       } else {
-        return 'Predicted price is fair.'
+        return t('extra.prediction_is_fair', 'Predicted price is fair.')
       }
     })
 
@@ -67,6 +69,7 @@ export default defineComponent({
     }
 
     return {
+      t,
       feedbackText,
       text,
       submit

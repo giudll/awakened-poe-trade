@@ -93,7 +93,25 @@ export function poeWebApi () {
     case 'ru': return 'ru.pathofexile.com'
     case 'cmn-Hant': return 'pathofexile.tw'
     case 'ko': return 'poe.kakaogames.com'
+    // Simplified Chinese only exists as a community patch for the international
+    // client, there is no Simplified Chinese trade site.
+    case 'zh_CN': return 'www.pathofexile.com'
   }
+}
+
+/** Item names in these languages are not space separated, so word-prefix matching does not apply. */
+export function isCjkLanguage (language: Config['language'] = AppConfig().language) {
+  return language === 'cmn-Hant' || language === 'zh_CN'
+}
+
+/**
+ * Languages that can only ever query the international trade site.
+ * `cmn-Hant` has its own site on the GGG realm, `zh_CN` (the 编年史 patch for the
+ * international client) has none - the account, the items and the trade site are
+ * all international, only the game text is Simplified Chinese.
+ */
+export function forcesIntlSite (language: Config['language'], realm: Config['realm']) {
+  return language === 'zh_CN' || (language === 'cmn-Hant' && realm === 'pc-ggg')
 }
 
 export interface Config {
@@ -114,7 +132,7 @@ export interface Config {
   logKeys: boolean
   accountName: string
   stashScroll: boolean
-  language: 'en' | 'ru' | 'cmn-Hant' | 'ko'
+  language: 'en' | 'ru' | 'cmn-Hant' | 'ko' | 'zh_CN'
   realm: 'pc-ggg' | 'pc-garena'
   useIntlSite: boolean
   widgets: widget.Widget[]
@@ -123,7 +141,7 @@ export interface Config {
 }
 
 export const defaultConfig = (): Config => ({
-  configVersion: 18,
+  configVersion: 20,
   overlayKey: 'Shift + Space',
   overlayBackground: 'rgba(129, 139, 149, 0.15)',
   overlayBackgroundClose: true,
@@ -160,9 +178,9 @@ export const defaultConfig = (): Config => ({
   logKeys: false,
   accountName: '',
   stashScroll: true,
-  language: 'en',
+  language: 'zh_CN',
   realm: 'pc-ggg',
-  useIntlSite: false,
+  useIntlSite: true,
   fontSize: 16,
   widgets: widgetRegistry.widgets.reduce<widget.Widget[]>((widgets, { widget }) => {
     const res: widget.Widget[] = []
@@ -434,6 +452,25 @@ function upgradeConfig (_config: Config): Config {
     config.useIntlSite = (config.language === 'cmn-Hant' && config.realm === 'pc-ggg')
 
     config.configVersion = 18
+  }
+
+  if (config.configVersion < 19) {
+    config.useIntlSite = forcesIntlSite(config.language, config.realm)
+
+    config.configVersion = 19
+  }
+
+  if (config.configVersion < 20) {
+    // This build only ships the Simplified Chinese bundle, and that bundle has
+    // no trade site of its own - the client, the account and the market are all
+    // international. Defaulting to `en` would show an English UI with no way to
+    // price check, so plain English means "never made a choice" here.
+    if (config.language === 'en') {
+      config.language = 'zh_CN'
+    }
+    config.useIntlSite = forcesIntlSite(config.language, config.realm)
+
+    config.configVersion = 20
   }
   /* eslint-enable */
 

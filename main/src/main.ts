@@ -47,6 +47,11 @@ app.on('ready', async () => {
         gameConfig.readConfig(cfg.gameConfig ?? '')
         appUpdater.checkAtStartup()
         tray.overlayKey = cfg.overlayKey
+        const uiLang = cfg.language === 'zh_CN' ? 'zh_CN' : 'en'
+        if (tray.lang !== uiLang) {
+          tray.lang = uiLang
+          tray.rebuildMenu()
+        }
       })
       uIOhook.start()
       const port = await startServer(appUpdater, logger)

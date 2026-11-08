@@ -1,0 +1,11 @@
+{
+  "version": "unknown",
+  "md5": "089a26b1b3f03321875d32002f1e786a",
+  "builtAt": "2026-11-08T03:25:15.555Z",
+  "coverage": {
+    "realMods": 0.9039,
+    "itemNames": 0.9291,
+    "uniqueNames": 1,
+    "labels": 0.9855
+  }
+}

@@ -6,6 +6,7 @@
         <option value="en">English</option>
         <option value="ru">Русский</option>
         <option value="cmn-Hant">正體中文</option>
+        <option value="zh_CN">简体中文（编年史）</option>
         <option value="ko">한국어</option>
       </select>
     </div>
@@ -16,7 +17,7 @@
         <ui-radio v-model="realm" value="pc-garena">{{ t('Hotcool') }}</ui-radio>
       </div>
     </div>
-    <ui-checkbox class="mb-4" v-if="language !== 'en' && realm === 'pc-ggg'"
+    <ui-checkbox class="mb-4" v-if="language !== 'en' && (realm === 'pc-ggg' || language === 'zh_CN')"
       v-model="useIntlSite" :disabled="forcedIntlSite"
       :class="{ 'text-gray-500': forcedIntlSite }">{{ t(':use_intl_site') }} <span class="bg-gray-200 text-gray-900 rounded px-1">www.pathofexile.com</span></ui-checkbox>
     <div class="mb-4 mt-4">
@@ -63,7 +64,7 @@ import { useI18nNs } from '@/web/i18n'
 import UiRadio from '@/web/ui/UiRadio.vue'
 import UiCheckbox from '@/web/ui/UiCheckbox.vue'
 import { configModelValue, configProp } from './utils'
-import { AppConfig } from '@/web/Config'
+import { AppConfig, forcesIntlSite } from '@/web/Config'
 
 export default defineComponent({
   name: 'settings.general',
@@ -84,21 +85,21 @@ export default defineComponent({
         set (value) {
           props.config.language = value
           AppConfig().language = value
-          if (value !== 'cmn-Hant') {
+          if (value !== 'cmn-Hant' && value !== 'zh_CN') {
             props.config.realm = 'pc-ggg'
           }
-          props.config.useIntlSite = (props.config.realm === 'pc-ggg' && value === 'cmn-Hant')
+          props.config.useIntlSite = forcesIntlSite(value, props.config.realm)
         }
       }),
       realm: computed<typeof props.config.realm>({
         get () { return props.config.realm },
         set (value) {
           props.config.realm = value
-          props.config.useIntlSite = (value === 'pc-ggg' && props.config.language === 'cmn-Hant')
+          props.config.useIntlSite = forcesIntlSite(props.config.language, value)
         }
       }),
       useIntlSite: configModelValue(() => props.config, 'useIntlSite'),
-      forcedIntlSite: computed(() => props.config.realm === 'pc-ggg' && props.config.language === 'cmn-Hant'),
+      forcedIntlSite: computed(() => forcesIntlSite(props.config.language, props.config.realm)),
       restoreClipboard: configModelValue(() => props.config, 'restoreClipboard'),
       showAttachNotification: configModelValue(() => props.config, 'showAttachNotification'),
       windowTitle: configModelValue(() => props.config, 'windowTitle')

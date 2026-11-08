@@ -67,7 +67,7 @@
 import { ref } from 'vue'
 import { distance } from 'fastest-levenshtein'
 import { BaseType, ITEM_BY_TRANSLATED, CLIENT_STRINGS as _$, ALTQ_GEM_NAMES, REPLICA_UNIQUE_NAMES } from '@/assets/data'
-import { AppConfig } from '@/web/Config'
+import { isCjkLanguage } from '@/web/Config'
 import { CurrencyValue } from '@/web/background/Prices'
 import type { WidgetSpec } from '../overlay/interfaces'
 import { ItemSearchWidget } from './widget.js'
@@ -145,7 +145,7 @@ function findItems (opts: {
     const lcName = itemName.toLowerCase()
     if (
       lcSearch.every(part => lcName.includes(part)) &&
-      ((AppConfig().language === 'cmn-Hant') || lcName.split(/\s+/).some(part => part.startsWith(lcLongestWord)))
+      (isCjkLanguage() || lcName.split(/\s+/).some(part => part.startsWith(lcLongestWord)))
     ) {
       const match = ITEM_BY_TRANSLATED(opts.namespace, itemName)
       out.push(...match ?? [])

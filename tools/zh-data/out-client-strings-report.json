@@ -1,0 +1,54 @@
+{
+  "keys": 138,
+  "translated": 136,
+  "derived": [
+    {
+      "key": "CRAFTED_PREFIX",
+      "id": "ModDescriptionLineCraftedPrefix",
+      "value": "大师工艺前缀"
+    },
+    {
+      "key": "CRAFTED_SUFFIX",
+      "id": "ModDescriptionLineCraftedSuffix",
+      "value": "大师工艺后缀"
+    },
+    {
+      "key": "FOIL_UNIQUE",
+      "id": "ItemPopupFoilUnique",
+      "value": "烫金传奇"
+    },
+    {
+      "key": "UNMODIFIABLE",
+      "id": "ItemPopupUnmodifiable",
+      "value": "不可改变"
+    },
+    {
+      "key": "MERCENARY_LEVEL",
+      "id": "MercenaryLevel",
+      "value": "等级 "
+    }
+  ],
+  "unverified": [
+    {
+      "key": "HEIST_BLUEPRINT_GEMS",
+      "value": "不寻常的宝石"
+    },
+    {
+      "key": "MERCENARY_BUILD",
+      "value": "BD构建: "
+    }
+  ],
+  "keptEnglish": [
+    "HEIST_BLUEPRINT_GEMS",
+    "MERCENARY_BUILD"
+  ],
+  "shapeMismatch": [],
+  "ignoredSeedKeys": [
+    "CHART_SHAPE",
+    "CHART_UNREVEALED",
+    "SCRYING_MAP_AREA",
+    "STORED_EXPERIENCE",
+    "EATER_ITEM",
+    "EXARCH_ITEM"
+  ]
+}

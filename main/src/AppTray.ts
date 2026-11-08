@@ -1,9 +1,39 @@
 import path from 'path'
 import { app, Tray, Menu, shell, nativeImage, dialog } from 'electron'
 import type { ServerEvents } from './server'
+import { readUiLang, type UiLang } from './host-files/readUiLang'
+
+interface TrayText {
+  settings: string
+  settingsTitle: string
+  settingsHint: string
+  openInBrowser: string
+  openConfigFolder: string
+  quit: string
+}
+
+const TRAY_TEXT: Record<UiLang, TrayText> = {
+  en: {
+    settings: 'Settings/League',
+    settingsTitle: 'Settings',
+    settingsHint: 'Open Path of Exile and press "{0}". Click on the button with cog icon there.',
+    openInBrowser: 'Open in Browser',
+    openConfigFolder: 'Open config folder',
+    quit: 'Quit'
+  },
+  zh_CN: {
+    settings: '设置 / 赛季',
+    settingsTitle: '设置',
+    settingsHint: '打开流放之路，按 "{0}"，然后点击带齿轮图标的按钮。',
+    openInBrowser: '在浏览器中打开',
+    openConfigFolder: '打开配置文件夹',
+    quit: '退出'
+  }
+}
 
 export class AppTray {
   public overlayKey = 'Shift + Space'
+  public lang: UiLang = readUiLang()
   private tray: Tray
   serverPort = 0
 
@@ -34,31 +64,32 @@ export class AppTray {
   }
 
   rebuildMenu () {
+    const text = TRAY_TEXT[this.lang]
     const contextMenu = Menu.buildFromTemplate([
       {
-        label: 'Settings/League',
+        label: text.settings,
         click: () => {
           dialog.showMessageBox({
-            title: 'Settings',
-            message: `Open Path of Exile and press "${this.overlayKey}". Click on the button with cog icon there.`
+            title: text.settingsTitle,
+            message: text.settingsHint.replace('{0}', this.overlayKey)
           })
         }
       },
       {
-        label: 'Open in Browser',
+        label: text.openInBrowser,
         click: () => {
           shell.openExternal(`http://localhost:${this.serverPort}`)
         }
       },
       { type: 'separator' },
       {
-        label: 'Open config folder',
+        label: text.openConfigFolder,
         click: () => {
           shell.openPath(path.join(app.getPath('userData'), 'apt-data'))
         }
       },
       {
-        label: 'Quit',
+        label: text.quit,
         click: () => {
           app.quit()
         }

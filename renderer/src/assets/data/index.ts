@@ -76,9 +76,21 @@ function itemNamesFromLines (items: Generator<BaseType>) {
 
 async function loadItems (language: string) {
   const ndjson = await (await fetch(`${import.meta.env.BASE_URL}data/${language}/items.ndjson`)).text()
-  const INDEX_WIDTH = 2
   const indexNames = new Uint32Array(await (await fetch(`${import.meta.env.BASE_URL}data/${language}/items-name.index.bin`)).arrayBuffer())
   const indexRefNames = new Uint32Array(await (await fetch(`${import.meta.env.BASE_URL}data/${language}/items-ref.index.bin`)).arrayBuffer())
+  applyItemsData(ndjson, indexNames, indexRefNames)
+}
+
+/**
+ * Populates item lookups from already loaded data. Shared with the Node-side
+ * loader (`assets/data/node.ts`) so parser tests do not need Vite.
+ */
+export function applyItemsData (
+  ndjson: string,
+  indexNames: Uint32Array,
+  indexRefNames: Uint32Array
+) {
+  const INDEX_WIDTH = 2
 
   function commonFind (index: Uint32Array, prop: 'name' | 'refName') {
     return function (ns: BaseType['namespace'], name: string): BaseType[] | undefined {
@@ -108,9 +120,18 @@ async function loadItems (language: string) {
 
 async function loadStats (language: string) {
   const ndjson = await (await fetch(`${import.meta.env.BASE_URL}data/${language}/stats.ndjson`)).text()
-  const INDEX_WIDTH = 2
   const indexRef = new Uint32Array(await (await fetch(`${import.meta.env.BASE_URL}data/${language}/stats-ref.index.bin`)).arrayBuffer())
   const indexMatcher = new Uint32Array(await (await fetch(`${import.meta.env.BASE_URL}data/${language}/stats-matcher.index.bin`)).arrayBuffer())
+  applyStatsData(ndjson, indexRef, indexMatcher)
+}
+
+/** @see applyItemsData */
+export function applyStatsData (
+  ndjson: string,
+  indexRef: Uint32Array,
+  indexMatcher: Uint32Array
+) {
+  const INDEX_WIDTH = 2
 
   STAT_BY_REF_V2 = function (ref: string) {
     let start = dataBinarySearch(indexRef, Number(fnv1a(ref, { size: 32 })), 0, INDEX_WIDTH)
@@ -190,12 +211,33 @@ export function stat (text: string) {
 }
 
 export async function init (lang: string) {
-  CLIENT_STRINGS_REF = (await import(/* @vite-ignore */`${import.meta.env.BASE_URL}data/en/client_strings.js`)).default
-  ITEM_DROP = await (await fetch(`${import.meta.env.BASE_URL}data/item-drop.json`)).json()
-  APP_PATRONS = await (await fetch(`${import.meta.env.BASE_URL}data/patrons.json`)).json()
+  setStaticData({
+    clientStringsRef: (await import(/* @vite-ignore */`${import.meta.env.BASE_URL}data/en/client_strings.js`)).default,
+    itemDrop: await (await fetch(`${import.meta.env.BASE_URL}data/item-drop.json`)).json(),
+    appPatrons: await (await fetch(`${import.meta.env.BASE_URL}data/patrons.json`)).json()
+  })
 
   await loadForLang(lang)
+  validateLoadedStats(lang)
+}
 
+/** Populates language independent data. Shared with the Node-side loader. */
+export function setStaticData (data: {
+  clientStringsRef: TranslationDict
+  itemDrop: DropEntry[]
+  appPatrons: Array<{ from: string, months: number, style: number }>
+}) {
+  CLIENT_STRINGS_REF = data.clientStringsRef
+  ITEM_DROP = data.itemDrop
+  APP_PATRONS = data.appPatrons
+}
+
+/** @see setStaticData */
+export function setClientStrings (dict: TranslationDict) {
+  CLIENT_STRINGS = dict
+}
+
+export function validateLoadedStats (lang: string) {
   for (const text of DELAYED_STAT_VALIDATION) {
     const statOrGroup = STAT_BY_REF_V2(text)
     if (!statOrGroup) {

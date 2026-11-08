@@ -1,0 +1,3057 @@
+{
+  "version": "unknown",
+  "md5": "089a26b1b3f03321875d32002f1e786a",
+  "records": 4978,
+  "translated": 4625,
+  "byNamespace": {
+    "AREA": {
+      "total": 164,
+      "translated": 162
+    },
+    "CAPTURED_BEAST": {
+      "total": 220,
+      "translated": 0
+    },
+    "DIVINATION_CARD": {
+      "total": 455,
+      "translated": 455
+    },
+    "GEM": {
+      "total": 824,
+      "translated": 768
+    },
+    "ITEM": {
+      "total": 1992,
+      "translated": 1979
+    },
+    "MERCENARY_BUILD": {
+      "total": 64,
+      "translated": 2
+    },
+    "UNIQUE": {
+      "total": 1259,
+      "translated": 1259
+    }
+  },
+  "sources": {
+    "words": 1273,
+    "idMatch": 762,
+    "gemVariant": 163,
+    "verified": 2313,
+    "repaired": 114,
+    "englishOnly": 353
+  },
+  "englishOnly": [
+    {
+      "ns": "AREA",
+      "refName": "Kishara's Rest",
+      "hint": "琪莎拉之息"
+    },
+    {
+      "ns": "AREA",
+      "refName": "Unremarkable Seabed",
+      "hint": "平凡海床"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Acid Slitherer",
+      "hint": "嗜血滑行者(Acid Slitherer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Adolescent Rhex",
+      "hint": "青春凶鸟(Adolescent Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Alpine Devil",
+      "hint": "尖角羊人(Alpine Devil)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Alpine Shaman",
+      "hint": "羊人萨满(Alpine Shaman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Arakaali's Daughter",
+      "hint": "阿拉卡力的女儿(Arakaali's Daughter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Arctic Wolf",
+      "hint": "冰霜巨狼(Arctic Wolf)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Armour Cruncher",
+      "hint": "毁甲巨兽(Armour Cruncher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Avalanche Rider",
+      "hint": "雪崩骑士(Avalanche Rider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Avian Retch",
+      "hint": "丛林反刍鸟(Avian Retch)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Barb Serpent",
+      "hint": "棘刺巨蛇(Barb Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Barrow Ape",
+      "hint": "遗冢狂猿(Barrow Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bearded Devil",
+      "hint": "长须羊人(Bearded Devil)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bearded Shaman",
+      "hint": "长须术师(Bearded Shaman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bearded Skycaller",
+      "hint": "羊人唤空者(Bearded Skycaller)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Black Mórrigan",
+      "hint": "黑羽之莫丽根(Black Mórrigan)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Black Scorpion",
+      "hint": "黑蝎(Black Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bleached Crawler",
+      "hint": "白化巨蟹(Bleached Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Blood Ape",
+      "hint": "血面狂猿(Blood Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Blood Chieftain",
+      "hint": "血面酋长(Blood Chieftain)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bone Cruncher",
+      "hint": "碎骨兽(Bone Cruncher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bone Rhoa",
+      "hint": "枯骨恐喙鸟(Bone Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bramble Cobra",
+      "hint": "丛林眼镜蛇(Bramble Cobra)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Brine Vassal",
+      "hint": "章鱼哥(Brine Vassal)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Brooding Tarantula",
+      "hint": "毛蛛之母(Brooding Tarantula)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carnage Ape",
+      "hint": "冷血狂猿(Carnage Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carnage Chieftain",
+      "hint": "冷血酋长[吼绿球]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carrion Burrower",
+      "hint": "大食腐虫(Carrion Burrower)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carrion Queen",
+      "hint": "食腐虫后(Carrion Queen)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carrion Swarmer",
+      "hint": "食腐虫(Carrion Swarmer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cave Beast",
+      "hint": "洞穴兽(Cave Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cave Skitterer",
+      "hint": "洞穴沙蛛(Cave Skitterer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cavern Drifter",
+      "hint": "洞穴之流(Cavern Drifter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chimeric Croaker",
+      "hint": "妄想宝石蛙(Chimeric Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-infused Chimeral",
+      "hint": "融铬龙蜥(Chrome-infused Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-infused Croaker",
+      "hint": "融铬宝石蛙(Chrome-infused Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-infused Goliath",
+      "hint": "触铬巨人(Chrome-infused Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-touched Chimeral",
+      "hint": "触铬龙蜥(Chrome-touched Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-touched Croaker",
+      "hint": "触铬宝石蛙(Chrome-touched Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-touched Goliath",
+      "hint": "触铬巨人(Chrome-touched Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Colossus Crusher",
+      "hint": "巨大羊魔(Colossus Crusher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Arach",
+      "hint": "堕魂巨蛛(Corrupted Arach)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Beast",
+      "hint": "腐化兽(Corrupted Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Rhoa",
+      "hint": "腐化的恐喙鸟(Corrupted Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Spitter",
+      "hint": "腐化魔蛛(Corrupted Spitter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craiceann, First of the Deep",
+      "hint": "深海初子 克林斯昂(Craiceann, First of the Deep)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Croaker",
+      "hint": "深海鸣蛙(Craicic Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Maw",
+      "hint": "深海裂齿兽(Craicic Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Sand Spitter",
+      "hint": "深海喷砂爪蟹(Craicic Sand Spitter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Savage Crab",
+      "hint": "深海野蛮巨蟹(Craicic Savage Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Shield Crab",
+      "hint": "深海附壳巨蟹(Craicic Shield Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Spider Crab",
+      "hint": "深海蜘蛛蟹(Craicic Spider Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Squid",
+      "hint": "深海墨鱼(Craicic Squid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Vassal",
+      "hint": "深海寄生者(Craicic Vassal)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Watcher",
+      "hint": "深海守望者(Craicic Watcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Crustacean Sniper",
+      "hint": "狙影沙蟹(Crustacean Sniper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Crypt Ambusher",
+      "hint": "水晶巨蛛(Crypt Ambusher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Crypt Weaver",
+      "hint": "深穴巨蛛(Crypt Weaver)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cursed Spawn",
+      "hint": "诅咒海虫(Cursed Spawn)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Deep Crustacean",
+      "hint": "水渊甲蟹(Deep Crustacean)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Devourer",
+      "hint": "吞噬者(Devourer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dirt Scrabbler",
+      "hint": "尘垢者(Dirt Scrabbler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dread Primate",
+      "hint": "恐惧狂猿(Dread Primate)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dune Hellion",
+      "hint": "沙丘地狱犬(Dune Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dust Scrabbler",
+      "hint": "拨尘者(Dust Scrabbler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enraptured Arachnid",
+      "hint": "激进巨蛛(Enraptured Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enraptured Beast",
+      "hint": "狂野巨兽(Enraptured Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enraptured Crab",
+      "hint": "狂暴巨蟹(Enraptured Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enslaved Hellion",
+      "hint": "被奴役的地狱犬(Enslaved Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Escaped Rhex",
+      "hint": "苟活凶鸟(Escaped Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Ape",
+      "hint": "大地巨猿(Farric Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Chieftain",
+      "hint": "大地酋长(Farric Chieftain)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Flame Hellion Alpha",
+      "hint": "大地烈炎地狱巨犬(Farric Flame Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Frost Hellion Alpha",
+      "hint": "大地冰霜地狱巨犬(Farric Frost Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Gargantuan",
+      "hint": "大地野兽(Farric Gargantuan)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Goatman",
+      "hint": "大地羊人(Farric Goatman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Goliath",
+      "hint": "大地针背兽(Farric Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Lynx Alpha",
+      "hint": "大地巨型猞猁(Farric Lynx Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Magma Hound",
+      "hint": "大地熔岩猎犬(Farric Magma Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Pit Hound",
+      "hint": "大地深邃猎犬(Farric Pit Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Taurus",
+      "hint": "大地石肌牛(Farric Taurus)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Tiger Alpha",
+      "hint": "大地巨虎(Farric Tiger Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Ursa",
+      "hint": "大地巨熊(Farric Ursa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Wolf Alpha",
+      "hint": "大地巨狼(Farric Wolf Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farrul, First of the Plains",
+      "hint": "大地初子 法瑞尔(Farrul, First of the Plains)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Devourer",
+      "hint": "暗夜吞噬者(Fenumal Devourer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Hybrid Arachnid",
+      "hint": "暗夜混毒魔蛛(Fenumal Hybrid Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Plagued Arachnid",
+      "hint": "暗夜异蛛(Fenumal Plagued Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Queen",
+      "hint": "暗夜女王(Fenumal Queen)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Scorpion",
+      "hint": "暗夜毒蝎(Fenumal Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Scrabbler",
+      "hint": "暗夜收割者(Fenumal Scrabbler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Widow",
+      "hint": "暗夜黑寡妇(Fenumal Widow)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumus, First of the Night",
+      "hint": "暗夜初子 费努姆斯(Fenumus, First of the Night)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Feral Chimeral",
+      "hint": "凶猛龙蜥(Feral Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Feral Fowl",
+      "hint": "战斗公鸡(Feral Fowl)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fetid Maw",
+      "hint": "恶臭裂齿兽(Fetid Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fighting Bull",
+      "hint": "战斗公牛(Fighting Bull)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Filth Maw",
+      "hint": "净水掠食者(Filth Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Flame Hellion",
+      "hint": "烈炎地狱犬(Flame Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Forest Beast",
+      "hint": "森林野兽(Forest Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Freezing Wolf",
+      "hint": "冰雪巨狼(Freezing Wolf)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fury Hound",
+      "hint": "熔岩猎犬(Fury Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Glade Mamba",
+      "hint": "原野毒吻(Glade Mamba)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Gluttonous Gull",
+      "hint": "狂食反刍鸟(Gluttonous Gull)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman",
+      "hint": "羊人(Goatman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman Fire-raiser",
+      "hint": "羊人炎咒师(Goatman Fire-raiser)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman Shaman",
+      "hint": "羊人术师(Goatman Shaman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman Stomper",
+      "hint": "羊人践踏者(Goatman Stomper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Granite Eater",
+      "hint": "食岩爪蟹(Granite Eater)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Gravel Eater",
+      "hint": "食砾爪蟹(Gravel Eater)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Grazing Taurus",
+      "hint": "石肌公牛(Grazing Taurus)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hairy Bonecruncher",
+      "hint": "长毛碎骨兽(Hairy Bonecruncher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hatchling",
+      "hint": "幼蛛(Hatchling)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hill Devil",
+      "hint": "山岭恶魔(Hill Devil)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Host Adder",
+      "hint": "宿主辐射(Host Adder)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Host Chieftain",
+      "hint": "宿主酋长[吼蓝球]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Host Cobra",
+      "hint": "宿主眼镜蛇(Host Cobra)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hybrid Arachnid",
+      "hint": "混血异蛛(Hybrid Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Ape",
+      "hint": "感染狂猿(Infested Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Crab",
+      "hint": "受感染的蟹(Infested Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Crawler",
+      "hint": "感染食腐虫(Infested Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Maw",
+      "hint": "受疫裂齿兽(Infested Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Rhoa",
+      "hint": "被感染的恐喙鸟(Infested Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Serpent",
+      "hint": "受疫巨蛇(Infested Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Skitterer",
+      "hint": "感染掠蛛(Infested Skitterer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Tunnelfiend",
+      "hint": "受疫地下邪兽(Infested Tunnelfiend)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Ursa",
+      "hint": "受疫之爪(Infested Ursa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Vulture",
+      "hint": "被腐化的秃鹰(Infested Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Ink Spinner",
+      "hint": "喷墨巨蛛(Ink Spinner)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Leaping Spider",
+      "hint": "跃影巨蛛(Leaping Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Lowlands Hopper",
+      "hint": "低地跳虫(Lowlands Hopper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Lurking Venom",
+      "hint": "伏击毒蛛(Lurking Venom)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Maternal Rhex",
+      "hint": "雌性凶鸟(Maternal Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Attendant",
+      "hint": "莫薇儿的侍女(Merveil's Attendant)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Blessed",
+      "hint": "莫薇儿的宠儿(Merveil's Blessed)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Chosen",
+      "hint": "海妖爱女(Merveil's Chosen)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Daughter",
+      "hint": "海妖之女(Merveil's Daughter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Favoured",
+      "hint": "莫薇儿的幼女(Merveil's Favoured)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Retainer",
+      "hint": "海妖家臣[脆弱]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mindless Scavenger",
+      "hint": "傀儡骨喙(Mindless Scavenger)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mountain Hellion",
+      "hint": "山王地狱犬(Mountain Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mountain Hellion Alpha",
+      "hint": "山王地狱犬领袖 阿尔法(Mountain Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mountain Lynx",
+      "hint": "林尼克斯(Mountain Lynx)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Murk Runner",
+      "hint": "阴暗恐喙鸟(Murk Runner)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mutant Arach",
+      "hint": "异变魔蛛(Mutant Arach)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Night Adder",
+      "hint": "夜色毒蛇(Night Adder)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Noxious Tarantula",
+      "hint": "剧毒毛蛛(Noxious Tarantula)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Obsidian Eater",
+      "hint": "黑曜沙蟹(Obsidian Eater)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Parasite",
+      "hint": "寄生虫(Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Pitbull Demon",
+      "hint": "斗牛犬魔(Pitbull Demon)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plagued Arachnid",
+      "hint": "瘟疫异蛛(Plagued Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plated Parasite",
+      "hint": "镀金寄生虫(Plated Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plumed Chimeral",
+      "hint": "彩羽龙蜥(Plumed Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plummeting Ursa",
+      "hint": "堕落之爪(Plummeting Ursa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Porcupine Goliath",
+      "hint": "针背巨兽(Porcupine Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Predatory Scorpion",
+      "hint": "掠食天蝎(Predatory Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Primal Crushclaw",
+      "hint": "原始利爪(Primal Crushclaw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Primal Cystcaller",
+      "hint": "原始囊行(Primal Cystcaller)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Primal Rhex Matriarch",
+      "hint": "原始鸟母(Primal Rhex Matriarch)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Purge Hound",
+      "hint": "恶颜巨犬(Purge Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Ravenous Parasite",
+      "hint": "饥饿寄生虫(Ravenous Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rhoa Mare",
+      "hint": "恐喙鸟母(Rhoa Mare)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rock Spitter",
+      "hint": "岩石沙蟹(Rock Spitter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rooster Fiend",
+      "hint": "公鸡小恶魔(Rooster Fiend)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rotting Vulture",
+      "hint": "腐朽秃鹰(Rotting Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Ruins Hellion",
+      "hint": "废墟地狱犬[激励战吼]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Leaper",
+      "hint": "沙地跳虫(Sand Leaper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Scorpion",
+      "hint": "沙蝎(Sand Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Serpent",
+      "hint": "沙蟒(Sand Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Skitterer",
+      "hint": "沙地沙蛛(Sand Skitterer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawal, First of the Sky",
+      "hint": "苍空初子 萨奇沃(Saqawal, First of the Sky)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Blood Viper",
+      "hint": "苍空毒血蛇(Saqawine Blood Viper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Chimeral",
+      "hint": "苍空奇美拉(Saqawine Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Cobra",
+      "hint": "苍空眼镜蛇(Saqawine Cobra)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Retch",
+      "hint": "苍空反刍鸟(Saqawine Retch)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Rhex",
+      "hint": "苍空凶鸟(Saqawine Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Rhoa",
+      "hint": "苍空恐喙鸟(Saqawine Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Vulture",
+      "hint": "苍空秃鹰(Saqawine Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Savage Crab",
+      "hint": "野蛮巨蟹(Savage Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Scalding Arachnid",
+      "hint": "灼热火蛛(Scalding Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Scavenging Vulture",
+      "hint": "净食秃鹰(Scavenging Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Scum Crawler",
+      "hint": "污泥食腐虫(Scum Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sewage Crawler",
+      "hint": "污秽食腐虫(Sewage Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sewer Drifter",
+      "hint": "下水道漂流者(Sewer Drifter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Shackled Hellion",
+      "hint": "受制地狱犬(Shackled Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Shaggy Monstrosity",
+      "hint": "毒息巨兽(Shaggy Monstrosity)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Singing Siren",
+      "hint": "冥曲海妖(Singing Siren)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Skeletal Beast",
+      "hint": "枯骨野兽(Skeletal Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Slimy Nemesis",
+      "hint": "洞窟海虫(Slimy Nemesis)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Snow Wolf",
+      "hint": "风雪巨狼(Snow Wolf)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Soulless Watcher",
+      "hint": "无灵之眼(Soulless Watcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Spindle Spider",
+      "hint": "长足巨蛛(Spindle Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Spine Serpent",
+      "hint": "脊刺巨蛇(Spine Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Spitting Parasite",
+      "hint": "分裂寄生虫(Spitting Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Stygian Ape",
+      "hint": "冥渡狂猿(Stygian Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Stygian Silverback",
+      "hint": "冥界银背兽[吼绿球]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sulphuric Scorpion",
+      "hint": "硫磺蝎(Sulphuric Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sulphurspawn",
+      "hint": "王卫精英(Sulphurspawn)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Swarthy Mollusc",
+      "hint": "黑溜溜的章鱼哥(Swarthy Mollusc)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Talon Archer",
+      "hint": "利爪射手(Talon Archer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Tercel Rhoa",
+      "hint": "雄健恐喙(Tercel Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Thicket Hulk",
+      "hint": "丛林巨兽(Thicket Hulk)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Toxic Crawler",
+      "hint": "剧毒食腐虫(Toxic Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Tunnelfiend",
+      "hint": "地下邪兽(Tunnelfiend)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vaal Recluse",
+      "hint": "瓦尔遗灵(Vaal Recluse)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vaulting Croaker",
+      "hint": "跃影宝石蛙(Vaulting Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Venomous Spawn",
+      "hint": "剧毒海虫(Venomous Spawn)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vicious Hound",
+      "hint": "狠毒猎犬(Vicious Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vicious Parasite",
+      "hint": "黏滞寄生虫(Vicious Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Virulent Spider",
+      "hint": "致命巨蛛(Virulent Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vivid Abberarach",
+      "hint": "活性纺纱(Vivid Abberarach)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vivid Vulture",
+      "hint": "活性匿者(Vivid Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vivid Watcher",
+      "hint": "活性哨兵(Vivid Watcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "War Hound",
+      "hint": "战争猎犬(War Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Waste Lurcher",
+      "hint": "废水混种(Waste Lurcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Webbed Spider",
+      "hint": "织网巨蛛(Webbed Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Brambleback",
+      "hint": "荒野荆背(Wild Brambleback)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Bristle Matron",
+      "hint": "荒野母兽(Wild Bristle Matron)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Hellion Alpha",
+      "hint": "荒野头狼(Wild Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Rhex",
+      "hint": "野性凶鸟(Wild Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Woods Ursa",
+      "hint": "丛林之爪(Woods Ursa)"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Animate Guardian of Smiting",
+      "hint": "惩击之幻化守卫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Assassin's Mark",
+      "hint": "暗影印记"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Bane of Condemnation",
+      "hint": "罪罚之混沌之毒"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Blade Flurry of Incision",
+      "hint": "割痕之刀刃乱舞"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Bodyswap of Sacrifice",
+      "hint": "牺牲之灵体转换"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Boneshatter of Carnage",
+      "hint": "摧经之七伤破"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Caustic Arrow of Poison",
+      "hint": "剧毒之腐蚀箭矢"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Contagion of Subsiding",
+      "hint": "痼疾之瘟疫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Contagion of Transference",
+      "hint": "转移之瘟疫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Crackling Lance of Branching",
+      "hint": "分叉之电殛长枪"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Crackling Lance of Disintegration",
+      "hint": "瓦解之电殛长枪"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Creeping Frost of Floes",
+      "hint": "浮冰之电光寒霜"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Cremation of Exhuming",
+      "hint": "掘灭之火葬"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Cremation of the Volcano",
+      "hint": "火山之火葬"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Dark Bargain of Trarthus",
+      "hint": "特拉特斯之黑暗交易"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Divine Ire of Disintegration",
+      "hint": "瓦解之圣怨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Divine Ire of Holy Lightning",
+      "hint": "神雷之圣怨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Earthquake of Amplification",
+      "hint": "增幅之地震"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Essence Drain of Desperation",
+      "hint": "绝望之灵魂吸取"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Essence Drain of Wickedness",
+      "hint": "邪门之灵魂吸取"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Eternal Blessing Support",
+      "hint": "永恒祝福 (辅)"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Explosive Trap of Magnitude",
+      "hint": "剧烈之爆炸陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Explosive Trap of Shrapnel",
+      "hint": "破片之爆炸陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Eye of Winter of Finality",
+      "hint": "爆霰之凛冬之眼"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Eye of Winter of Transience",
+      "hint": "瞬息之凛冬之眼"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Flame Surge of Combusting",
+      "hint": "爆燃之怒焰奔腾"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Galvanic Arrow of Energy",
+      "hint": "聚能之电光箭"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Galvanic Arrow of Surging",
+      "hint": "浪涌之电光箭"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Holy Flame Totem of Ire",
+      "hint": "聚火之圣焰图腾"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Holy Sweep of Hammerfalls",
+      "hint": "落锤之神圣横扫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Icicle Mine of Fanning",
+      "hint": "扩散之冰锥地雷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Icicle Mine of Sabotage",
+      "hint": "破坏之冰锥地雷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Less Duration Support",
+      "hint": "持续时间缩短(辅)"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Lightning Spire Trap of Overloading",
+      "hint": "超载之电塔陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Lightning Spire Trap of Zapping",
+      "hint": "震荡之电塔陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Orb of Storms of Squalls",
+      "hint": "狂风之风暴旋涡"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Purifying Flame of Revelations",
+      "hint": "启示之净化烈焰"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Pyroclast Mine of Sabotage",
+      "hint": "破坏之火屑地雷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Rain of Arrows of Artillery",
+      "hint": "炮击之箭雨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Rain of Arrows of Saturation",
+      "hint": "饱和之箭雨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Reap of Butchery",
+      "hint": "屠戮之赤炼收割"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Scorching Ray of Immolation",
+      "hint": "焚灭之灼热光线"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Seismic Trap of Swells",
+      "hint": "膨胀之震波陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Siege Ballista of Splintering",
+      "hint": "双重分叉之攻城炮台"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Siphoning Trap of Pain",
+      "hint": "痛苦之虹吸陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Shield Throw of Shattering",
+      "hint": "碎裂新星之灵盾投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Shield Throw of Trarthus",
+      "hint": "特拉特斯之灵盾投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Throw of Materialising",
+      "hint": "具化之灵体投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Throw of Trarthus",
+      "hint": "特拉特斯之灵体投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Summon Holy Relic of Conviction",
+      "hint": "定罪之召唤圣物"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Summon Stone Golem of Hordes",
+      "hint": "结群之召唤巨石魔像"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Summon Stone Golem of Safeguarding",
+      "hint": "卫护之召唤巨石魔像"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Sunder of Earthbreaking",
+      "hint": "翻腾之大地震击"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Sunder of Trarthus",
+      "hint": "特拉特斯之震击"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Vortex of Projection",
+      "hint": "投射之漩涡"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Wave of Conviction of Trarthus",
+      "hint": "特拉特斯之定罪波"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Abyss Scarab of the Consort",
+      "hint": "邃狱之深渊圣甲虫"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin Bow",
+      "hint": "暗影弓"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin's Boots",
+      "hint": "暗影之靴"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin's Garb",
+      "hint": "暗影之装"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin's Mitts",
+      "hint": "暗影护手"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Constriction",
+      "hint": "约束碎片[裂界碎片二 左下]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Enslavement",
+      "hint": "奴役碎片[裂界碎片三 右上]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Eradication",
+      "hint": "寂灭碎片[裂界碎片四 右下]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Purification",
+      "hint": "净世碎片[裂界碎片一 左上]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Stacked Deck",
+      "hint": "未知的命运卡"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Two-Toned Boots",
+      "hint": "异色鞋"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Two-Toned Boots",
+      "hint": "异色鞋"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Two-Toned Boots",
+      "hint": "异色鞋"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Blade Ambusher",
+      "hint": "利刃伏击者[智/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Bladebitter",
+      "hint": "噬刃者[智/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Bladecaster",
+      "hint": "飞刃者[智/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Cardinal",
+      "hint": "枢机主教[力/智]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Combatant",
+      "hint": "争斗者[力/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Cruel Mistress",
+      "hint": "残酷女王[智]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Earthshaker",
+      "hint": "撼地者[力]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Eruptor",
+      "hint": "爆发手[力]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Fallen Reverend",
+      "hint": "堕落牧师[力/智]"
+    }
+  ],
+  "rejectedHints": [
+    {
+      "ns": "AREA",
+      "refName": "Kishara's Rest",
+      "hint": "琪莎拉之息"
+    },
+    {
+      "ns": "AREA",
+      "refName": "Unremarkable Seabed",
+      "hint": "平凡海床"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Acid Slitherer",
+      "hint": "嗜血滑行者(Acid Slitherer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Adolescent Rhex",
+      "hint": "青春凶鸟(Adolescent Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Alpine Devil",
+      "hint": "尖角羊人(Alpine Devil)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Alpine Shaman",
+      "hint": "羊人萨满(Alpine Shaman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Arakaali's Daughter",
+      "hint": "阿拉卡力的女儿(Arakaali's Daughter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Arctic Wolf",
+      "hint": "冰霜巨狼(Arctic Wolf)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Armour Cruncher",
+      "hint": "毁甲巨兽(Armour Cruncher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Avalanche Rider",
+      "hint": "雪崩骑士(Avalanche Rider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Avian Retch",
+      "hint": "丛林反刍鸟(Avian Retch)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Barb Serpent",
+      "hint": "棘刺巨蛇(Barb Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Barrow Ape",
+      "hint": "遗冢狂猿(Barrow Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bearded Devil",
+      "hint": "长须羊人(Bearded Devil)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bearded Shaman",
+      "hint": "长须术师(Bearded Shaman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bearded Skycaller",
+      "hint": "羊人唤空者(Bearded Skycaller)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Black Mórrigan",
+      "hint": "黑羽之莫丽根(Black Mórrigan)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Black Scorpion",
+      "hint": "黑蝎(Black Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bleached Crawler",
+      "hint": "白化巨蟹(Bleached Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Blood Ape",
+      "hint": "血面狂猿(Blood Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Blood Chieftain",
+      "hint": "血面酋长(Blood Chieftain)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bone Cruncher",
+      "hint": "碎骨兽(Bone Cruncher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bone Rhoa",
+      "hint": "枯骨恐喙鸟(Bone Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Bramble Cobra",
+      "hint": "丛林眼镜蛇(Bramble Cobra)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Brine Vassal",
+      "hint": "章鱼哥(Brine Vassal)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Brooding Tarantula",
+      "hint": "毛蛛之母(Brooding Tarantula)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carnage Ape",
+      "hint": "冷血狂猿(Carnage Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carnage Chieftain",
+      "hint": "冷血酋长[吼绿球]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carrion Burrower",
+      "hint": "大食腐虫(Carrion Burrower)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carrion Queen",
+      "hint": "食腐虫后(Carrion Queen)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Carrion Swarmer",
+      "hint": "食腐虫(Carrion Swarmer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cave Beast",
+      "hint": "洞穴兽(Cave Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cave Skitterer",
+      "hint": "洞穴沙蛛(Cave Skitterer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cavern Drifter",
+      "hint": "洞穴之流(Cavern Drifter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chimeric Croaker",
+      "hint": "妄想宝石蛙(Chimeric Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-infused Chimeral",
+      "hint": "融铬龙蜥(Chrome-infused Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-infused Croaker",
+      "hint": "融铬宝石蛙(Chrome-infused Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-infused Goliath",
+      "hint": "触铬巨人(Chrome-infused Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-touched Chimeral",
+      "hint": "触铬龙蜥(Chrome-touched Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-touched Croaker",
+      "hint": "触铬宝石蛙(Chrome-touched Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Chrome-touched Goliath",
+      "hint": "触铬巨人(Chrome-touched Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Colossus Crusher",
+      "hint": "巨大羊魔(Colossus Crusher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Arach",
+      "hint": "堕魂巨蛛(Corrupted Arach)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Beast",
+      "hint": "腐化兽(Corrupted Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Rhoa",
+      "hint": "腐化的恐喙鸟(Corrupted Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Corrupted Spitter",
+      "hint": "腐化魔蛛(Corrupted Spitter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craiceann, First of the Deep",
+      "hint": "深海初子 克林斯昂(Craiceann, First of the Deep)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Croaker",
+      "hint": "深海鸣蛙(Craicic Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Maw",
+      "hint": "深海裂齿兽(Craicic Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Sand Spitter",
+      "hint": "深海喷砂爪蟹(Craicic Sand Spitter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Savage Crab",
+      "hint": "深海野蛮巨蟹(Craicic Savage Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Shield Crab",
+      "hint": "深海附壳巨蟹(Craicic Shield Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Spider Crab",
+      "hint": "深海蜘蛛蟹(Craicic Spider Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Squid",
+      "hint": "深海墨鱼(Craicic Squid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Vassal",
+      "hint": "深海寄生者(Craicic Vassal)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Craicic Watcher",
+      "hint": "深海守望者(Craicic Watcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Crustacean Sniper",
+      "hint": "狙影沙蟹(Crustacean Sniper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Crypt Ambusher",
+      "hint": "水晶巨蛛(Crypt Ambusher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Crypt Weaver",
+      "hint": "深穴巨蛛(Crypt Weaver)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Cursed Spawn",
+      "hint": "诅咒海虫(Cursed Spawn)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Deep Crustacean",
+      "hint": "水渊甲蟹(Deep Crustacean)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Devourer",
+      "hint": "吞噬者(Devourer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dirt Scrabbler",
+      "hint": "尘垢者(Dirt Scrabbler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dread Primate",
+      "hint": "恐惧狂猿(Dread Primate)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dune Hellion",
+      "hint": "沙丘地狱犬(Dune Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Dust Scrabbler",
+      "hint": "拨尘者(Dust Scrabbler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enraptured Arachnid",
+      "hint": "激进巨蛛(Enraptured Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enraptured Beast",
+      "hint": "狂野巨兽(Enraptured Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enraptured Crab",
+      "hint": "狂暴巨蟹(Enraptured Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Enslaved Hellion",
+      "hint": "被奴役的地狱犬(Enslaved Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Escaped Rhex",
+      "hint": "苟活凶鸟(Escaped Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Ape",
+      "hint": "大地巨猿(Farric Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Chieftain",
+      "hint": "大地酋长(Farric Chieftain)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Flame Hellion Alpha",
+      "hint": "大地烈炎地狱巨犬(Farric Flame Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Frost Hellion Alpha",
+      "hint": "大地冰霜地狱巨犬(Farric Frost Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Gargantuan",
+      "hint": "大地野兽(Farric Gargantuan)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Goatman",
+      "hint": "大地羊人(Farric Goatman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Goliath",
+      "hint": "大地针背兽(Farric Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Lynx Alpha",
+      "hint": "大地巨型猞猁(Farric Lynx Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Magma Hound",
+      "hint": "大地熔岩猎犬(Farric Magma Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Pit Hound",
+      "hint": "大地深邃猎犬(Farric Pit Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Taurus",
+      "hint": "大地石肌牛(Farric Taurus)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Tiger Alpha",
+      "hint": "大地巨虎(Farric Tiger Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Ursa",
+      "hint": "大地巨熊(Farric Ursa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farric Wolf Alpha",
+      "hint": "大地巨狼(Farric Wolf Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Farrul, First of the Plains",
+      "hint": "大地初子 法瑞尔(Farrul, First of the Plains)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Devourer",
+      "hint": "暗夜吞噬者(Fenumal Devourer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Hybrid Arachnid",
+      "hint": "暗夜混毒魔蛛(Fenumal Hybrid Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Plagued Arachnid",
+      "hint": "暗夜异蛛(Fenumal Plagued Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Queen",
+      "hint": "暗夜女王(Fenumal Queen)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Scorpion",
+      "hint": "暗夜毒蝎(Fenumal Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Scrabbler",
+      "hint": "暗夜收割者(Fenumal Scrabbler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumal Widow",
+      "hint": "暗夜黑寡妇(Fenumal Widow)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fenumus, First of the Night",
+      "hint": "暗夜初子 费努姆斯(Fenumus, First of the Night)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Feral Chimeral",
+      "hint": "凶猛龙蜥(Feral Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Feral Fowl",
+      "hint": "战斗公鸡(Feral Fowl)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fetid Maw",
+      "hint": "恶臭裂齿兽(Fetid Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fighting Bull",
+      "hint": "战斗公牛(Fighting Bull)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Filth Maw",
+      "hint": "净水掠食者(Filth Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Flame Hellion",
+      "hint": "烈炎地狱犬(Flame Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Forest Beast",
+      "hint": "森林野兽(Forest Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Freezing Wolf",
+      "hint": "冰雪巨狼(Freezing Wolf)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Fury Hound",
+      "hint": "熔岩猎犬(Fury Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Glade Mamba",
+      "hint": "原野毒吻(Glade Mamba)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Gluttonous Gull",
+      "hint": "狂食反刍鸟(Gluttonous Gull)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman",
+      "hint": "羊人(Goatman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman Fire-raiser",
+      "hint": "羊人炎咒师(Goatman Fire-raiser)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman Shaman",
+      "hint": "羊人术师(Goatman Shaman)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Goatman Stomper",
+      "hint": "羊人践踏者(Goatman Stomper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Granite Eater",
+      "hint": "食岩爪蟹(Granite Eater)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Gravel Eater",
+      "hint": "食砾爪蟹(Gravel Eater)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Grazing Taurus",
+      "hint": "石肌公牛(Grazing Taurus)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hairy Bonecruncher",
+      "hint": "长毛碎骨兽(Hairy Bonecruncher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hatchling",
+      "hint": "幼蛛(Hatchling)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hill Devil",
+      "hint": "山岭恶魔(Hill Devil)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Host Adder",
+      "hint": "宿主辐射(Host Adder)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Host Chieftain",
+      "hint": "宿主酋长[吼蓝球]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Host Cobra",
+      "hint": "宿主眼镜蛇(Host Cobra)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Hybrid Arachnid",
+      "hint": "混血异蛛(Hybrid Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Ape",
+      "hint": "感染狂猿(Infested Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Crab",
+      "hint": "受感染的蟹(Infested Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Crawler",
+      "hint": "感染食腐虫(Infested Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Maw",
+      "hint": "受疫裂齿兽(Infested Maw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Rhoa",
+      "hint": "被感染的恐喙鸟(Infested Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Serpent",
+      "hint": "受疫巨蛇(Infested Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Skitterer",
+      "hint": "感染掠蛛(Infested Skitterer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Tunnelfiend",
+      "hint": "受疫地下邪兽(Infested Tunnelfiend)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Ursa",
+      "hint": "受疫之爪(Infested Ursa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Infested Vulture",
+      "hint": "被腐化的秃鹰(Infested Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Ink Spinner",
+      "hint": "喷墨巨蛛(Ink Spinner)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Leaping Spider",
+      "hint": "跃影巨蛛(Leaping Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Lowlands Hopper",
+      "hint": "低地跳虫(Lowlands Hopper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Lurking Venom",
+      "hint": "伏击毒蛛(Lurking Venom)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Maternal Rhex",
+      "hint": "雌性凶鸟(Maternal Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Attendant",
+      "hint": "莫薇儿的侍女(Merveil's Attendant)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Blessed",
+      "hint": "莫薇儿的宠儿(Merveil's Blessed)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Chosen",
+      "hint": "海妖爱女(Merveil's Chosen)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Daughter",
+      "hint": "海妖之女(Merveil's Daughter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Favoured",
+      "hint": "莫薇儿的幼女(Merveil's Favoured)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Merveil's Retainer",
+      "hint": "海妖家臣[脆弱]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mindless Scavenger",
+      "hint": "傀儡骨喙(Mindless Scavenger)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mountain Hellion",
+      "hint": "山王地狱犬(Mountain Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mountain Hellion Alpha",
+      "hint": "山王地狱犬领袖 阿尔法(Mountain Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mountain Lynx",
+      "hint": "林尼克斯(Mountain Lynx)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Murk Runner",
+      "hint": "阴暗恐喙鸟(Murk Runner)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Mutant Arach",
+      "hint": "异变魔蛛(Mutant Arach)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Night Adder",
+      "hint": "夜色毒蛇(Night Adder)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Noxious Tarantula",
+      "hint": "剧毒毛蛛(Noxious Tarantula)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Obsidian Eater",
+      "hint": "黑曜沙蟹(Obsidian Eater)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Parasite",
+      "hint": "寄生虫(Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Pitbull Demon",
+      "hint": "斗牛犬魔(Pitbull Demon)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plagued Arachnid",
+      "hint": "瘟疫异蛛(Plagued Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plated Parasite",
+      "hint": "镀金寄生虫(Plated Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plumed Chimeral",
+      "hint": "彩羽龙蜥(Plumed Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Plummeting Ursa",
+      "hint": "堕落之爪(Plummeting Ursa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Porcupine Goliath",
+      "hint": "针背巨兽(Porcupine Goliath)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Predatory Scorpion",
+      "hint": "掠食天蝎(Predatory Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Primal Crushclaw",
+      "hint": "原始利爪(Primal Crushclaw)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Primal Cystcaller",
+      "hint": "原始囊行(Primal Cystcaller)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Primal Rhex Matriarch",
+      "hint": "原始鸟母(Primal Rhex Matriarch)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Purge Hound",
+      "hint": "恶颜巨犬(Purge Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Ravenous Parasite",
+      "hint": "饥饿寄生虫(Ravenous Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rhoa Mare",
+      "hint": "恐喙鸟母(Rhoa Mare)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rock Spitter",
+      "hint": "岩石沙蟹(Rock Spitter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rooster Fiend",
+      "hint": "公鸡小恶魔(Rooster Fiend)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Rotting Vulture",
+      "hint": "腐朽秃鹰(Rotting Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Ruins Hellion",
+      "hint": "废墟地狱犬[激励战吼]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Leaper",
+      "hint": "沙地跳虫(Sand Leaper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Scorpion",
+      "hint": "沙蝎(Sand Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Serpent",
+      "hint": "沙蟒(Sand Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sand Skitterer",
+      "hint": "沙地沙蛛(Sand Skitterer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawal, First of the Sky",
+      "hint": "苍空初子 萨奇沃(Saqawal, First of the Sky)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Blood Viper",
+      "hint": "苍空毒血蛇(Saqawine Blood Viper)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Chimeral",
+      "hint": "苍空奇美拉(Saqawine Chimeral)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Cobra",
+      "hint": "苍空眼镜蛇(Saqawine Cobra)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Retch",
+      "hint": "苍空反刍鸟(Saqawine Retch)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Rhex",
+      "hint": "苍空凶鸟(Saqawine Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Rhoa",
+      "hint": "苍空恐喙鸟(Saqawine Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Saqawine Vulture",
+      "hint": "苍空秃鹰(Saqawine Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Savage Crab",
+      "hint": "野蛮巨蟹(Savage Crab)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Scalding Arachnid",
+      "hint": "灼热火蛛(Scalding Arachnid)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Scavenging Vulture",
+      "hint": "净食秃鹰(Scavenging Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Scum Crawler",
+      "hint": "污泥食腐虫(Scum Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sewage Crawler",
+      "hint": "污秽食腐虫(Sewage Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sewer Drifter",
+      "hint": "下水道漂流者(Sewer Drifter)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Shackled Hellion",
+      "hint": "受制地狱犬(Shackled Hellion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Shaggy Monstrosity",
+      "hint": "毒息巨兽(Shaggy Monstrosity)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Singing Siren",
+      "hint": "冥曲海妖(Singing Siren)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Skeletal Beast",
+      "hint": "枯骨野兽(Skeletal Beast)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Slimy Nemesis",
+      "hint": "洞窟海虫(Slimy Nemesis)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Snow Wolf",
+      "hint": "风雪巨狼(Snow Wolf)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Soulless Watcher",
+      "hint": "无灵之眼(Soulless Watcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Spindle Spider",
+      "hint": "长足巨蛛(Spindle Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Spine Serpent",
+      "hint": "脊刺巨蛇(Spine Serpent)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Spitting Parasite",
+      "hint": "分裂寄生虫(Spitting Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Stygian Ape",
+      "hint": "冥渡狂猿(Stygian Ape)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Stygian Silverback",
+      "hint": "冥界银背兽[吼绿球]"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sulphuric Scorpion",
+      "hint": "硫磺蝎(Sulphuric Scorpion)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Sulphurspawn",
+      "hint": "王卫精英(Sulphurspawn)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Swarthy Mollusc",
+      "hint": "黑溜溜的章鱼哥(Swarthy Mollusc)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Talon Archer",
+      "hint": "利爪射手(Talon Archer)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Tercel Rhoa",
+      "hint": "雄健恐喙(Tercel Rhoa)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Thicket Hulk",
+      "hint": "丛林巨兽(Thicket Hulk)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Toxic Crawler",
+      "hint": "剧毒食腐虫(Toxic Crawler)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Tunnelfiend",
+      "hint": "地下邪兽(Tunnelfiend)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vaal Recluse",
+      "hint": "瓦尔遗灵(Vaal Recluse)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vaulting Croaker",
+      "hint": "跃影宝石蛙(Vaulting Croaker)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Venomous Spawn",
+      "hint": "剧毒海虫(Venomous Spawn)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vicious Hound",
+      "hint": "狠毒猎犬(Vicious Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vicious Parasite",
+      "hint": "黏滞寄生虫(Vicious Parasite)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Virulent Spider",
+      "hint": "致命巨蛛(Virulent Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vivid Abberarach",
+      "hint": "活性纺纱(Vivid Abberarach)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vivid Vulture",
+      "hint": "活性匿者(Vivid Vulture)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Vivid Watcher",
+      "hint": "活性哨兵(Vivid Watcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "War Hound",
+      "hint": "战争猎犬(War Hound)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Waste Lurcher",
+      "hint": "废水混种(Waste Lurcher)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Webbed Spider",
+      "hint": "织网巨蛛(Webbed Spider)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Brambleback",
+      "hint": "荒野荆背(Wild Brambleback)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Bristle Matron",
+      "hint": "荒野母兽(Wild Bristle Matron)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Hellion Alpha",
+      "hint": "荒野头狼(Wild Hellion Alpha)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Wild Rhex",
+      "hint": "野性凶鸟(Wild Rhex)"
+    },
+    {
+      "ns": "CAPTURED_BEAST",
+      "refName": "Woods Ursa",
+      "hint": "丛林之爪(Woods Ursa)"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Animate Guardian of Smiting",
+      "hint": "惩击之幻化守卫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Assassin's Mark",
+      "hint": "暗影印记"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Bane of Condemnation",
+      "hint": "罪罚之混沌之毒"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Blade Flurry of Incision",
+      "hint": "割痕之刀刃乱舞"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Bodyswap of Sacrifice",
+      "hint": "牺牲之灵体转换"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Boneshatter of Carnage",
+      "hint": "摧经之七伤破"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Caustic Arrow of Poison",
+      "hint": "剧毒之腐蚀箭矢"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Contagion of Subsiding",
+      "hint": "痼疾之瘟疫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Contagion of Transference",
+      "hint": "转移之瘟疫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Crackling Lance of Branching",
+      "hint": "分叉之电殛长枪"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Crackling Lance of Disintegration",
+      "hint": "瓦解之电殛长枪"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Creeping Frost of Floes",
+      "hint": "浮冰之电光寒霜"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Cremation of Exhuming",
+      "hint": "掘灭之火葬"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Cremation of the Volcano",
+      "hint": "火山之火葬"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Dark Bargain of Trarthus",
+      "hint": "特拉特斯之黑暗交易"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Divine Ire of Disintegration",
+      "hint": "瓦解之圣怨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Divine Ire of Holy Lightning",
+      "hint": "神雷之圣怨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Earthquake of Amplification",
+      "hint": "增幅之地震"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Essence Drain of Desperation",
+      "hint": "绝望之灵魂吸取"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Essence Drain of Wickedness",
+      "hint": "邪门之灵魂吸取"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Eternal Blessing Support",
+      "hint": "永恒祝福 (辅)"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Explosive Trap of Magnitude",
+      "hint": "剧烈之爆炸陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Explosive Trap of Shrapnel",
+      "hint": "破片之爆炸陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Eye of Winter of Finality",
+      "hint": "爆霰之凛冬之眼"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Eye of Winter of Transience",
+      "hint": "瞬息之凛冬之眼"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Flame Surge of Combusting",
+      "hint": "爆燃之怒焰奔腾"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Galvanic Arrow of Energy",
+      "hint": "聚能之电光箭"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Galvanic Arrow of Surging",
+      "hint": "浪涌之电光箭"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Holy Flame Totem of Ire",
+      "hint": "聚火之圣焰图腾"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Holy Sweep of Hammerfalls",
+      "hint": "落锤之神圣横扫"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Icicle Mine of Fanning",
+      "hint": "扩散之冰锥地雷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Icicle Mine of Sabotage",
+      "hint": "破坏之冰锥地雷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Less Duration Support",
+      "hint": "持续时间缩短(辅)"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Lightning Spire Trap of Overloading",
+      "hint": "超载之电塔陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Lightning Spire Trap of Zapping",
+      "hint": "震荡之电塔陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Orb of Storms of Squalls",
+      "hint": "狂风之风暴旋涡"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Purifying Flame of Revelations",
+      "hint": "启示之净化烈焰"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Pyroclast Mine of Sabotage",
+      "hint": "破坏之火屑地雷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Rain of Arrows of Artillery",
+      "hint": "炮击之箭雨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Rain of Arrows of Saturation",
+      "hint": "饱和之箭雨"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Reap of Butchery",
+      "hint": "屠戮之赤炼收割"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Scorching Ray of Immolation",
+      "hint": "焚灭之灼热光线"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Seismic Trap of Swells",
+      "hint": "膨胀之震波陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Siege Ballista of Splintering",
+      "hint": "双重分叉之攻城炮台"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Siphoning Trap of Pain",
+      "hint": "痛苦之虹吸陷阱"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Shield Throw of Shattering",
+      "hint": "碎裂新星之灵盾投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Shield Throw of Trarthus",
+      "hint": "特拉特斯之灵盾投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Throw of Materialising",
+      "hint": "具化之灵体投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Spectral Throw of Trarthus",
+      "hint": "特拉特斯之灵体投掷"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Summon Holy Relic of Conviction",
+      "hint": "定罪之召唤圣物"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Summon Stone Golem of Hordes",
+      "hint": "结群之召唤巨石魔像"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Summon Stone Golem of Safeguarding",
+      "hint": "卫护之召唤巨石魔像"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Sunder of Earthbreaking",
+      "hint": "翻腾之大地震击"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Sunder of Trarthus",
+      "hint": "特拉特斯之震击"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Vortex of Projection",
+      "hint": "投射之漩涡"
+    },
+    {
+      "ns": "GEM",
+      "refName": "Wave of Conviction of Trarthus",
+      "hint": "特拉特斯之定罪波"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Abyss Scarab of the Consort",
+      "hint": "邃狱之深渊圣甲虫"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin Bow",
+      "hint": "暗影弓"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin's Boots",
+      "hint": "暗影之靴"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin's Garb",
+      "hint": "暗影之装"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Assassin's Mitts",
+      "hint": "暗影护手"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Constriction",
+      "hint": "约束碎片[裂界碎片二 左下]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Enslavement",
+      "hint": "奴役碎片[裂界碎片三 右上]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Eradication",
+      "hint": "寂灭碎片[裂界碎片四 右下]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Fragment of Purification",
+      "hint": "净世碎片[裂界碎片一 左上]"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Stacked Deck",
+      "hint": "未知的命运卡"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Two-Toned Boots",
+      "hint": "异色鞋"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Two-Toned Boots",
+      "hint": "异色鞋"
+    },
+    {
+      "ns": "ITEM",
+      "refName": "Two-Toned Boots",
+      "hint": "异色鞋"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Blade Ambusher",
+      "hint": "利刃伏击者[智/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Bladebitter",
+      "hint": "噬刃者[智/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Bladecaster",
+      "hint": "飞刃者[智/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Cardinal",
+      "hint": "枢机主教[力/智]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Combatant",
+      "hint": "争斗者[力/敏]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Cruel Mistress",
+      "hint": "残酷女王[智]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Earthshaker",
+      "hint": "撼地者[力]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Eruptor",
+      "hint": "爆发手[力]"
+    },
+    {
+      "ns": "MERCENARY_BUILD",
+      "refName": "Fallen Reverend",
+      "hint": "堕落牧师[力/智]"
+    }
+  ],
+  "refNameNotAdjacent": 0,
+  "patch": {
+    "words": 3986,
+    "baseTypes": 5041,
+    "clientStrings": 7813,
+    "skillNames": 1101,
+    "vocabulary": 16955
+  },
+  "foreignNames": 0
+}

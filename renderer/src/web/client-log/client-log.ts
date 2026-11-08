@@ -63,7 +63,7 @@ export function handleLine (line: string) {
   entry.body = match.groups!.body
 
   if (entry.сhannel === MessageChannel.WHISPER_FROM) {
-    if ((match = entry.body.match(TRADE_WHISPER[AppConfig().language]))) {
+    if ((match = entry.body.match(whisperPattern(TRADE_WHISPER)))) {
       const [pAmount, pTag] = [
         match.groups!.price.split(' ', 1).toString(),
         match.groups!.price.split(' ').slice(1).join(' ')
@@ -96,7 +96,7 @@ export function handleLine (line: string) {
       }
 
       // console.log(entry)
-    } else if ((match = entry.body.match(TRADE_BULK_WHISPER[AppConfig().language]))) {
+    } else if ((match = entry.body.match(whisperPattern(TRADE_BULK_WHISPER)))) {
       const [pAmount, pName] = [
         match.groups!.price.split(' ', 1).toString(),
         match.groups!.price.split(' ').slice(1).join(' ')
@@ -122,7 +122,16 @@ export function handleLine (line: string) {
   }
 }
 
-const TRADE_WHISPER = {
+/**
+ * Whispers come from the trade site the account actually uses. Simplified Chinese
+ * (`zh_CN`) is a patch for the international client, so its whispers are English
+ * even though the item names inside them are Chinese.
+ */
+function whisperPattern (patterns: Record<string, RegExp>) {
+  return patterns[AppConfig().language] ?? patterns.en!
+}
+
+const TRADE_WHISPER: Record<string, RegExp> = {
   'en': /^Hi, I would like to buy your (?<item>.+) listed for (?<price>.+) in (?<league>.+) \(stash tab "(?<tab_name>.*)"; position: left (?<tab_left>\d+), top (?<tab_top>\d+)\)(?<message>.+)?$/,
   'ru': /^Здравствуйте, хочу купить у вас (?<item>.+) за (?<price>.+) в лиге (?<league>.+) \(секция "(?<tab_name>.*)"; позиция: (?<tab_left>\d+) столбец, (?<tab_top>\d+) ряд\)(?<message>.+)?$/,
   'ko': /^안녕하세요, (?<league>.+)\(보관함 탭 "(?<tab_name>.*)", 위치: 왼쪽 (?<tab_left>\d+), 상단 (?<tab_top>\d+)\)에 (?<price>.+)\(으\)로 올려놓은 (?<item>.+)\(을\)를 구매하고 싶습니다(?<message>.+)?$/,
@@ -134,7 +143,7 @@ const TRADE_WHISPER = {
   'cmn-Hant': /^你好，我想購買 (?<item>.+) 標價 (?<price>.+) 在 (?<league>.+) \(倉庫頁 "(?<tab_name>.*)"; 位置: 左 (?<tab_left>\d+), 上 (?<tab_top>\d+)\)(?<message>.+)?$/
 }
 
-const TRADE_BULK_WHISPER = {
+const TRADE_BULK_WHISPER: Record<string, RegExp> = {
   'en': /^Hi, I'd like to buy your (?<item>.+) for my (?<price>.+) in (?<league>.+)\.(?<message>.+)?$/,
   'ru': /^Здравствуйте, хочу купить у вас (?<item>.+) за (?<price>.+) в лиге (?<league>.+)\.(?<message>.+)?$/,
   'cmn-Hant': /^你好，我想用 (?<price>.+) 購買 (?<item>.+) in (?<league>.+)\.(?<message>.+)?$/,

@@ -5,7 +5,7 @@
         <i class="fas fa-dna fa-spin text-gray-600"></i>
       </div>
       <div class="pl-2 text-center">
-        <div>Getting price prediction...</div>
+        <div>{{ t('extra.prediction_getting', 'Getting price prediction...') }}</div>
         <div class="text-gray-600">Powered by poeprices.info</div>
       </div>
     </div>
@@ -22,11 +22,11 @@
             <i v-if="price.confidence < 78" class="fas fa-exclamation-triangle pr-1 text-orange-400"></i>
             <span>{{ price.confidence }}{{ '\u2009' }}%</span>
           </div>
-          <div class="text-xs text-gray-500 leading-none">Confidence</div>
+          <div class="text-xs text-gray-500 leading-none">{{ t('extra.prediction_confidence', 'Confidence') }}</div>
         </div>
       </div>
       <div v-if="!showContrib" class="flex justify-between items-center">
-        <button @click="showContrib = true" class="btn">Contribution to predicted price<i class="fas fa-chevron-down btn-icon ml-2"></i></button>
+        <button @click="showContrib = true" class="btn">{{ t('extra.prediction_contribution', 'Contribution to predicted price') }}<i class="fas fa-chevron-down btn-icon ml-2"></i></button>
         <div class="flex" v-if="!feedbackSent && (price.confidence < 83)">
           <button class="btn opacity-50 mr-1 flex items-center"
             @click="openWebsite"><i class="fas fa-external-link-alt"></i></button>
@@ -53,14 +53,15 @@
       </table>
     </div>
     <ui-error-box v-else-if="error">
-      <template #name>Failed to get price prediction</template>
-      <p>Error: {{ error }}</p>
+      <template #name>{{ t('extra.prediction_failed', 'Failed to get price prediction') }}</template>
+      <p>{{ t('extra.error', 'Error:') }} {{ error }}</p>
     </ui-error-box>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, watch, ref, PropType, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import UiErrorBox from '@/web/ui/UiErrorBox.vue'
 import { getExternalLink, RareItemPrice, requestPoeprices } from './poeprices'
 import FeedbackOption from './FeedbackOption.vue'
@@ -80,6 +81,8 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const { t } = useI18n()
+
     watch(() => props.item, (item) => {
       slowdown.reset(item)
     }, { immediate: true })
@@ -110,6 +113,7 @@ export default defineComponent({
     }
 
     return {
+      t,
       price,
       error,
       loading: computed(() => loading.value || !slowdown.isReady.value),

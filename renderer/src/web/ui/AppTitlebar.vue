@@ -3,14 +3,18 @@
     <slot />
     <button @click="emit('click')" class="truncate">{{ title }}</button>
     <button @click.stop="emit('close')" tabindex="-1"
-      :class="[$style.button, $style.close]" title="Close"><i class="fas fa-window-close"></i></button>
+      :class="[$style.button, $style.close]" :title="t('extra.close', 'Close')"><i class="fas fa-window-close"></i></button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 defineProps<{
   title?: string
 }>()
+
+const { t } = useI18n()
 
 const emit = defineEmits<{
   (e: 'click' | 'close'): void
