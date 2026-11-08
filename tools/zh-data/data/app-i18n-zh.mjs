@@ -71,6 +71,8 @@ export default {
   'item.stock': '库存：{0}',
   'item.map_tier': '地图阶数：{0}',
   'item.area_level': '区域等级：{0}',
+  'item.ultimatum_sacrifice': '需要奉献：{0}',
+  'item.ultimatum_reward': '奖励：{0}',
   'item.heist_job_lockpicking': '需要开锁（等级 {0}）',
   'item.heist_job_bruteforce': '需要蛮力（等级 {0}）',
   'item.heist_job_perception': '需要察觉（等级 {0}）',

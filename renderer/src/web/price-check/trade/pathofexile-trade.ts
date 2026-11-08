@@ -413,6 +413,28 @@ export function createTradeRequest (filters: ItemFilters, stats: FilterOrGroup[]
     propSet(query.filters, 'sentinel_filters.filters.sentinel_durability.min', filters.sentinelCharge.value)
   }
 
+  if (filters.ultimatum) {
+    const { challenge, reward, sacrifice, rewardUnique } = filters.ultimatum
+
+    if (challenge && !challenge.disabled) {
+      propSet(query.filters, 'ultimatum_filters.filters.ultimatum_challenge.option', challenge.option)
+    }
+    if (reward && !reward.disabled) {
+      propSet(query.filters, 'ultimatum_filters.filters.ultimatum_reward.option', reward.option)
+    }
+    if (sacrifice && !sacrifice.disabled) {
+      propSet(query.filters, 'ultimatum_filters.filters.ultimatum_input.option', sacrifice.option)
+    }
+    if (rewardUnique && !rewardUnique.disabled) {
+      propSet(query.filters, 'ultimatum_filters.filters.ultimatum_output.option', rewardUnique.option)
+      // The site only ever lets you pick one reward kind, so the unique lookup
+      // has to be paired with it explicitly.
+      if (!reward || reward.disabled) {
+        propSet(query.filters, 'ultimatum_filters.filters.ultimatum_reward.option', 'ExchangeUnique')
+      }
+    }
+  }
+
   for (const stat of stats) {
     if (stat.group || !stat.tradeId[0].startsWith('item.')) continue
 

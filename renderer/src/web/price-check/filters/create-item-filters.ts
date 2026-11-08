@@ -6,6 +6,7 @@ import { tradeTag } from '../trade/common'
 import { ModifierType } from '@/parser/modifiers'
 import { BaseType, ITEM_BY_REF } from '@/assets/data'
 import { CATEGORY_TO_TRADE_ID } from '../trade/pathofexile-trade'
+import { createUltimatumFilters } from './ultimatum'
 import { PERMANENT_SC } from '../../background/Leagues'
 
 export const SPECIAL_SUPPORT_GEM = ['Empower Support', 'Enlighten Support', 'Enhance Support']
@@ -100,6 +101,23 @@ export function createFilters (
     }
     return filters
   }
+  if (item.info.refName === 'Inscribed Ultimatum') {
+    filters.searchExact = {
+      baseType: item.info.name,
+      baseTypeTrade: t(opts, item.info)
+    }
+    filters.ultimatum = createUltimatumFilters(item)
+    if (item.areaLevel) {
+      // Area level is what separates a 83 trial from a levelling one; the trade
+      // site also needs it to accept the ultimatum filters at all.
+      filters.areaLevel = {
+        value: item.areaLevel,
+        disabled: false
+      }
+    }
+    return filters
+  }
+
   if (
     item.category === ItemCategory.DivinationCard ||
     item.category === ItemCategory.Currency ||

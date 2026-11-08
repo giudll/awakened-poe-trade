@@ -29,6 +29,18 @@ export function createExactStatFilters (
   opts: { searchStatRange: number, mode?: 'props' | 'bulk' }
 ): StatFilter[] {
   if (
+    item.info.refName === 'Inscribed Ultimatum'
+  ) {
+    // Every line printed on the trial is a trade filter of its own and none of
+    // them has a roll. They are left *unchecked* on purpose: an ultimatum rolls
+    // a random set of modifier tiers, so asking for all of them at once almost
+    // never matches another listing. Tick the ones that matter for the price.
+    return item.statsByType
+      .filter(calc => (calc.stat.trade.ids[calc.type]?.length ?? 0) > 0)
+      .map(calc => ({ ...calculatedStatToFilter(calc, 0, item), disabled: true }))
+  }
+
+  if (
     item.info.area?.blighted ||
     item.category === ItemCategory.Invitation
   ) return []

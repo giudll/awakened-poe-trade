@@ -23,6 +23,16 @@ interface SearchFilterSub extends SearchFilter {
 export interface ItemFilters {
   searchExact: SearchFilterSub
   searchRelaxed?: SearchFilterSub & { disabled: boolean }
+  /**
+   * Inscribed Ultimatum conditions. The trade site keeps them in a hidden
+   * `ultimatum_filters` group, so they cannot ride on the stat list.
+   */
+  ultimatum?: {
+    challenge?: FilterOption
+    reward?: FilterOption
+    sacrifice?: FilterOption
+    rewardUnique?: FilterOption
+  }
   rarity?: {
     value: string
     disabled: boolean
@@ -97,6 +107,14 @@ export interface ItemFilters {
 export interface FilterNumeric {
   value: number
   max?: number | undefined
+  disabled: boolean
+}
+
+/** A dropdown / lookup trade filter: `option` is the value the API expects. */
+export interface FilterOption {
+  option: string
+  /** What the user sees - the wording printed on the item. */
+  text: string
   disabled: boolean
 }
 

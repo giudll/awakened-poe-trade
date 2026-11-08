@@ -39,6 +39,13 @@ const parsers: Array<ParserFn | { virtual: VirtualParserFn }> = [
   { virtual: parseMapTier },
   { virtual: normalizeName },
   { virtual: findInDatabase },
+  // An Inscribed Ultimatum is printed in up to three sections (the trial,
+  // its modifiers, the flavour text) and a section parser only ever gets
+  // one section per pass, so the same parser is registered once per
+  // section - just like `parseModifiers` below.
+  parseInscribedUltimatum,
+  parseInscribedUltimatum,
+  parseInscribedUltimatum,
   // -----------
   parseItemLevel,
   parseTalismanTier,
@@ -1085,6 +1092,80 @@ function parseChart (section: string[], item: ParsedItem) {
   }
 
   return 'SECTION_PARSED'
+}
+
+const ULTIMATUM_PREFIX = {
+  CHALLENGE: /^挑战[:：]\s*/,
+  SACRIFICE: /^需要奉献[:：]\s*/,
+  REWARD: /^奖励[:：]\s*/,
+  FLAVOUR: '可以在私人地图装置中使用'
+}
+
+function parseInscribedUltimatum (section: string[], item: ParsedItem) {
+  if (item.info?.refName !== 'Inscribed Ultimatum') return 'PARSER_SKIPPED'
+
+  // The item is printed in three sections: the trial itself, the modifiers the
+  // trial rolls, and the flavour text. Only the first two carry data.
+  if (section.some(line => line.startsWith(ULTIMATUM_PREFIX.FLAVOUR))) {
+    return 'SECTION_PARSED'
+  }
+
+  item.ultimatum ??= {}
+
+  let parsedSomething = false
+  const modLines: string[] = []
+
+  for (const line of section) {
+    if (line.startsWith(_$.AREA_LEVEL)) {
+      item.areaLevel = Number(line.slice(_$.AREA_LEVEL.length))
+      parsedSomething = true
+      continue
+    }
+
+    const challenge = ULTIMATUM_PREFIX.CHALLENGE.exec(line)
+    if (challenge) {
+      item.ultimatum.challenge = line.slice(challenge[0].length).trim()
+      parsedSomething = true
+      continue
+    }
+
+    const sacrifice = ULTIMATUM_PREFIX.SACRIFICE.exec(line)
+    if (sacrifice) {
+      const text = line.slice(sacrifice[0].length).trim()
+      const amount = /^(.+?)\s*[xX×]\s*(\d+)$/.exec(text)
+      item.ultimatum.sacrifice = amount
+        ? { name: amount[1].trim(), amount: Number(amount[2]) }
+        : { name: text }
+      parsedSomething = true
+      continue
+    }
+
+    const reward = ULTIMATUM_PREFIX.REWARD.exec(line)
+    if (reward) {
+      const text = line.slice(reward[0].length).trim()
+      const qty = /^(.+?)\s*[xX×]\s*(\d+)$/.exec(text)
+      item.ultimatum.reward = { text: (qty ? qty[1] : text).trim() }
+      parsedSomething = true
+      continue
+    }
+
+    // Explanatory lines in parentheses belong to the modifier above them; they
+    // are not printed on the trade site and must not become "unknown" filters.
+    if (/^\(.*\)$/.test(line.trim())) continue
+    if (/^\(/.test(line.trim()) || /\)$/.test(line.trim())) continue
+
+    modLines.push(line)
+  }
+
+  if (modLines.length) {
+    parseStatsFromMod(modLines, item, {
+      info: { type: ModifierType.Explicit, tags: [] },
+      stats: []
+    })
+    parsedSomething = true
+  }
+
+  return parsedSomething ? 'SECTION_PARSED' : 'SECTION_SKIPPED'
 }
 
 function parseAreaLevelNested (section: string[], item: ParsedItem): boolean {

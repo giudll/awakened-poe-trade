@@ -51,6 +51,17 @@ export interface ParsedItem {
     wingsTotal?: number
     target?: 'Enchants' | 'Trinkets' | 'Gems' | 'Replicas'
   }
+  /**
+   * Inscribed Ultimatum ("贪婪战书"). Everything here is optional: the game
+   * prints only the lines that apply to that particular trial.
+   */
+  ultimatum?: {
+    challenge?: string
+    /** `需要奉献:` — the item + amount that has to be handed over. */
+    sacrifice?: { name: string, amount?: number }
+    /** `奖励:` — either a fixed reward or the name of a unique item. */
+    reward?: { text: string, unique?: string }
+  }
   heistContract?: {
     requiredJob?: 'Lockpicking' | 'Brute Force' | 'Perception' | 'Demolition' | 'Counter-Thaumaturgy' | 'Trap Disarmament' | 'Agility' | 'Deception' | 'Engineering'
     jobLevel?: number

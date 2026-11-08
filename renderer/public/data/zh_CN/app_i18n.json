@@ -60,6 +60,8 @@
     "stock": "库存：{0}",
     "map_tier": "地图阶数：{0}",
     "area_level": "区域等级：{0}",
+    "ultimatum_sacrifice": "需要奉献：{0}",
+    "ultimatum_reward": "奖励：{0}",
     "heist_job_lockpicking": "需要开锁（等级 {0}）",
     "heist_job_bruteforce": "需要蛮力（等级 {0}）",
     "heist_job_perception": "需要察觉（等级 {0}）",

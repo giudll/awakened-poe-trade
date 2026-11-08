@@ -14,6 +14,7 @@ import { parseStatDescriptions, buildTextPairs } from './lib/statdesc.mjs'
 import { readDatc64 } from './lib/datc64.mjs'
 import { getPatchZip } from './lib/patch.mjs'
 import ANOINT_ZH from './data/anoint-zh.mjs'
+import ULTIMATUM_ZH from './data/ultimatum-zh.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
@@ -136,6 +137,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     coverageByType: {},
     clusterGrant: { prefix: grantPrefixCn, synthesized: 0, failed: [] },
     anoints: { prefix: allocatesPrefix, synthesized: 0, known: Object.keys(ANOINT_ZH).length },
+    ultimatum: { records: 0 },
     realMods: { total: 0, translated: 0 }
   }
 
@@ -241,6 +243,20 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     return clone
   })
 
+  // Ultimatum modifiers are missing from the English snapshot altogether (the
+  // trade site keeps them in their own `ultimatum` group), so there is nothing
+  // to attach a translation to - the records have to be created from scratch.
+  // Only the Chinese line is used for matching; the English one is kept so items
+  // copied from an English client still resolve.
+  for (const [ids, en, cn] of ULTIMATUM_ZH) {
+    out.push({
+      ref: en,
+      matchers: [{ string: cn }, { string: en }],
+      trade: { ids: { explicit: Array.isArray(ids) ? ids : [ids] } }
+    })
+    report.ultimatum.records += 1
+  }
+
   for (const [text, recs] of cnToRecords) {
     if (recs.size > 1) report.cnCollisions.push({ text, records: recs.size })
   }
@@ -256,6 +272,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     console.log(`cluster jewel "grant" lines rebuilt: ${report.clusterGrant.synthesized}` +
       `${report.clusterGrant.prefix ? '' : ' (WARNING: ClientStrings template not found)'}` +
       `${report.clusterGrant.failed.length ? `, unmatched: ${report.clusterGrant.failed.length}` : ''}`)
+    console.log(`ultimatum modifier records created: ${report.ultimatum.records}`)
     console.log('by mod type:')
     Object.entries(report.coverageByType)
       .sort((a, b) => b[1].total - a[1].total)
