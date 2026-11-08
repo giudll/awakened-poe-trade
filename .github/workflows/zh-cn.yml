@@ -42,8 +42,15 @@ jobs:
     - uses: actions/setup-node@v6
       with:
         node-version: 22
-    - run: npm ci
+    - name: Install the build dependencies
       working-directory: ./renderer
+      run: |
+        for attempt in 1 2 3; do
+          if npm ci; then exit 0; fi
+          echo "npm ci failed (attempt $attempt of 3), retrying in 20s"
+          sleep 20
+        done
+        exit 1
     - run: npm run lint
       working-directory: ./renderer
     - name: Parse the Chinese regression fixtures
@@ -113,8 +120,18 @@ jobs:
           fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n")
         '
         node -p "require('./main/package.json').version"
-    - run: npm ci
+    # `npm ci` pulls the Electron binary from github.com/electron/releases, which
+    # answers 504 often enough that a retry is cheaper than a whole rebuild.
+    - name: Install the build dependencies
       working-directory: ./main
+      shell: bash
+      run: |
+        for attempt in 1 2 3; do
+          if npm ci; then exit 0; fi
+          echo "npm ci failed (attempt $attempt of 3), retrying in 20s"
+          sleep 20
+        done
+        exit 1
     - run: npm run build
       working-directory: ./main
     - name: Package the installers
