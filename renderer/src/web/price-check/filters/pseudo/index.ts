@@ -3,6 +3,7 @@ import { ItemRarity } from '@/parser/ParsedItem'
 import { ModifierType, StatCalculated, StatSource } from '@/parser/modifiers'
 import { calculatedStatToFilter, FiltersCreationContext } from '../create-stat-filters'
 import type { StatFilter } from '../interfaces'
+import { pseudoLabel } from './labels'
 
 const RESISTANCES_INFO = [
   { ref: stat('+#% to All Resistances'), elements: ['fire', 'cold', 'lightning'], chaos: true },
@@ -352,6 +353,7 @@ export function filterPseudo (ctx: FiltersCreationContext) {
     }, ctx.searchInRange, ctx.item)
 
     filter.disabled = rule.disabled ?? true
+    filter.text = pseudoLabel(filter.statRef, filter.text)
 
     if (rule.mutate) {
       rule.mutate(filter)

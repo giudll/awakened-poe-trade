@@ -16,6 +16,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import table from './data/app-i18n-zh.mjs'
+import { PSEUDO_LABELS } from './data/pseudo-labels-zh.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '../..')
@@ -56,6 +57,36 @@ const walk = (node, prefix) => {
 }
 
 const zh = walk(en, '')
+
+// The price check window builds a handful of filters that have no game text at
+// all: aggregates the app adds up itself (`+#% total Elemental Resistance`) and
+// trade-site options (`Has Room: Banquet Hall`, `# Crafted Modifiers`). The
+// 编年史 patch cannot translate them because the client never prints them, so
+// they stayed English while every real mod was Chinese - exactly what the window
+// showed.
+//
+// They are keyed by stat ref rather than by a slug so the two sides cannot drift,
+// and they live in the Chinese bundle only: `pseudoLabel()` in the renderer falls
+// back to the English text, so the English build is untouched.
+{
+  const statsFile = path.join(root, 'renderer/public/data/zh_CN/stats.ndjson')
+  const refs = new Set()
+  for (const line of fs.readFileSync(statsFile, 'utf8').split('\n')) {
+    if (!line) continue
+    const record = JSON.parse(line)
+    for (const stat of ('stats' in record ? record.stats : [record])) {
+      if (stat.ref) refs.add(stat.ref)
+    }
+  }
+  const stale = Object.keys(PSEUDO_LABELS).filter(ref => !refs.has(ref))
+  if (stale.length) {
+    throw new Error(
+      `pseudo-labels-zh.mjs has ${stale.length} ref(s) that do not exist in stats.ndjson:\n  ` +
+        stale.join('\n  ')
+    )
+  }
+  zh.pseudo_text = { ...PSEUDO_LABELS }
+}
 
 // Upstream also hardcodes a handful of labels by using the English text *as* the
 // i18n key - `t('Search')`, `t('Save')`, `t('Cancel')` - and those keys do not

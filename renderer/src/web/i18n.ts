@@ -51,3 +51,13 @@ export function useI18nNs (name: string) {
     }) as typeof t
   }
 }
+
+/**
+ * Raw message tree of the active locale. Needed where the translation is not a
+ * fixed key but a data value - the pseudo filters are keyed by stat ref, which is
+ * only known at runtime.
+ */
+export function globalMessages (): Record<string, unknown> {
+  if (!_global) return {}
+  return _global.getLocaleMessage(_global.locale.value) as Record<string, unknown>
+}
