@@ -72,7 +72,15 @@ for (const file of files) {
     console.log(` delete ${file}`)
     continue
   }
-  const raw = fs.readFileSync(abs)
+  let raw = fs.readFileSync(abs)
+  // The Windows checkout has CRLF on disk while the repository stores LF, so
+  // uploading the file as-is would silently rewrite every line and make a
+  // translated file differ from upstream in the diff without the content
+  // differing at all. Normalise text files, leave binaries alone.
+  if (!raw.includes(0) && raw.includes('\r\n')) {
+    raw = Buffer.from(raw.toString('utf8').replace(/\r\n/g, '\n'), 'utf8')
+    console.log(' (crlf -> lf)')
+  }
   const blob = await api('POST', `/repos/${REPO}/git/blobs`, {
     content: raw.toString('base64'),
     encoding: 'base64'
