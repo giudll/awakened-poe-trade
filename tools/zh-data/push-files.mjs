@@ -57,10 +57,21 @@ const head = (await api('GET', `/repos/${REPO}/git/ref/heads/${BRANCH}`)).object
 const headCommit = await api('GET', `/repos/${REPO}/git/commits/${head}`)
 console.log(`head: ${head.slice(0, 7)} (${headCommit.message.split('\n')[0]})`)
 
+// `sha: null` in a tree entry removes the path, which is the only way to delete
+// through the Git Data API. Verify the file is really there first so a typo in a
+// path cannot silently turn into a no-op.
+const headTree = await api('GET', `/repos/${REPO}/git/trees/${headCommit.tree.sha}?recursive=1`)
+const headPaths = new Set(headTree.tree.map(entry => entry.path))
+
 const entries = []
 for (const file of files) {
   const abs = path.join(repoDir, file)
-  if (!fs.existsSync(abs)) throw new Error(`missing local file: ${file}`)
+  if (!fs.existsSync(abs)) {
+    if (!headPaths.has(file)) throw new Error(`no such file locally or on the branch: ${file}`)
+    entries.push({ path: file, mode: '100644', type: 'blob', sha: null })
+    console.log(` delete ${file}`)
+    continue
+  }
   const raw = fs.readFileSync(abs)
   const blob = await api('POST', `/repos/${REPO}/git/blobs`, {
     content: raw.toString('base64'),

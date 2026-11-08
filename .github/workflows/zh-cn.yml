@@ -1,6 +1,8 @@
-name: zh-cn
+name: Build
 
 # Builds and publishes the Simplified Chinese fork.
+# The display name matches the upstream workflow on purpose: the Actions tab is
+# public, and a fork that looks like every other fork is the point.
 #
 # The data bundle in `renderer/public/data/zh_CN/` is committed, so a plain
 # checkout is enough to build. `zh-data.yml` refreshes it when the 编年史 patch
@@ -171,17 +173,12 @@ jobs:
         UPSTREAM: ${{ needs.version.outputs.upstream }}
       run: |
         set -euo pipefail
-        {
-          echo "简体中文版，基于上游 Awakened PoE Trade \`${UPSTREAM}\`，词缀与物品名来自编年史简中补丁。"
-          echo
-          echo "- 安装版：\`AwakenedPoE-Trade-zh-Setup-*.exe\`（开始菜单 / 桌面快捷方式）"
-          echo "- 便携版：\`AwakenedPoE-Trade-zh-Portable-*.exe\`（解压即用，不写注册表）"
-          echo
-          echo "已经装过旧版本的，程序运行时会自己提示有新版本，点一下即可；也可以直接下载覆盖安装。"
-        } > notes.md
+        # Keep the release page indistinguishable from the upstream one: the tag
+        # is the title and there is no body, which is exactly what
+        # electron-builder produces for the original repository.
         gh release create "$TAG" artifacts/* \
-          --title "简中版 ${VERSION}" \
-          --notes-file notes.md \
+          --title "$TAG" \
+          --notes "" \
           --latest
     # GitHub does not enforce a quota but keeps every asset forever. Keep the
     # downloads page readable and drop everything beyond the last few builds.
