@@ -57,20 +57,59 @@ const walk = (node, prefix) => {
 
 const zh = walk(en, '')
 
-// `extra.*` keys do not exist upstream. They cover UI text that is hardcoded in
-// the components; those components pass the English string as vue-i18n's
-// default value, so the English build is unaffected and no upstream file has to
-// be touched (which keeps the daily upstream merge trivial).
-const extraKeys = [...extra].filter(key => key.startsWith('extra.'))
+// Upstream also hardcodes a handful of labels by using the English text *as* the
+// i18n key - `t('Search')`, `t('Save')`, `t('Cancel')` - and those keys do not
+// exist in `en/app_i18n.json`. English users see the key, which happens to read
+// like a label, so the bug is invisible in English and glaring in Chinese.
+//
+// The fix is a Chinese-only entry: adding `"Search": "搜索"` to the zh bundle
+// translates the button, while the English bundle keeps its current output and
+// no upstream component is touched (which keeps the daily upstream merge clean).
+// The allow-list is scanned from the source, so it cannot drift.
+const scanHardcodedKeys = () => {
+  const keys = new Set()
+  const re = /\$?t\(\s*(['"])((?:\\.|(?!\1).)*)\1/g
+  const walkDir = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, entry.name)
+      if (entry.isDirectory()) {
+        walkDir(p)
+      } else if (/\.(vue|ts)$/.test(entry.name)) {
+        for (const m of fs.readFileSync(p, 'utf8').matchAll(re)) {
+          const key = m[2]
+          // `:foo` is a namespace prefix, `a.b` is nested, `{x}` is a variable
+          if (!key || key.startsWith(':') || key.includes('.') || /[<>{}\n]/.test(key)) continue
+          keys.add(key)
+        }
+      }
+    }
+  }
+  walkDir(path.join(root, 'renderer/src'))
+  return keys
+}
+
+const hardcodedKeys = scanHardcodedKeys()
+const untranslated = []
+
+// `extra.*` keys cover UI text hardcoded in components that pass the English
+// string as vue-i18n's default value; the top-level hardcoded keys above cover
+// the older `t('English')` style.
+const extraKeys = [...extra]
 for (const key of extraKeys) {
   extra.delete(key)
-  const parts = key.split('.')
-  let node = zh
-  for (const part of parts.slice(0, -1)) {
-    node[part] ??= {}
-    node = node[part]
+  if (key.startsWith('extra.')) {
+    const parts = key.split('.')
+    let node = zh
+    for (const part of parts.slice(0, -1)) {
+      node[part] ??= {}
+      node = node[part]
+    }
+    node[parts.at(-1)] = table[key]
+  } else if (hardcodedKeys.has(key) && !key.includes('.')) {
+    zh[key] = table[key]
+  } else {
+    untranslated.push(key)
   }
-  node[parts.at(-1)] = table[key]
 }
 
 if (missing.length) {
@@ -79,10 +118,10 @@ if (missing.length) {
     `add them to tools/zh-data/data/app-i18n-zh.mjs`
   )
 }
-if (extra.size) {
+if (untranslated.length) {
   throw new Error(
-    `stale keys in app-i18n-zh.mjs (${extra.size}):\n  ${[...extra].join('\n  ')}\n` +
-    `remove them, upstream no longer uses them`
+    `stale keys in app-i18n-zh.mjs (${untranslated.length}):\n  ${untranslated.join('\n  ')}\n` +
+    `upstream no longer uses them, and they are not hardcoded in any component`
   )
 }
 

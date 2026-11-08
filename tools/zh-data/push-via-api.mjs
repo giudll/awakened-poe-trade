@@ -196,16 +196,28 @@ await api('PATCH', `/repos/${fork}`, {
   homepage: `https://github.com/${fork}/releases/latest`
 })
 
-// 5. the ref was created through the API, so no push event fired - dispatch by hand
+// 5. creating or updating a ref does fire a push event, so the build normally
+// starts on its own - `workflow_dispatch` is only the fallback for the odd run
+// where GitHub does not line the event up with the workflow file.
+const runsForCommit = async () => {
+  const runs = await api('GET', `/repos/${fork}/actions/runs?head_sha=${commit.sha}&per_page=10`)
+  return runs.workflow_runs.filter(run => run.path.endsWith('/zh-cn.yml'))
+}
+
+let started = false
 for (let attempt = 0; attempt < 12; attempt++) {
-  try {
-    await api('POST', `/repos/${fork}/actions/workflows/zh-cn.yml/dispatches`, { ref: BRANCH })
-    console.log('build dispatched')
+  if ((await runsForCommit()).length) {
+    started = true
     break
-  } catch (err) {
-    if (attempt === 11) throw err
-    await new Promise(resolve => setTimeout(resolve, 5000))
   }
+  await new Promise(resolve => setTimeout(resolve, 5000))
+}
+
+if (started) {
+  console.log('build started by the push event')
+} else {
+  await api('POST', `/repos/${fork}/actions/workflows/zh-cn.yml/dispatches`, { ref: BRANCH })
+  console.log('build dispatched by hand (no push run appeared)')
 }
 
 console.log('')

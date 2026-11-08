@@ -347,6 +347,30 @@ export default {
   'price_check.remember_currency': '记住“一口价通货”筛选',
   'price_check.default_settings': '默认使用以下设置进行搜索：',
 
+  // Labels that upstream writes as `t('Search')` / `t('Save')` - the English text
+  // *is* the key, and the key is absent from `en/app_i18n.json`. English players
+  // see the key, which reads like a label, so nobody upstream noticed. These
+  // entries live only in the Chinese bundle: the English bundle is untouched and
+  // no component has to be edited.
+  'Search': '搜索',
+  'Trade': '交易',
+  'Save': '保存',
+  'Cancel': '取消',
+  'Add': '添加',
+  'Remove': '移除',
+  'Refresh': '刷新',
+  'Retry': '重试',
+  'Browser': '用浏览器打开',
+  'Select': '选择',
+  'No': '否',
+  'You': '你',
+  'Disabled': '已禁用',
+  'min': '最低',
+  'max': '最高',
+  'Hotcool': 'Garena（台服）',
+  'Restart required': '需要重启',
+  'Not recognized modifier': '无法识别的词缀',
+
   // Strings that upstream keeps hardcoded in the components instead of
   // `app_i18n.json`. The components pass the English text as the vue-i18n
   // default value, so `en` is unaffected and this file stays additive.

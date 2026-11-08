@@ -112,7 +112,13 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
           set.add(recIdx)
         }
       }
-      stat.matchers.push(...extra)
+      // The Chinese matchers go *first*, not last. `translateStatWithRoll` in
+      // `renderer/src/parser/modifiers.ts` takes the first matcher whose
+      // `value` is unset (`matchers.find(m => m.value == null)`), so appending
+      // them would leave the English text on screen - the exact bug this fork
+      // exists to fix. Order does not affect parsing: the item parser scans
+      // every matcher with `.some()`, so English item text still resolves.
+      stat.matchers.unshift(...extra)
       added += extra.length
     }
 
