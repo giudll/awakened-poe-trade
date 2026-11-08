@@ -246,14 +246,17 @@ export function createFilters (
       if (
         item.category === ItemCategory.ClusterJewel ||
         item.category === ItemCategory.Idol ||
-        item.category === ItemCategory.Graft ||
-        item.category === ItemCategory.HeistBlueprint
+        item.category === ItemCategory.Graft
       ) {
         disabled = true
       } else if (
         item.category === ItemCategory.SanctumRelic ||
         item.category === ItemCategory.Charm ||
-        item.category === ItemCategory.HeistContract
+        item.category === ItemCategory.HeistContract ||
+        // A blueprint's base type is just the wing layout. The layout does not
+        // affect the price, so search by category and let the wing count, the
+        // revealed wings and the enchant carry the query.
+        item.category === ItemCategory.HeistBlueprint
       ) {
         disabled = false
       }
