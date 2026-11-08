@@ -124,6 +124,16 @@ jobs:
     # answers 504 for minutes at a time. Install without that one download and
     # then retry it on its own - a retry then costs seconds instead of a full
     # dependency reinstall.
+    - uses: actions/cache@v4
+      with:
+        path: '~/AppData/Local/electron/Cache'
+        key: electron-cache-${{ hashFiles('main/package-lock.json') }}
+    # electron-builder downloads the same kind of artifacts (winCodeSign, nsis,
+    # the Electron zip again) and hits the same 504s; its cache survives too.
+    - uses: actions/cache@v4
+      with:
+        path: '~/AppData/Local/electron-builder/Cache'
+        key: electron-builder-cache-${{ hashFiles('main/package-lock.json') }}
     - name: Install the build dependencies
       working-directory: ./main
       shell: bash
@@ -132,10 +142,10 @@ jobs:
       run: |
         npm ci
         unset ELECTRON_SKIP_BINARY_DOWNLOAD
-        for attempt in $(seq 1 10); do
+        for attempt in $(seq 1 20); do
           if node node_modules/electron/install.js; then exit 0; fi
-          echo "electron download failed (attempt $attempt of 10), retrying in 15s"
-          sleep 15
+          echo "electron download failed (attempt $attempt of 20), retrying in 20s"
+          sleep 20
         done
         exit 1
     - run: npm run build
