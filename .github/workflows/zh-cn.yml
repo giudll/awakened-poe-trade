@@ -121,15 +121,21 @@ jobs:
         '
         node -p "require('./main/package.json').version"
     # `npm ci` pulls the Electron binary from github.com/electron/releases, which
-    # answers 504 often enough that a retry is cheaper than a whole rebuild.
+    # answers 504 for minutes at a time. Install without that one download and
+    # then retry it on its own - a retry then costs seconds instead of a full
+    # dependency reinstall.
     - name: Install the build dependencies
       working-directory: ./main
       shell: bash
+      env:
+        ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
       run: |
-        for attempt in 1 2 3; do
-          if npm ci; then exit 0; fi
-          echo "npm ci failed (attempt $attempt of 3), retrying in 20s"
-          sleep 20
+        npm ci
+        unset ELECTRON_SKIP_BINARY_DOWNLOAD
+        for attempt in $(seq 1 10); do
+          if node node_modules/electron/install.js; then exit 0; fi
+          echo "electron download failed (attempt $attempt of 10), retrying in 15s"
+          sleep 15
         done
         exit 1
     - run: npm run build
