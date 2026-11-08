@@ -141,6 +141,26 @@ jobs:
         grep -qx "provider: github" "$cfg"
         grep -qx "owner: ${REPO%%/*}" "$cfg"
         grep -qx "repo: ${REPO##*/}" "$cfg"
+    - name: The updater manifest must name the files that are published
+      shell: bash
+      run: |
+        set -euo pipefail
+        node -e '
+          const fs = require("fs")
+          const dir = "main/dist"
+          const yml = fs.readFileSync(`${dir}/latest.yml`, "utf8")
+          const referenced = [...yml.matchAll(/^\s*-?\s*url:\s*(.+)$/gm)]
+            .map(m => m[1].trim().replace(/^["\x27]|["\x27]$/g, ""))
+          const built = fs.readdirSync(dir).filter(f => f.endsWith(".exe"))
+          for (const file of referenced) {
+            if (!built.includes(file)) {
+              throw new Error(
+                `latest.yml points at ${file}, which is not among the built files: ${built.join(", ")}`
+              )
+            }
+          }
+          console.log("latest.yml matches the built files:", referenced.join(", "))
+        '
     - name: Collect artifacts
       shell: bash
       run: |
@@ -174,10 +194,10 @@ jobs:
       run: |
         set -euo pipefail
         # Keep the release page indistinguishable from the upstream one: the tag
-        # is the title and there is no body, which is exactly what
-        # electron-builder produces for the original repository.
+        # stays `v<version>`, the title is the bare version and there is no body,
+        # which is what the original repository shows.
         gh release create "$TAG" artifacts/* \
-          --title "$TAG" \
+          --title "$VERSION" \
           --notes "" \
           --latest
     # GitHub does not enforce a quota but keeps every asset forever. Keep the

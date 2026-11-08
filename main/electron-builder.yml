@@ -2,6 +2,12 @@ publish:
   - "github"
 productName: "Awakened PoE Trade"
 npmRebuild: false
+# These are spelled out because CI uploads the files itself instead of letting
+# electron-builder publish. Left to its defaults, electron-builder writes
+# `Awakened.PoE.Trade.Setup-x.exe` on disk but `Awakened-PoE-Trade-Setup-x.exe`
+# into latest.yml, and the updater would then download a file that is not on the
+# release. They also happen to be the names the upstream release uses.
+artifactName: "Awakened-PoE-Trade-${version}-${arch}.${ext}"
 toolsets:
   appimage: 1.0.3
 artifactBuildCompleted: "build/apprun-patch.test.mjs"
@@ -17,6 +23,9 @@ extraMetadata:
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
+  artifactName: "Awakened-PoE-Trade-Setup-${version}.${ext}"
+portable:
+  artifactName: "Awakened-PoE-Trade-${version}.${ext}"
 win:
   target:
   - "nsis"
