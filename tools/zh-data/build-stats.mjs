@@ -11,6 +11,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { listZipEntries, readZipEntry } from './lib/zip.mjs'
 import { parseStatDescriptions, buildTextPairs } from './lib/statdesc.mjs'
+import { readDatc64 } from './lib/datc64.mjs'
 import { getPatchZip } from './lib/patch.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -38,10 +39,75 @@ function readNdjson (text) {
   return text.split('\n').filter(l => l.length).map(l => JSON.parse(l))
 }
 
+// Cluster jewels are the one place where the client stitches a line together
+// instead of looking the whole sentence up: `Metadata/StatDescriptions` only
+// carries "Added Small Passive Skills *also* grant: <effect>", while the plain
+// "grant" variant is rendered from a ClientStrings template
+// (`StatDescripotionTreeExpansionJewelGrantedSmallStat`, note GGG's typo) whose
+// `{0}` is the granted effect's own stat text. The patch translations live in
+// two different files, so no English text ever has a Chinese twin here and the
+// price check shows "unrecognised modifier" for every medium/large cluster
+// jewel enchant. Rebuild the sentence the client renders.
+const GRANT_PREFIX = 'Added Small Passive Skills grant: '
+
+/** @returns {string | null} the Chinese prefix, `{0}` already stripped */
+export function readClusterGrantPrefix (zipBuffer) {
+  const entry = listZipEntries(zipBuffer).find(e =>
+    e.name.toLowerCase() === 'data/traditional chinese/clientstrings.datc64')
+  if (!entry) return null
+
+  const dat = readDatc64(readZipEntry(zipBuffer, entry))
+  const dv = dat.dataVariable
+  let start = 0
+  for (let i = 0; i + 1 < dv.length; i += 2) {
+    if (dv.readUInt16LE(i) !== 0) continue
+    if (i > start) {
+      const text = dv.subarray(start, i).toString('utf16le')
+      if (/^增加的小天赋获得：\{0\}$/.test(text)) return text.slice(0, -3)
+    }
+    start = i + 2
+  }
+  return null
+}
+
+/** Replaces the numbers so the line can be looked up as a stat template. */
+function toStatTemplate (text) {
+  return text.replace(/\d+(?:\.\d+)?/g, '#')
+}
+
+function lookupGrantedEffect (pairs, effect) {
+  const unsigned = effect.replace(/^\+\s*/, '')
+  for (const candidate of [effect, toStatTemplate(effect), unsigned, toStatTemplate(unsigned)]) {
+    const hit = pairs.get(candidate)
+    if (!hit?.size) continue
+    const variants = [...hit]
+    // One English template can serve several stats. The local ("该装备的…")
+    // wording belongs to the equippable copy of the stat, so only fall back to
+    // it when there is nothing else; otherwise take the longest variant, which
+    // is the fully spelled out one ("…格挡几率" over "…格挡率").
+    const specific = variants.filter(v => !v.includes('该装备的'))
+    const pool = specific.length ? specific : variants
+    return pool.reduce((a, b) => (b.length > a.length ? b : a))
+  }
+  return null
+}
+
+export function synthesizeClusterGrant (pairs, prefixCn, enText) {
+  const lines = []
+  for (const line of enText.split('\n')) {
+    if (!line.startsWith(GRANT_PREFIX)) return null
+    const effect = lookupGrantedEffect(pairs, line.slice(GRANT_PREFIX.length).trim())
+    if (!effect) return null
+    lines.push(prefixCn + effect)
+  }
+  return lines.join('\n')
+}
+
 /** @returns {Promise<{ stats: any[], report: any }>} */
 export async function buildStats ({ zipBuffer, quiet = false }) {
   const blocks = await readStatBlocksFromPatch(zipBuffer)
   const { pairs, stats: pairStats } = buildTextPairs(blocks, TARGET_LANG)
+  const grantPrefixCn = readClusterGrantPrefix(zipBuffer)
 
   const enText = await readFile(path.join(DATA, 'en/stats.ndjson'), 'utf-8')
   const records = readNdjson(enText)
@@ -58,6 +124,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     cnCollisions: [],
     enStringCollisions: 0,
     coverageByType: {},
+    clusterGrant: { prefix: grantPrefixCn, synthesized: 0, failed: [] },
     realMods: { total: 0, translated: 0 }
   }
 
@@ -96,7 +163,16 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     for (const stat of flatten(clone)) {
       const extra = []
       for (const matcher of stat.matchers) {
-        const cn = pairs.get(matcher.string.trim())
+        let cn = pairs.get(matcher.string.trim())
+        if (!cn && grantPrefixCn && matcher.string.startsWith(GRANT_PREFIX)) {
+          const rebuilt = synthesizeClusterGrant(pairs, grantPrefixCn, matcher.string)
+          if (rebuilt) {
+            cn = new Set([rebuilt])
+            report.clusterGrant.synthesized += 1
+          } else {
+            report.clusterGrant.failed.push(matcher.string)
+          }
+        }
         if (!cn) continue
         for (const cnText of cn) {
           if (cnText === matcher.string) continue
@@ -159,6 +235,9 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
       `translated blocks: ${report.translatedBlocks}, en->cn texts: ${report.enToCnTexts}`)
     console.log(`records: ${report.records}, translated: ${report.recordsTranslated} ` +
       `(${(100 * report.recordsTranslated / report.records).toFixed(1)}%), matchers added: ${report.matchersAdded}`)
+    console.log(`cluster jewel "grant" lines rebuilt: ${report.clusterGrant.synthesized}` +
+      `${report.clusterGrant.prefix ? '' : ' (WARNING: ClientStrings template not found)'}` +
+      `${report.clusterGrant.failed.length ? `, unmatched: ${report.clusterGrant.failed.length}` : ''}`)
     console.log('by mod type:')
     Object.entries(report.coverageByType)
       .sort((a, b) => b[1].total - a[1].total)
@@ -198,6 +277,7 @@ async function main () {
     md5,
     ...report,
     recordsUntranslated: report.recordsUntranslated.slice(0, 500),
+    clusterGrant: { ...report.clusterGrant, failed: report.clusterGrant.failed.slice(0, 100) },
     cnCollisions: report.cnCollisions.slice(0, 200)
   }, null, 2))
 }
