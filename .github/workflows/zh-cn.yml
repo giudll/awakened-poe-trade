@@ -118,6 +118,27 @@ jobs:
     - name: Package the installers
       working-directory: ./main
       run: npx electron-builder build --win --x64 -p never
+    # A running copy asks `app-update.yml` where the next build lives. If
+    # electron-builder ever fell back to the upstream repository, the fork would
+    # quietly update itself to the English release - the one failure mode that
+    # cannot be seen until it has already happened. So the feed is inspected
+    # before anything is published.
+    - name: The update feed must point at this repository
+      shell: bash
+      env:
+        REPO: ${{ github.repository }}
+      run: |
+        set -euo pipefail
+        cfg=$(find main/dist -name app-update.yml -path '*resources*' | head -1)
+        if [ -z "$cfg" ]; then
+          echo "app-update.yml is missing, the build would ship without an update feed"
+          exit 1
+        fi
+        echo "--- $cfg"
+        cat "$cfg"
+        grep -qx "provider: github" "$cfg"
+        grep -qx "owner: ${REPO%%/*}" "$cfg"
+        grep -qx "repo: ${REPO##*/}" "$cfg"
     - name: Collect artifacts
       shell: bash
       run: |
