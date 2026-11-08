@@ -134,25 +134,74 @@ jobs:
       with:
         path: '~/AppData/Local/electron-builder/Cache'
         key: electron-builder-cache-${{ hashFiles('main/package-lock.json') }}
+    # The binary comes from the step below, so skip the package's own copy: that
+    # download is the one that fails, and packaging never reads it.
     - name: Install the build dependencies
       working-directory: ./main
       shell: bash
       env:
         ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+      run: npm ci
+    # github.com/<repo>/releases/download answers 504 for minutes at a time, and
+    # today it does so for every asset electron-builder wants. The API's asset
+    # endpoint serves the same bytes over a different path, so the Electron zip
+    # is fetched here and handed to electron-builder with `-c.electronDist`;
+    # the npm package's own copy is not needed for packaging at all.
+    - name: Fetch the Electron binary
+      shell: bash
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        npm ci
-        unset ELECTRON_SKIP_BINARY_DOWNLOAD
-        for attempt in $(seq 1 20); do
-          if node node_modules/electron/install.js; then exit 0; fi
-          echo "electron download failed (attempt $attempt of 20), retrying in 20s"
-          sleep 20
+        set -euo pipefail
+        version=$(node -p "require('./main/package.json').devDependencies.electron.replace(/^[^0-9]*/, '')")
+        file="electron-v${version}-win32-x64.zip"
+        dir="$RUNNER_TEMP/electron"
+        mkdir -p "$dir"
+        for attempt in $(seq 1 6); do
+          echo "attempt $attempt: $file"
+          if curl -fsSL --retry 2 --max-time 300 -o "$dir/$file" \
+            "https://github.com/electron/electron/releases/download/v${version}/${file}"; then
+            break
+          fi
+          echo "the release URL failed, trying the API asset endpoint"
+          id=$(curl -fsSL -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/electron/electron/releases/tags/v${version}" \
+            | FILE="$file" node -e '
+                let s = ""
+                process.stdin.on("data", d => (s += d)).on("end", () => {
+                  const asset = JSON.parse(s).assets.find(a => a.name === process.env.FILE)
+                  if (!asset) throw new Error("no asset named " + process.env.FILE)
+                  console.log(asset.id)
+                })
+              ') || continue
+          if curl -fsSL --max-time 300 -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/octet-stream" -o "$dir/$file" \
+            "https://api.github.com/repos/electron/electron/releases/assets/${id}"; then
+            break
+          fi
+          sleep 15
         done
-        exit 1
+        test -s "$dir/$file"
+        ls -l "$dir/$file"
+        echo "ELECTRON_DIST=$dir/$file" >> "$GITHUB_ENV"
     - run: npm run build
       working-directory: ./main
+    # electron-builder pulls nsis and winCodeSign from the same 504-prone host.
+    # The npmmirror copy is byte-identical (electron-builder checks each archive
+    # against the sha512 baked into it, so a tampered file cannot get through),
+    # and it is only used once the official host has already failed.
     - name: Package the installers
       working-directory: ./main
-      run: npx electron-builder build --win --x64 -p never
+      shell: bash
+      env:
+        FALLBACK_MIRROR: https://registry.npmmirror.com/-/binary/electron-builder-binaries/
+      run: |
+        set -euo pipefail
+        if ! npx electron-builder build --win --x64 -p never -c.electronDist="$ELECTRON_DIST"; then
+          echo "the official binaries host failed, retrying through the mirror"
+          ELECTRON_BUILDER_BINARIES_MIRROR="$FALLBACK_MIRROR" \
+            npx electron-builder build --win --x64 -p never -c.electronDist="$ELECTRON_DIST"
+        fi
     # A running copy asks `app-update.yml` where the next build lives. If
     # electron-builder ever fell back to the upstream repository, the fork would
     # quietly update itself to the English release - the one failure mode that
