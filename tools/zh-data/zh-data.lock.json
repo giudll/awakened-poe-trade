@@ -1,7 +1,7 @@
 {
-  "version": "3.29.3.5",
-  "md5": "39a321e9a4b99189a0394f594f604adf",
-  "builtAt": "2026-11-10T03:01:56.145Z",
+  "version": "3.29.3.6",
+  "md5": "eff8ccd5f73820fd490db50615af3906",
+  "builtAt": "2026-11-11T03:04:01.472Z",
   "coverage": {
     "realMods": 0.912,
     "itemNames": 0.9291,
