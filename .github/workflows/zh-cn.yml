@@ -20,6 +20,9 @@ on:
     paths-ignore:
       - 'docs/**'
       - '**.md'
+      # Lock files and the generator tools are not part of the app. A daily
+      # patch repackage updates only the lock, and must not produce a release.
+      - 'tools/zh-data/**'
   workflow_dispatch:
     inputs:
       publish:

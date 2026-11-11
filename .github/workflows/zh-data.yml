@@ -70,6 +70,7 @@ jobs:
 
     - name: Commit
       if: steps.pin.outputs.changed == 'true'
+      id: commit
       run: |
         set -euo pipefail
         rm -f pin_cn.json
@@ -78,15 +79,26 @@ jobs:
         git add renderer/public/data/zh_CN tools/zh-data/zh-data.lock.json
         if git diff --cached --quiet; then
           echo 'nothing to commit'
+          echo 'data_changed=false' >> "$GITHUB_OUTPUT"
           exit 0
+        fi
+        # The patch is repackaged daily: its version and md5 change even when
+        # every generated file is byte-for-byte identical. Record the new md5,
+        # but only ship a release when the bundle itself actually changed.
+        if git diff --cached --quiet -- renderer/public/data/zh_CN; then
+          echo 'Only the lock file moved, no new installers needed'
+          echo 'data_changed=false' >> "$GITHUB_OUTPUT"
+        else
+          echo 'data_changed=true' >> "$GITHUB_OUTPUT"
         fi
         git commit -m "data: update zh_CN bundle (patch ${{ steps.pin.outputs.version }})"
         git push
 
     # A push made with GITHUB_TOKEN does not trigger other workflows, so the
-    # installer build has to be dispatched explicitly.
+    # installer build has to be dispatched explicitly - and only for real data
+    # changes, otherwise a lock-only commit would ship the same bytes again.
     - name: Rebuild the installers
-      if: steps.pin.outputs.changed == 'true'
+      if: steps.commit.outputs.data_changed == 'true'
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh workflow run zh-cn.yml --ref feat/zh-cn
