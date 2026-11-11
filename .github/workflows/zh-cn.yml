@@ -65,7 +65,9 @@ jobs:
       with:
         name: renderer-dist
         path: ./renderer/dist
-        retention-days: 1
+        # Keep it around for a week: re-running an older build days later is a
+        # normal maintenance action, and a one-day artifact would be gone.
+        retention-days: 7
 
   version:
     needs: renderer
@@ -98,9 +100,29 @@ jobs:
       with:
         node-version: 22
     - uses: actions/download-artifact@v8
+      id: renderer_dist
+      continue-on-error: true
       with:
         name: renderer-dist
         path: ./renderer/dist
+    # Re-running only the failed jobs does not re-run `renderer`: its artifact
+    # belongs to an earlier attempt and may already have expired. Build the UI
+    # here so a re-run can still produce installers instead of failing in 16s.
+    # `renderer` has no Electron binary in its dependencies, so this is safe on
+    # the Windows runner too.
+    - name: Rebuild the UI when the artifact is unavailable
+      if: steps.renderer_dist.outcome == 'failure'
+      working-directory: ./renderer
+      shell: bash
+      run: |
+        ok=false
+        for attempt in 1 2 3; do
+          if npm ci; then ok=true; break; fi
+          echo "npm ci failed (attempt $attempt of 3), retrying in 20s"
+          sleep 20
+        done
+        if [ "$ok" != "true" ]; then exit 1; fi
+        npm run build
     # The version and the release repository are written into `package.json`
     # here, never committed: electron-builder reads both, the version ends up in
     # `latest.yml` and the repository becomes the `app-update.yml` feed, i.e. the
