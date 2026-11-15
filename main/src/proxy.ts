@@ -1,6 +1,7 @@
 import type { Server } from 'http'
-import { app, net, session } from 'electron'
+import { net, session } from 'electron'
 import type { Logger } from './RemoteLogger'
+import { USER_AGENT } from './user-agent'
 
 const PROXY_HOSTS = [
   { host: 'www.pathofexile.com', official: true },
@@ -34,7 +35,7 @@ export class HttpProxy {
         method: req.method,
         headers: {
           ...req.headers,
-          'user-agent': app.userAgentFallback
+          'user-agent': USER_AGENT
         },
         useSessionCookies: true,
         referrerPolicy: 'no-referrer-when-downgrade'

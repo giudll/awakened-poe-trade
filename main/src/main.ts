@@ -14,6 +14,11 @@ import { AppTray } from './AppTray'
 import { OverlayVisibility } from './windowing/OverlayVisibility'
 import { GameLogWatcher } from './host-files/GameLogWatcher'
 import { HttpProxy } from './proxy'
+import { USER_AGENT } from './user-agent'
+
+// Every window (the built-in browser included) must look like a plain browser,
+// otherwise Cloudflare blocks the trade site before the CAPTCHA can render.
+app.userAgentFallback = USER_AGENT
 
 if (!app.requestSingleInstanceLock()) {
   app.exit()
