@@ -10,8 +10,9 @@ import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { listZipEntries, readZipEntry } from './lib/zip.mjs'
-import { parseStatDescriptions, buildTextPairs } from './lib/statdesc.mjs'
+import { parseStatDescriptions, buildTextPairs, detectChineseSlot, DEFAULT_CHINESE_SLOT } from './lib/statdesc.mjs'
 import { readDatc64 } from './lib/datc64.mjs'
+import { readOverlay, mergeStats } from './lib/overlay.mjs'
 import { getPatchZip } from './lib/patch.mjs'
 import ANOINT_ZH from './data/anoint-zh.mjs'
 import ULTIMATUM_ZH from './data/ultimatum-zh.mjs'
@@ -20,12 +21,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
 const DATA = path.join(ROOT, 'renderer/public/data')
 
-export const TARGET_LANG = 'Traditional Chinese'
+export const TARGET_LANG = DEFAULT_CHINESE_SLOT
 
 export async function readStatBlocksFromPatch (zipBuffer) {
-  const entries = listZipEntries(zipBuffer).filter(e =>
-    e.name.toLowerCase().startsWith('metadata/statdescriptions/') && e.name.toLowerCase().endsWith('.txt'))
-  if (!entries.length) throw new Error('Patch zip has no Metadata/StatDescriptions/*.txt')
+  // The 3.30 patch renamed `*.txt` to `*.csd`; the content is still UTF-16 text.
+  const all = listZipEntries(zipBuffer).filter(e =>
+    e.name.toLowerCase().startsWith('metadata/statdescriptions/') && !e.name.endsWith('/'))
+  const entries = all.filter(e => /\.(txt|csd)$/.test(e.name.toLowerCase()))
+  if (!entries.length) {
+    const exts = [...new Set(all.map(e => {
+      const slash = e.name.lastIndexOf('/')
+      const dot = e.name.lastIndexOf('.')
+      return dot > slash ? e.name.slice(dot).toLowerCase() : '(no extension)'
+    }))]
+    throw new Error('Patch zip has no Metadata/StatDescriptions/*.txt|*.csd ' +
+      `(found ${all.length} entries there, extensions: ${exts.join(', ') || 'none'}) ` +
+      '- the patch changed shape, teach readStatBlocksFromPatch about it')
+  }
 
   const blocks = []
   for (const entry of entries) {
@@ -113,7 +125,34 @@ export function synthesizeClusterGrant (pairs, prefixCn, enText) {
 /** @returns {Promise<{ stats: any[], report: any }>} */
 export async function buildStats ({ zipBuffer, quiet = false }) {
   const blocks = await readStatBlocksFromPatch(zipBuffer)
-  const { pairs, stats: pairStats } = buildTextPairs(blocks, TARGET_LANG)
+
+  // Never trust the slot label: the patch swaps the two Chinese slots, and the
+  // texts are not glyph variants of each other (see lib/statdesc.mjs).
+  const detected = detectChineseSlot(blocks)
+  if (!detected) throw new Error('Patch has no Chinese stat descriptions')
+  if (detected.swapped && !quiet) {
+    console.warn(`! Chinese slots are labelled against their content: reading "${detected.slot}"`)
+  }
+
+  const { pairs, stats: pairStats } = buildTextPairs(blocks, detected.slot)
+
+  // Every Chinese string the bundle emits has to be traceable to the patch, byte
+  // for byte. Old builds were made by converting the traditional text to
+  // simplified, which is right for most characters and silently wrong for the
+  // rest, so the check is on provenance, not on how much Chinese we got.
+  const allowedCn = new Set()
+  for (const set of pairs.values()) for (const text of set) allowedCn.add(text)
+
+  // Every English line the patched client can print. A record whose text is not
+  // in here is a stat the current version deleted, so it is not part of what the
+  // localization has to cover.
+  const patchEn = new Set()
+  for (const block of blocks) {
+    for (const text of block.byLang.get('English') ?? []) patchEn.add(text.trim())
+  }
+  const stripTags = s => s.replace(/\[[^\]|]*\|([^\]]*)\]/g, '$1')
+  const isStaleLine = (stat) => !(stat.matchers ?? []).some(m =>
+    patchEn.has(m.string) || patchEn.has(stripTags(m.string).trim()))
   const grantPrefixCn = readClusterGrantPrefix(zipBuffer)
   const allocatesPrefix = (() => {
     const first = [...(pairs.get('Allocates #') ?? [])][0]
@@ -123,12 +162,26 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
   const enText = await readFile(path.join(DATA, 'en/stats.ndjson'), 'utf-8')
   const records = readNdjson(enText)
 
+  // Stats the skeleton does not ship yet, plus trade ids for a domain the
+  // skeleton forgot. Purely additive: anything upstream already has wins, so an
+  // upstream refresh converges back to upstream's data on its own.
+  const overlay = await readOverlay()
+  const mergedStats = mergeStats(records, overlay)
+  const allRecords = mergedStats.records
+
   const report = {
+    zhSlot: { used: detected.slot, swapped: detected.swapped, counts: detected.counts },
     patchBlocks: pairStats.blocks,
     englishTexts: pairStats.en,
     translatedBlocks: pairStats.translated,
     enToCnTexts: pairs.size,
     records: records.length,
+    recordsEmitted: allRecords.length,
+    overlay: {
+      items: { added: 0, superseded: 0 }, // filled by build-items, kept here for the lock
+      stats: { added: 0, translated: 0, superseded: mergedStats.report.superseded },
+      statIds: { added: mergedStats.report.domainsAdded, kept: mergedStats.report.domainsKept }
+    },
     recordsTranslated: 0,
     matchersAdded: 0,
     recordsUntranslated: [],
@@ -138,7 +191,8 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     clusterGrant: { prefix: grantPrefixCn, synthesized: 0, failed: [] },
     anoints: { prefix: allocatesPrefix, synthesized: 0, known: Object.keys(ANOINT_ZH).length },
     ultimatum: { records: 0 },
-    realMods: { total: 0, translated: 0 }
+    realMods: { total: 0, translated: 0, stale: 0, staleTranslated: 0 },
+    provenance: { chineseMatchers: 0, violations: [] }
   }
 
   // Stats that never appear as item text: pseudo aggregates, anointment
@@ -169,9 +223,14 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     report.enStringCollisions = [...owners.values()].filter(s => s.size > 1).length
   }
 
-  const out = records.map((rec, recIdx) => {
+  const out = allRecords.map((rec, recIdx) => {
     const clone = structuredClone(rec)
     let added = 0
+    // Records the overlay created are not part of what the localization has to
+    // cover: the skeleton never had that line, 编年史 has not translated it, and
+    // counting it as untranslated would pull the gate below its threshold for
+    // reasons that have nothing to do with the localization being broken.
+    const fromOverlay = mergedStats.addedRefs.has(flatten(clone)[0].ref)
 
     for (const stat of flatten(clone)) {
       const extra = []
@@ -181,6 +240,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
           const rebuilt = synthesizeClusterGrant(pairs, grantPrefixCn, matcher.string)
           if (rebuilt) {
             cn = new Set([rebuilt])
+            allowedCn.add(rebuilt)
             report.clusterGrant.synthesized += 1
           } else {
             report.clusterGrant.failed.push(matcher.string)
@@ -189,7 +249,9 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
         if (!cn && matcher.string.startsWith(ALLOCATES_PREFIX)) {
           const zhName = ANOINT_ZH[matcher.string.slice(ALLOCATES_PREFIX.length)]
           if (zhName) {
-            cn = new Set([allocatesPrefix + zhName])
+            const anointed = allocatesPrefix + zhName
+            cn = new Set([anointed])
+            allowedCn.add(anointed)
             report.anoints.synthesized += 1
           }
         }
@@ -235,13 +297,28 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
 
       const onlyPseudo = Object.keys(stat.trade?.ids ?? {}).every(t => t === 'pseudo' || t === 'imbued')
       if (!onlyPseudo && !isSyntheticRef(stat.ref)) {
-        report.realMods.total += 1
-        if (added) report.realMods.translated += 1
+        if (fromOverlay) {
+          report.overlay.stats.added += 1
+          if (added) report.overlay.stats.translated += 1
+        } else {
+          report.realMods.total += 1
+          if (added) report.realMods.translated += 1
+          // The English skeleton can still carry lines this patch no longer
+          // contains: stats a balance patch deleted. They can never appear on an
+          // item again, so counting them as untranslated understates the bundle.
+          if (isStaleLine(stat)) {
+            report.realMods.stale += 1
+            if (added) report.realMods.staleTranslated += 1
+          }
+        }
       }
     }
 
     return clone
   })
+
+  report.realMods.current = report.realMods.total - report.realMods.stale
+  report.realMods.currentTranslated = report.realMods.translated - report.realMods.staleTranslated
 
   // Ultimatum modifiers are missing from the English snapshot altogether (the
   // trade site keeps them in their own `ultimatum` group), so there is nothing
@@ -254,6 +331,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
       matchers: [{ string: cn }, { string: en }],
       trade: { ids: { explicit: Array.isArray(ids) ? ids : [ids] } }
     })
+    allowedCn.add(cn)
     report.ultimatum.records += 1
   }
 
@@ -262,9 +340,40 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
   }
   report.cnCollisions.sort((a, b) => b.records - a.records)
 
+  // Provenance gate. The client shows exactly what the patch contains, so every
+  // Chinese matcher must be one of those strings verbatim (or a documented
+  // synthesis from several of them). Anything else - typically the output of a
+  // traditional-to-simplified conversion - can never match the game text, so it
+  // is a silent failure rather than a cosmetic one and has to stop the build.
+  let violationCount = 0
+  for (const rec of out) {
+    for (const stat of flatten(rec)) {
+      for (const matcher of stat.matchers ?? []) {
+        if (!/[\u4e00-\u9fff]/.test(matcher.string)) continue
+        report.provenance.chineseMatchers += 1
+        if (allowedCn.has(matcher.string)) continue
+        violationCount += 1
+        if (report.provenance.violations.length < 50) {
+          report.provenance.violations.push({ ref: stat.ref, string: matcher.string })
+        }
+      }
+    }
+  }
+  if (violationCount) {
+    const samples = report.provenance.violations
+      .slice(0, 5)
+      .map(v => `  ${JSON.stringify(v.string)}\n    <- ${v.ref}`)
+      .join('\n')
+    throw new Error(`${violationCount} Chinese matcher(s) are not verbatim patch text ` +
+      `(reading slot "${detected.slot}"). Refusing to write data that cannot match the client.\n${samples}`)
+  }
+
   const ndjson = out.map(r => JSON.stringify(r)).join('\n') + '\n'
 
   if (!quiet) {
+    console.log(`chinese slot: "${report.zhSlot.used}"` +
+      `${report.zhSlot.swapped ? ' (labels are swapped in the patch)' : ''}, ` +
+      `all ${report.provenance.chineseMatchers} chinese matchers verbatim from the patch`)
     console.log(`patch blocks: ${report.patchBlocks}, en texts: ${report.englishTexts}, ` +
       `translated blocks: ${report.translatedBlocks}, en->cn texts: ${report.enToCnTexts}`)
     console.log(`records: ${report.records}, translated: ${report.recordsTranslated} ` +
@@ -273,6 +382,11 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
       `${report.clusterGrant.prefix ? '' : ' (WARNING: ClientStrings template not found)'}` +
       `${report.clusterGrant.failed.length ? `, unmatched: ${report.clusterGrant.failed.length}` : ''}`)
     console.log(`ultimatum modifier records created: ${report.ultimatum.records}`)
+    console.log(`overlay: ${mergedStats.report.domainsAdded} trade id domains filled in ` +
+      `(${mergedStats.report.domainsKept} already upstream), ` +
+      `${report.overlay.stats.added} stat records added ` +
+      `(${report.overlay.stats.translated} of them have Chinese already` +
+      `${report.overlay.stats.superseded ? `, ${report.overlay.stats.superseded} already upstream` : ''})`)
     console.log('by mod type:')
     Object.entries(report.coverageByType)
       .sort((a, b) => b[1].total - a[1].total)
@@ -286,6 +400,10 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     console.log(`real item mods: ${report.realMods.translated}/${report.realMods.total} = ` +
       `${(100 * report.realMods.translated / report.realMods.total).toFixed(1)}% ` +
       '(excludes pseudo / anointments / synthetic gem stats)')
+    console.log(`  of those, lines this patch no longer contains: ${report.realMods.stale} ` +
+      `(coverage of what the client can actually show: ` +
+      `${report.realMods.currentTranslated}/${report.realMods.current} = ` +
+      `${(100 * report.realMods.currentTranslated / report.realMods.current).toFixed(1)}%)`)
   }
 
   return { ndjson, report }

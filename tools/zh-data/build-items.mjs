@@ -30,6 +30,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { getPatchZip } from './lib/patch.mjs'
 import { readPatchNames, normId } from './lib/patch-names.mjs'
+import { readOverlay, mergeItems } from './lib/overlay.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
@@ -162,12 +163,25 @@ export async function buildItems ({ zipBuffer, hints, quiet = false }) {
   const patch = readPatchNames(zipBuffer)
   const hintTable = hints ?? await readHints()
 
+  // Items the skeleton does not ship yet (a new league's item classes). They are
+  // English by construction and go through the exact same resolution below, so
+  // 编年史's translation is picked up the day it lands. See lib/overlay.mjs.
+  const overlay = await readOverlay()
+  const merged = mergeItems(en, overlay)
+  const items = merged.items
+
   const baseTypeByName = new Map()
   for (const row of patch.baseTypes) if (!baseTypeByName.has(row.name)) baseTypeByName.set(row.name, row)
   const wordNames = new Set(patch.words.values())
 
   const report = {
+    // The gate below is measured against the skeleton only. Overlay records are
+    // English on purpose (编年史 has not translated them yet), so counting them
+    // would make the gate drift with every league instead of measuring the
+    // localization itself.
     records: en.length,
+    recordsEmitted: items.length,
+    overlay: { added: merged.added, superseded: merged.superseded },
     translated: 0,
     byNamespace: {},
     sources: { words: 0, idMatch: 0, gemVariant: 0, verified: 0, repaired: 0, englishOnly: 0 },
@@ -183,7 +197,7 @@ export async function buildItems ({ zipBuffer, hints, quiet = false }) {
     }
   }
 
-  const out = en.map((item) => {
+  const out = items.map((item) => {
     const stats = (report.byNamespace[item.namespace] ??= { total: 0, translated: 0 })
     stats.total += 1
     const hint = hintTable[`${item.namespace}::${item.refName}`]
@@ -284,6 +298,8 @@ export async function buildItems ({ zipBuffer, hints, quiet = false }) {
       `(${(100 * report.translated / report.records).toFixed(1)}%), ` +
       `${report.sources.englishOnly} kept English (not in 编年史)`)
     console.log(`  sources: ${Object.entries(report.sources).map(([k, v]) => `${k}=${v}`).join(' ')}`)
+    console.log(`  overlay: +${merged.added} item records from the trade API` +
+      `${merged.superseded ? `, ${merged.superseded} already upstream (prunable)` : ''}`)
     Object.entries(report.byNamespace)
       .sort((a, b) => b[1].total - a[1].total)
       .forEach(([ns, v]) => console.log(

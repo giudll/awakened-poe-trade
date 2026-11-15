@@ -25,11 +25,18 @@ https://poedb.tw/fg/{md5}.zip        -> the archive, MD5 verified after download
 ```
 
 The archive contains 207 `Data/<language>/*.datc64` tables and 45
-`Metadata/StatDescriptions/*.txt` files. One detail matters a lot: the *Simplified
-Chinese* text is stored in the **`Traditional Chinese`** language slot, because that
-is the slot the international client renders. Reading the `lang "Simplified
-Chinese"` sections instead yields a different (Tencent) translation that does not
-match what the patched client shows.
+`Metadata/StatDescriptions/*.txt` files (since 3.30 they are named `*.csd`; the
+content is unchanged UTF-16 text, and both extensions are accepted).
+
+One detail matters a lot: the *Simplified Chinese* text is stored in the
+**`Traditional Chinese`** language slot, because that is the slot the international
+client renders. The two slots are not the same text in two character sets - they are
+two different translations (`区域内的[异界图鉴掉落]提高 3%` vs `增加3%此區域的[輿圖掉落加成]`),
+so converting one into the other with a character map gets most characters right and
+the wording wrong everywhere else, and the affected lines silently stop matching what
+the client shows. `detectChineseSlot` therefore derives the slot from the content
+(20k+ script-exclusive characters separate the two) instead of trusting the label, and
+`buildStats` refuses to emit Chinese text that is not a verbatim patch string.
 
 ## The one rule: no Chinese text unless the patch has it
 
@@ -47,7 +54,11 @@ label. Consequently the bundle must not invent Chinese:
   `大师工艺前缀`, not `大师工艺 前缀属性`), 编年史 wins.
 
 `build-items.mjs` enforces this with an assertion: a name that differs from its
-`refName` but is not present in the patch fails the build.
+`refName` but is not present in the patch fails the build. `build-stats.mjs` does the
+same for every Chinese matcher in `stats.ndjson`: the string has to be one of the
+patch strings (or be composed by one of the documented synths - cluster jewel grants,
+anointments, ultimatum mods) or the build stops. That is what makes a
+traditional-to-simplified rewrite impossible to merge by accident.
 
 | Output | Source |
 | --- | --- |
@@ -97,26 +108,80 @@ node build-all.mjs --check
 node build-stats.mjs --zip=...      # stats.ndjson
 node build-items.mjs --zip=...      # items.ndjson
 node build-client-strings.mjs --zip=...   # client_strings.js (verifies labels)
+
+# rebuild the overlay (see below) - network, or cached JSON with --trade-items=
+node refresh-overlay.mjs
+node inputs-hash.mjs                # fingerprint of en/ + the overlay
 ```
 
-`build-all.mjs` writes `zh-data.lock.json` (patch version, md5, coverage). The daily
-CI job compares the upstream `md5` against that lock and only rebuilds when it
-changed.
+`build-all.mjs` writes `zh-data.lock.json` (patch version, md5, the slot the Chinese
+came from, coverage, what the overlay contributed, and an `inputs` fingerprint). The
+daily CI job rebuilds when **either** the upstream patch `md5` **or** the `inputs`
+fingerprint moved, so the bundle cannot sit on an older English skeleton after an
+upstream sync that did not touch the patch.
 
-`*.index.bin` are not written here: the renderer build regenerates them from the
-ndjson files (`renderer/src/assets/vite-plugin-make-indexes.ts`).
+## Content the skeleton does not have yet (the overlay)
+
+`renderer/public/data/en/` is a snapshot of SnosMe's build. Between two of his
+releases a league starts, and the game already shows items and modifiers that the
+snapshot has never heard of: the price check answers `item.unknown`, or - worse -
+drops the whole modifier section without a word. The trade site knows about that
+content on day one, because it is the same game data, so `refresh-overlay.mjs`
+recovers it from `https://www.pathofexile.com/api/trade/data/{items,stats}` into
+`data/new-content.json`:
+
+| List | What it holds | Why it is needed |
+| --- | --- | --- |
+| `items` | item records by English name (`Viscera`, `Graft`, `Wombgift` families) | without a record the parser stops at `item.unknown` and never queries |
+| `statIds` | `(ref, domain, ids)` the skeleton forgot | a modifier whose domain is missing is silently dropped from the filters, or never resolves at all |
+| `stats` | whole stat records, English text only | a line the client prints but the skeleton lacks is an "unrecognised modifier" |
+
+Three properties keep this from drifting away from upstream and 编年史:
+
+1. **Additive only.** `lib/overlay.mjs` never overwrites a base record and never
+   fills a trade id domain the base already has. Anything upstream ships wins, so
+   an upstream refresh converges back to upstream's data by itself - the stale
+   entries are reported as `superseded` in the lock and can be pruned by
+   re-running `refresh-overlay.mjs`. An empty overlay is the ideal state.
+2. **No Chinese.** The overlay stores English only. `build-items` / `build-stats`
+   resolve names and matchers out of the patch as usual, so the day 编年史
+   translates a new item its text is picked up automatically - and until then the
+   item simply stays English, which is exactly what the patched client shows.
+3. **Nothing is counted.** Overlay records are excluded from the coverage gates
+   (they are untranslated by design) but counted separately in the lock
+   (`overlay.items`, `overlay.statRecords`, `overlay.statIdDomains`,
+   `overlay.superseded`), so a gate failure always means the localization broke,
+   not that a new league started.
+
+`stats` entries are created with `better: NotComparable`. The trade API does not
+publish which direction is "better", and guessing from `reduced` / `less` is wrong
+about as often as it is right ("reduced Damage taken" improves as the number
+grows), so those modifiers are searchable but get no automatic min/max bounds.
+Upstream carries the real flag, so it comes back the moment the record exists
+there.
 
 ## Coverage gates
 
 | Gate | Minimum | Meaning |
 | --- | --- | --- |
-| `realMods` | 85% | item modifiers (excluding pseudo / anointment / synthetic gem stats) that have a Chinese matcher |
+| `realMods` | 85% | item modifiers **this patch still contains** (excluding pseudo / anointment / synthetic gem stats) that have a Chinese matcher |
 | `itemNames` | 90% | item records with a Chinese name (the rest are English on purpose) |
 | `uniqueNames` | 95% | unique names coming from `words.datc64` |
 | `labels` | 98% | parser vocabulary keys with a patch verified Chinese value |
 
+`realMods` is measured against the lines the patched client can actually print, not
+against every record in the English skeleton: the skeleton keeps stats that a balance
+patch deleted, and those can never appear on an item again. They are still emitted
+(old items keep parsing) but no longer drag the ratio down. The unfiltered number is
+recorded as `realModsRaw` in the lock so a real regression stays visible, and the gate
+fails if the "deleted line" filter ever classifies more than 30% of the bundle, which
+would mean the filter itself broke.
+
 Below these the patch is considered broken (wrong language slot, truncated
 download, format change) rather than merely incomplete, and CI fails.
+
+`*.index.bin` are not written here: the renderer build regenerates them from the
+ndjson files (`renderer/src/assets/vite-plugin-make-indexes.ts`).
 
 ## Reports
 

@@ -15,10 +15,80 @@
 // Simplified Chinese text into the `Traditional Chinese` slot (that is the
 // language slot the international client renders), so that is the slot we read
 // by default.
+//
+// The two Chinese slots are **swapped**, and they are not the same text with a
+// different character set: the traditional slot holds the official mainland
+// client strings ("异界图鉴掉落提高 3%"), the simplified slot holds the Taiwanese
+// client strings ("輿圖掉落加成 增加3%"). Different wording, not just different
+// glyphs — which is why a traditional-to-simplified conversion of the wrong slot
+// produces text the game will never show, and every line carrying it silently
+// stops matching.
+//
+// `detectChineseSlot` therefore reads the slot from the data instead of
+// trusting the label; `buildStats` refuses output whose Chinese text did not
+// come out of that slot verbatim.
 
 const ID_LINE = /^\d+\s+(.+)$/
 const TEXT_LINE = /^[^"]*"([^"]*)"/
 const LANG_LINE = /^lang\s+"([^"]+)"/
+
+/** Slots that can hold Chinese text, in the order the patch emits them. */
+export const CHINESE_SLOTS = ['Simplified Chinese', 'Traditional Chinese']
+
+/** The slot the mainland client reads, i.e. the one we want. */
+export const DEFAULT_CHINESE_SLOT = 'Traditional Chinese'
+
+// Characters that exist in only one of the two scripts. Enough of them to tell
+// a misspelled slot label from a correct one with certainty (the real files
+// differ by 20k+ such characters, so the margin is enormous).
+const TRAD_ONLY = '護頓閃術擊價質動寶鑲藥劑傷選擇範圖鑑輿樂賴觸擔擬懸綁標檻犧'
+const SIMP_ONLY = '护顿闪术击价质动宝镶药剂伤选择范图鉴舆乐赖触担拟悬绑标槛牺'
+
+/**
+ * Works out which Chinese slot actually holds Simplified Chinese.
+ *
+ * Returns `null` when neither slot has Chinese text at all (the patch may ship
+ * a build with untranslated stat descriptions).
+ *
+ * @param {StatDescriptionBlock[]} blocks
+ * @returns {{ slot: string, counts: Record<string, { trad: number, simp: number }>, swapped: boolean } | null}
+ */
+export function detectChineseSlot (blocks) {
+  /** @type {Record<string, { trad: number, simp: number }>} */
+  const counts = {}
+  for (const block of blocks) {
+    for (const [slot, texts] of block.byLang) {
+      if (!CHINESE_SLOTS.includes(slot)) continue
+      const c = counts[slot] ?? (counts[slot] = { trad: 0, simp: 0 })
+      for (const text of texts) {
+        for (const ch of text) {
+          if (TRAD_ONLY.includes(ch)) c.trad += 1
+          else if (SIMP_ONLY.includes(ch)) c.simp += 1
+        }
+      }
+    }
+  }
+
+  let best = null
+  for (const [slot, c] of Object.entries(counts)) {
+    if (c.simp === 0) continue
+    if (!best || c.simp > best.counts.simp) best = { slot, counts: c }
+  }
+  if (!best) return null
+
+  // If the labelled slot is also mostly simplified, the labels are trustworthy
+  // and the split we measured is just noise from a few shared characters.
+  const labelled = counts[DEFAULT_CHINESE_SLOT]
+  if (labelled && labelled.simp >= best.counts.simp * 0.2) {
+    return { slot: DEFAULT_CHINESE_SLOT, counts, swapped: false }
+  }
+
+  return {
+    slot: best.slot,
+    counts,
+    swapped: best.slot !== DEFAULT_CHINESE_SLOT
+  }
+}
 
 /** @typedef {{ id: string, text: string }} StatDescriptionEntry */
 /** @typedef {{ ids: string[], byLang: Map<string, string[]> }} StatDescriptionBlock */

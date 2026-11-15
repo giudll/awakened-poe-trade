@@ -46,11 +46,20 @@ jobs:
         upstream=$(node -p "require('./pin_cn.json').md5")
         version=$(node -p "require('./pin_cn.json').version")
         locked=$(node -p "require('./tools/zh-data/zh-data.lock.json').md5" || echo '')
+        # The bundle is derived from the patch *and* from the English skeleton and
+        # the overlay, so a patch that did not move does not mean the data is
+        # current. This is what keeps the bundle from sitting on an old skeleton
+        # after an upstream sync that did not change the patch md5.
+        lockedInputs=$(node -p "require('./tools/zh-data/zh-data.lock.json').inputs?.fingerprint ?? ''" || echo '')
+        currentInputs=$(node tools/zh-data/inputs-hash.mjs)
         echo "upstream=$upstream"
         echo "locked=$locked"
+        echo "inputs=$currentInputs"
+        echo "locked_inputs=$lockedInputs"
         echo "version=$version" >> "$GITHUB_OUTPUT"
         echo "md5=$upstream" >> "$GITHUB_OUTPUT"
-        if [ "$upstream" = "$locked" ] && [ "${{ github.event.inputs.force }}" != "true" ]; then
+        if [ "$upstream" = "$locked" ] && [ "$currentInputs" = "$lockedInputs" ] \
+          && [ "${{ github.event.inputs.force }}" != "true" ]; then
           echo "changed=false" >> "$GITHUB_OUTPUT"
         else
           echo "changed=true" >> "$GITHUB_OUTPUT"

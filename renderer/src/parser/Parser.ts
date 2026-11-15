@@ -409,6 +409,16 @@ function parseNamePlate (section: string[]) {
       item.rarity = ItemRarity.Unique; break
   }
 
+  // Some item classes (the `Viscera` / `Graft` families added in 3.30) are
+  // copied without a `Rarity:` line at all, so the name plate is one line
+  // shorter than usual. Without this, `rarity` stays undefined and
+  // `parseModifiers` drops the entire modifier section - the item then looks
+  // like it simply has no mods, which is a silent failure, not a visible one.
+  // A missing rarity line can only describe a plain normal item.
+  if (rarityText == null) {
+    item.rarity = ItemRarity.Normal
+  }
+
   return ok(item)
 }
 

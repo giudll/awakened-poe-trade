@@ -8,7 +8,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { listZipEntries, readZipEntry } from './lib/zip.mjs'
-import { parseStatDescriptions, buildTextPairs } from './lib/statdesc.mjs'
+import { parseStatDescriptions, buildTextPairs, detectChineseSlot, DEFAULT_CHINESE_SLOT } from './lib/statdesc.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
@@ -18,13 +18,14 @@ if (!zipPath) throw new Error('usage: node diagnose-stats.mjs <patch.zip>')
 
 const zip = fs.readFileSync(zipPath)
 const entries = listZipEntries(zip).filter(e =>
-  e.name.toLowerCase().startsWith('metadata/statdescriptions/') && e.name.toLowerCase().endsWith('.txt'))
+  e.name.toLowerCase().startsWith('metadata/statdescriptions/') &&
+  /\.(txt|csd)$/.test(e.name.toLowerCase()))
 const blocks = []
 for (const entry of entries) {
   const text = readZipEntry(zip, entry).toString('utf16le').replace(/^\uFEFF/, '')
   blocks.push(...parseStatDescriptions(text))
 }
-const { pairs } = buildTextPairs(blocks, 'Traditional Chinese')
+const { pairs } = buildTextPairs(blocks, detectChineseSlot(blocks)?.slot ?? DEFAULT_CHINESE_SLOT)
 console.log(`patch blocks: ${blocks.length}, en->cn pairs: ${pairs.size}`)
 
 const readNdjson = f => fs.readFileSync(f, 'utf8').trim().split('\n')
