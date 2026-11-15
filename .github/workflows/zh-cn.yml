@@ -11,8 +11,9 @@ name: Build
 #
 # Every build gets its own version and GitHub release, because that is what makes
 # a running copy show "update available" (electron-updater compares versions and
-# ignores pre-releases). The version is derived by `tools/zh-data/next-version.mjs`
-# from the highest existing tag, so it only grows.
+# ignores pre-releases). `tools/zh-data/next-version.mjs` numbers the build after
+# the 编年史 patch version, so a 3.30 bundle is not called 3.29.x, and only ever
+# grows.
 on:
   push:
     branches:
@@ -92,7 +93,8 @@ jobs:
         set -euo pipefail
         gh release list --limit 100 --json tagName --jq '.[].tagName' > tags.txt || true
         upstream=$(node -p "require('./main/package.json').version")
-        node tools/zh-data/next-version.mjs "$upstream" tags.txt | tee -a "$GITHUB_OUTPUT"
+        patch=$(node -p "require('./tools/zh-data/zh-data.lock.json').version" 2>/dev/null || echo '')
+        node tools/zh-data/next-version.mjs "$upstream" tags.txt "$patch" | tee -a "$GITHUB_OUTPUT"
 
   package-windows:
     needs: [renderer, version]
