@@ -30,6 +30,19 @@ if (process.platform !== 'darwin') {
 app.enableSandbox()
 
 let tray: AppTray
+let inputHookStarted = false
+
+// libuiohook runs a thread of its own. When the process goes away while that
+// thread is still dispatching events, it gets torn down underneath the running
+// code and Windows stops the process with a fail-fast exception, which shows up
+// as "发生了快速异常检测失败。将不会调用异常处理程序" on every quit. Stopping the
+// hook while there is still an event loop to stop it from keeps the exit quiet.
+app.on('will-quit', () => {
+  if (inputHookStarted) {
+    inputHookStarted = false
+    uIOhook.stop()
+  }
+})
 
 app.on('ready', async () => {
   tray = new AppTray(eventPipe)
@@ -59,6 +72,7 @@ app.on('ready', async () => {
         }
       })
       uIOhook.start()
+      inputHookStarted = true
       const port = await startServer(appUpdater, logger)
       // TODO: move up (currently crashes)
       logger.write(`info ${os.type()} ${os.release} / v${app.getVersion()}`)
