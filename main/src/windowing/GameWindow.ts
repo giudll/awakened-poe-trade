@@ -4,8 +4,8 @@ import { OverlayController, AttachEvent } from 'electron-overlay-window'
 import { isGameProcessRunning } from '../host-files/GameProcess'
 
 export interface GameWindow {
-  on: (event: 'active-change', listener: (isActive: boolean) => void) => this
-  on: (event: 'target-change', listener: (isGame: boolean | null) => void) => this
+  on (event: 'active-change', listener: (isActive: boolean) => void): this
+  on (event: 'target-change', listener: (isGame: boolean | null) => void): this
 }
 export class GameWindow extends EventEmitter {
   private _isActive = false
