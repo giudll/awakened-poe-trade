@@ -126,6 +126,28 @@ export function normalizePlaceholders (text) {
 }
 
 /**
+ * The trade skeleton and the patch disagree about the sign of a value on a few
+ * dozen stats - `+# to Agility Level for Heists` in the patch, `# to Agility
+ * Level for Heists` on the trade site, `Goreblossom has +# maximum Bloom` the
+ * other way round. It is the same stat either way, and the parser treats a
+ * leading `+` as optional, so a lookup that missed is allowed one retry with the
+ * sign toggled. Callers must only use the result as a *fallback*: exact matches
+ * still win.
+ *
+ * @param {string} text
+ * @returns {string[]} `text` first, then its sign-toggled twin (if any)
+ */
+export function signVariants (text) {
+  const out = [text]
+  if (text.includes('+#')) {
+    out.push(text.replace(/\+#/g, '#'))
+  } else if (text.includes('#')) {
+    out.push(text.replace(/(^|[^+\w])#/g, '$1+#'))
+  }
+  return out
+}
+
+/**
  * @param {string} text
  * @returns {StatDescriptionBlock[]}
  */

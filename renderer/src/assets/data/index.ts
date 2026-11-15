@@ -17,6 +17,14 @@ export let REPLICA_UNIQUE_NAMES: () => Generator<string> = function * () {}
 
 export let STAT_BY_MATCH_STR: (name: string) => { matcher: StatMatcher, stat: Stat } | undefined = () => undefined
 export let STAT_BY_MATCH_STR_V2: (name: string) => StatOrGroup | undefined = () => undefined
+/**
+ * Every record that answers to `name`. Two records can legitimately share one
+ * line - 3.30 prints `怪物生命总增 #%` for both an explicit map mod and a heist
+ * enchant - and the binary search below only ever returns one of them, so a
+ * caller that needs a specific modifier type has to be able to ask for the rest
+ * instead of silently dropping the modifier.
+ */
+export let STAT_BY_MATCH_STR_ALL: (name: string) => StatOrGroup[] = () => []
 export let STAT_BY_REF_V2: (name: string) => StatOrGroup | undefined = () => undefined
 export let STATS_ITERATOR: (includes: string, andIncludes?: string[]) => Generator<Stat> = function * () {}
 
@@ -155,6 +163,35 @@ export function applyStatsData (
       return undefined
     }
     return statOrGroup
+  }
+
+  STAT_BY_MATCH_STR_ALL = function (matchStr: string) {
+    const hash = Number(fnv1a(matchStr, { size: 32 }))
+    const hit = dataBinarySearch(indexMatcher, hash, 0, INDEX_WIDTH)
+    if (hit === -1) return []
+
+    const rows = indexMatcher.length / INDEX_WIDTH
+    const starts: number[] = []
+    for (let i = hit; i >= 0 && indexMatcher[i * INDEX_WIDTH] === hash; i -= 1) {
+      starts.push(indexMatcher[i * INDEX_WIDTH + 1])
+    }
+    for (let i = hit + 1; i < rows && indexMatcher[i * INDEX_WIDTH] === hash; i += 1) {
+      starts.push(indexMatcher[i * INDEX_WIDTH + 1])
+    }
+
+    const out: StatOrGroup[] = []
+    const seen = new Set<number>()
+    for (const start of starts.sort((a, b) => a - b)) {
+      if (seen.has(start)) continue
+      seen.add(start)
+      const statOrGroup = JSON.parse(ndjson.slice(start, ndjson.indexOf('\n', start))) as StatOrGroup
+      const stats = ('stats' in statOrGroup) ? statOrGroup.stats : [statOrGroup]
+      if (!stats.some(stat =>
+        stat.matchers.some(m => m.string === matchStr || m.advanced === matchStr))
+      ) continue
+      out.push(statOrGroup)
+    }
+    return out
   }
 
   STAT_BY_MATCH_STR = function (matchStr: string) {

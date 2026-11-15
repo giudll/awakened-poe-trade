@@ -173,6 +173,7 @@ recovers it from `https://www.pathofexile.com/api/trade/data/{items,stats}` into
 | List | What it holds | Why it is needed |
 | --- | --- | --- |
 | `items` | item records by English name (`Viscera`, `Graft`, `Wombgift` families) | without a record the parser stops at `item.unknown` and never queries |
+| `items` (unique) | `name` + `unique.base`, read from the trade list's `name`/`type` pair | a unique added after the snapshot has no record at all, so none of the 200+ missing uniques could be priced |
 | `statIds` | `(ref, domain, ids)` the skeleton forgot | a modifier whose domain is missing is silently dropped from the filters, or never resolves at all |
 | `stats` | whole stat records, English text only | a line the client prints but the skeleton lacks is an "unrecognised modifier" |
 
@@ -206,6 +207,19 @@ modifier, so its trade ids are added to that record and the new wording is added
 as an extra English matcher (`statMatchers`). It is not a second record: the
 matcher index has no grouping for that case, and two records with one Chinese
 matcher would resolve by whichever line came first.
+
+The same holds for a leading `+` (`Goreblossom has +# maximum Bloom` on the trade
+site, `Goreblossom has # maximum Bloom` in the patch). `signVariants()` supplies
+the unsigned form as an extra matcher; the patch's own spelling stays the one
+that supplies the Chinese.
+
+When one line genuinely belongs to two records - 3.30 prints `怪物生命总增 #%`
+both as an explicit map mod and as a heist enchant - the index can only hand the
+parser one of them, and which one depends on where the hash lands in the index.
+`STAT_BY_MATCH_STR_ALL` exists for that: if the record the index returned has no
+id for the modifier's type, the parser asks for the other records that answer to
+the same line. Without it the modifier is reported as unrecognised at random,
+which is not a state a data rebuild can be allowed to reach.
 
 ## Coverage gates
 

@@ -1,5 +1,5 @@
-import { CLIENT_STRINGS as _$, STAT_BY_MATCH_STR_V2 } from '@/assets/data'
-import type { StatMatcher, Stat, StatGroup } from '@/assets/data'
+import { CLIENT_STRINGS as _$, STAT_BY_MATCH_STR_V2, STAT_BY_MATCH_STR_ALL } from '@/assets/data'
+import type { StatMatcher, Stat, StatGroup, StatOrGroup } from '@/assets/data'
 import type { ModifierType } from './modifiers'
 import { type ItemCategory, ARMOUR, WEAPON, HEIST_EQUIPMENT } from './meta'
 
@@ -239,15 +239,27 @@ interface FindResolveParams {
 function findAndResolveTranslation (
   params: FindResolveParams
 ): { matcher: StatMatcher, stat: Stat } | undefined {
-  const { matchStr } = params
+  const { matchStr, modType } = params
   const statOrGroup = STAT_BY_MATCH_STR_V2(matchStr)
   if (!statOrGroup) return undefined
 
-  let stat: Stat | undefined
-  if (!('stats' in statOrGroup)) {
-    stat = statOrGroup
-  } else {
-    stat = _resolveTranslation(statOrGroup, params)
+  const resolveOf = (candidate: StatOrGroup): Stat | undefined => {
+    if (!('stats' in candidate)) return candidate
+    return _resolveTranslation(candidate, params)
+  }
+
+  let stat = resolveOf(statOrGroup)
+
+  // One line can be printed for several records - 3.30 prints `怪物生命总增 #%`
+  // both as an explicit map mod and as a heist enchant - and the index only
+  // hands back one of them, which one depending on where the hash lands. When
+  // that record has no id for this modifier type the modifier used to be
+  // reported as unrecognised; try the siblings before giving up.
+  if (stat && !(modType in stat.trade.ids)) {
+    for (const candidate of STAT_BY_MATCH_STR_ALL(matchStr)) {
+      const alternative = resolveOf(candidate)
+      if (alternative && modType in alternative.trade.ids) { stat = alternative; break }
+    }
   }
 
   if (stat) {

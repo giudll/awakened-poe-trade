@@ -10,7 +10,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { listZipEntries, readZipEntry } from './lib/zip.mjs'
-import { parseStatDescriptions, buildTextPairs, detectChineseSlot, DEFAULT_CHINESE_SLOT } from './lib/statdesc.mjs'
+import { parseStatDescriptions, buildTextPairs, detectChineseSlot, DEFAULT_CHINESE_SLOT, signVariants } from './lib/statdesc.mjs'
 import { readGrantsTemplate, readActiveSkillNames, normalizeSkillKey, grantedSkillOf, formatGrantsLine } from './lib/skills.mjs'
 import { readDatc64 } from './lib/datc64.mjs'
 import { readOverlay, mergeStats } from './lib/overlay.mjs'
@@ -135,6 +135,7 @@ function lookupPair (indexes, text) {
     push(template)
     push(template.replace(/^\+\s*/, ''))
     if (template.startsWith('#')) push('+' + template)
+    for (const signed of signVariants(template)) push(signed)
   }
   for (const candidate of candidates) {
     for (const index of indexes) {
@@ -343,16 +344,29 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
         if (!cn) continue
         for (const cnText of cn) {
           if (cnText === matcher.string) continue
-          if (stat.matchers.some(m => m.string === cnText) || extra.some(m => m.string === cnText)) continue
 
-          const translated = { string: cnText }
-          if (matcher.value !== undefined) translated.value = matcher.value
-          if (matcher.negate) translated.negate = true
-          extra.push(translated)
+          // The patch stores keywords as `[BloodFlower::20|血腥之花]` markup; the
+          // client prints the plain word and the player pastes that, so the
+          // plain form has to be a matcher too. Without it a line like
+          // "…后，触发 20 级血腥之花" resolves to nothing.
+          const variants = [cnText]
+          const plain = stripTags(cnText).trim()
+          if (plain && plain !== cnText) variants.push(plain)
 
-          let set = cnToRecords.get(cnText)
-          if (!set) { set = new Set(); cnToRecords.set(cnText, set) }
-          set.add(recIdx)
+          for (const text of variants) {
+            if (text === matcher.string) continue
+            if (stat.matchers.some(m => m.string === text) || extra.some(m => m.string === text)) continue
+
+            const translated = { string: text }
+            if (matcher.value !== undefined) translated.value = matcher.value
+            if (matcher.negate) translated.negate = true
+            extra.push(translated)
+            if (text !== cnText) allowedCn.add(text)
+
+            let set = cnToRecords.get(text)
+            if (!set) { set = new Set(); cnToRecords.set(text, set) }
+            set.add(recIdx)
+          }
         }
       }
 

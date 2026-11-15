@@ -20,6 +20,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { getPatchZip } from './lib/patch.mjs'
 import { readStatBlocksFromPatch } from './build-stats.mjs'
+import { signVariants } from './lib/statdesc.mjs'
 import { OVERLAY_PATH } from './lib/overlay.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -100,8 +101,10 @@ async function main () {
   const patchEn = new Set()
   for (const block of blocks) {
     for (const text of block.byLang.get('English') ?? []) {
-      patchEn.add(normalize(text))
-      patchEn.add(normalize(stripTags(text)))
+      for (const variant of [text, stripTags(text)]) {
+        patchEn.add(normalize(variant))
+        for (const signed of signVariants(normalize(variant))) patchEn.add(signed)
+      }
     }
   }
 
@@ -111,6 +114,25 @@ async function main () {
   const tradeItems = await loadJson(arg('trade-items'), TRADE_ITEMS_URL)
   const items = []
   const itemsByGroup = {}
+
+  // A unique added after upstream's last refresh has no record at all, so the
+  // parser answers `item.unknown` - which is precisely the case this overlay
+  // exists for. The trade list spells those as `name` (the unique) + `type` (its
+  // base), so the record can be rebuilt from the same entry, and the base is
+  // already known because every base type is in the skeleton. Every group is
+  // scanned here: uniques live under Weapons / Armour / Accessories too.
+  const knownUniques = new Set(baseItems.filter(i => i.namespace === 'UNIQUE').map(i => i.refName))
+  for (const group of tradeItems.data.result ?? []) {
+    for (const entry of group.entries ?? []) {
+      if (!entry.name || !entry.type) continue
+      if (knownUniques.has(entry.name) || !baseRefNames.has(entry.type)) continue
+      knownUniques.add(entry.name)
+      items.push({ namespace: 'UNIQUE', refName: entry.name, unique: { base: entry.type } })
+      const bucket = `${group.label} (unique)`
+      itemsByGroup[bucket] = (itemsByGroup[bucket] ?? 0) + 1
+    }
+  }
+
   for (const group of tradeItems.data.result ?? []) {
     if (!allGroups && !groups.includes(group.label)) continue
     for (const entry of group.entries ?? []) {
@@ -197,6 +219,18 @@ async function main () {
     const ids = {}
     for (const [domain, values] of Object.entries(domains)) ids[domain] = [...new Set(values)].sort()
     newStats.push({ ref: text, trade: { ids } })
+  }
+  // A record created here is keyed on the trade wording, and the two sides do not
+  // always sign the value the same way (`Goreblossom has +# maximum Bloom` on the
+  // trade site, `Goreblossom has # maximum Bloom` in the patch). The client prints
+  // whichever spelling the patch carries, so the record has to answer to both; the
+  // patch's text is still the one that supplies the Chinese.
+  for (const stat of newStats) {
+    // Only the unsigned direction: the trade site signs the value, the patch is
+    // the one that decides how it is printed, and adding a `+#` alias for a line
+    // the patch prints unsigned would only add a matcher that never fires.
+    if (!stat.ref.includes('+#')) continue
+    statMatchers.push({ ref: stat.ref, string: stat.ref.replace(/\+#/g, '#') })
   }
   statIds.sort((a, b) => (a.ref === b.ref ? a.domain.localeCompare(b.domain) : a.ref < b.ref ? -1 : 1))
   statMatchers.sort((a, b) => (a.ref === b.ref ? a.string.localeCompare(b.string) : a.ref < b.ref ? -1 : 1))

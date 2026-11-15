@@ -35,7 +35,14 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export const OVERLAY_PATH = path.join(__dirname, '../data/new-content.json')
 
-/** @typedef {{ namespace: string, refName: string, group?: string }} OverlayItem */
+/**
+ * `unique.base` is required for a unique the skeleton does not ship: the parser
+ * resolves a unique through its base type (to pick the category and the variant),
+ * so a name without a base is a dead record.
+ *
+ * @typedef {{ namespace: string, refName: string, group?: string,
+ *   unique?: { base: string } }} OverlayItem
+ */
 /** @typedef {{ ref: string, domain: string, ids: string[] }} OverlayStatId */
 /** @typedef {{ ref: string, trade: { ids: Record<string, string[]> } }} OverlayStat */
 
@@ -90,7 +97,9 @@ export function mergeItems (baseItems, overlay) {
     const key = itemKey(entry)
     if (seen.has(key)) { superseded += 1; continue }
     seen.add(key)
-    added.push({ name: entry.refName, refName: entry.refName, namespace: entry.namespace })
+    const record = { name: entry.refName, refName: entry.refName, namespace: entry.namespace }
+    if (entry.unique?.base) record.unique = { base: entry.unique.base }
+    added.push(record)
   }
 
   return { items: [...baseItems, ...added], added: added.length, superseded }

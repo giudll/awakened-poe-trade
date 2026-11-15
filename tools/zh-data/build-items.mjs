@@ -183,6 +183,7 @@ export async function buildItems ({ zipBuffer, hints, quiet = false }) {
     recordsEmitted: items.length,
     overlay: { added: merged.added, superseded: merged.superseded },
     translated: 0,
+    overlayTranslated: 0,
     byNamespace: {},
     sources: { words: 0, idMatch: 0, gemVariant: 0, verified: 0, repaired: 0, englishOnly: 0 },
     englishOnly: [],
@@ -197,9 +198,14 @@ export async function buildItems ({ zipBuffer, hints, quiet = false }) {
     }
   }
 
-  const out = items.map((item) => {
+  const out = items.map((item, index) => {
+    // `mergeItems` appends, so everything from `en.length` on came from the
+    // overlay. Those are counted separately: they are English because 编年史 has
+    // not named them yet, and letting them into `byNamespace` would push the
+    // unique-name gate down every time a league starts.
+    const fromOverlay = index >= en.length
     const stats = (report.byNamespace[item.namespace] ??= { total: 0, translated: 0 })
-    stats.total += 1
+    if (!fromOverlay) stats.total += 1
     const hint = hintTable[`${item.namespace}::${item.refName}`]
 
     /** @returns {{name: string, how: string}|null} */
@@ -253,6 +259,14 @@ export async function buildItems ({ zipBuffer, hints, quiet = false }) {
         report.rejectedHints.push({ ns: item.namespace, refName: item.refName, hint })
       }
       return item
+    }
+
+    if (fromOverlay) {
+      // 编年史 may already have named it - keep the translation, just do not let
+      // it count towards the localization gates.
+      report.overlayTranslated += 1
+      report.sources[resolved.how] += 1
+      return { ...item, name: resolved.name }
     }
 
     report.translated += 1
