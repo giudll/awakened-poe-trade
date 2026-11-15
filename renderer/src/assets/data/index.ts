@@ -133,6 +133,20 @@ async function loadStats (language: string) {
   applyStatsData(ndjson, indexRef, indexMatcher)
 }
 
+/**
+ * Whitespace inside a mod line is not stable. The same template reaches the
+ * parser with an ASCII space, an ideographic space or a no-break space
+ * depending on which table the client assembled it from, and an exact compare
+ * then drops the line as "not recognized". Collapse every run of whitespace so
+ * both the index and the lookup agree.
+ *
+ * Keep in sync with `normalizeMatchStr` in `../make-index-files.mjs`, which
+ * writes the hashes this file searches.
+ */
+export function normalizeMatchStr (str: string) {
+  return str.replace(/[\s\u00A0\u1680\u2000-\u200B\u202F\u205F\u3000]+/g, ' ').trim()
+}
+
 /** @see applyItemsData */
 export function applyStatsData (
   ndjson: string,
@@ -150,6 +164,7 @@ export function applyStatsData (
   }
 
   STAT_BY_MATCH_STR_V2 = function (matchStr: string) {
+    matchStr = normalizeMatchStr(matchStr)
     let start = dataBinarySearch(indexMatcher, Number(fnv1a(matchStr, { size: 32 })), 0, INDEX_WIDTH)
     if (start === -1) return undefined
     start = indexMatcher[start * INDEX_WIDTH + 1]
@@ -157,7 +172,7 @@ export function applyStatsData (
     const statOrGroup = JSON.parse(ndjson.slice(start, end)) as StatOrGroup
     const stats = ('stats' in statOrGroup) ? statOrGroup.stats : [statOrGroup]
     if (!stats.some(stat =>
-      stat.matchers.some(m => m.string === matchStr || m.advanced === matchStr))
+      stat.matchers.some(m => normalizeMatchStr(m.string ?? m.advanced ?? '') === matchStr))
     ) {
       // console.log('fnv1a32 collision')
       return undefined
@@ -166,6 +181,7 @@ export function applyStatsData (
   }
 
   STAT_BY_MATCH_STR_ALL = function (matchStr: string) {
+    matchStr = normalizeMatchStr(matchStr)
     const hash = Number(fnv1a(matchStr, { size: 32 }))
     const hit = dataBinarySearch(indexMatcher, hash, 0, INDEX_WIDTH)
     if (hit === -1) return []
@@ -187,7 +203,7 @@ export function applyStatsData (
       const statOrGroup = JSON.parse(ndjson.slice(start, ndjson.indexOf('\n', start))) as StatOrGroup
       const stats = ('stats' in statOrGroup) ? statOrGroup.stats : [statOrGroup]
       if (!stats.some(stat =>
-        stat.matchers.some(m => m.string === matchStr || m.advanced === matchStr))
+        stat.matchers.some(m => normalizeMatchStr(m.string ?? m.advanced ?? '') === matchStr))
       ) continue
       out.push(statOrGroup)
     }
@@ -195,20 +211,21 @@ export function applyStatsData (
   }
 
   STAT_BY_MATCH_STR = function (matchStr: string) {
+    const normalized = normalizeMatchStr(matchStr)
     const statOrGroup = STAT_BY_MATCH_STR_V2(matchStr)
     if (!statOrGroup) return undefined
 
     let stat: Stat
     if ('stats' in statOrGroup) {
       const stats = statOrGroup.stats.filter(stat =>
-        stat.matchers.some(m => m.string === matchStr || m.advanced === matchStr))
+        stat.matchers.some(m => normalizeMatchStr(m.string ?? m.advanced ?? '') === normalized))
       if (stats.length !== 1) return undefined
       stat = stats[0]
     } else {
       stat = statOrGroup
     }
     const matcher = stat.matchers.find(m =>
-      m.string === matchStr || m.advanced === matchStr)!
+      normalizeMatchStr(m.string ?? m.advanced ?? '') === normalized)!
     return { stat, matcher }
   }
 

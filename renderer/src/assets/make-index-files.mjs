@@ -7,6 +7,19 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+/**
+ * Whitespace in mod text is not stable: the client renders the same template
+ * with different characters depending on where the line was assembled from
+ * (`Grants Level 30 精准` uses an ideographic space, `Grants Level 30 精准`
+ * an ASCII one, some lines a no-break space). Comparing the raw strings means
+ * the line silently fails to match, so both the index and the lookup hash the
+ * collapsed form. Keep in sync with `normalizeMatchStr` in `data/index.ts`.
+ * @param {string} str
+ */
+export function normalizeMatchStr (str) {
+  return str.replace(/[\s\u00A0\u1680\u2000-\u200B\u202F\u205F\u3000]+/g, ' ').trim()
+}
+
 export function makeIndexFiles () {
   const LANGUAGES = ['en', 'ru', 'cmn-Hant', 'ko', 'zh_CN']
 
@@ -30,9 +43,9 @@ export function makeIndexFiles () {
           lineStarts.statsByRef.push({ start, hash: Number(fnv1a(stat.ref, { size: 32 })) })
           for (const matcher of stat.matchers) {
             if (matcher.advanced) {
-              lineStarts.matchers.push({ start, hash: Number(fnv1a(matcher.advanced, { size: 32 })) })
+              lineStarts.matchers.push({ start, hash: Number(fnv1a(normalizeMatchStr(matcher.advanced), { size: 32 })) })
             } else {
-              lineStarts.matchers.push({ start, hash: Number(fnv1a(matcher.string, { size: 32 })) })
+              lineStarts.matchers.push({ start, hash: Number(fnv1a(normalizeMatchStr(matcher.string), { size: 32 })) })
             }
           }
         }

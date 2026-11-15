@@ -1,7 +1,14 @@
-import { CLIENT_STRINGS as _$, STAT_BY_MATCH_STR_V2, STAT_BY_MATCH_STR_ALL } from '@/assets/data'
+import { CLIENT_STRINGS as _$, STAT_BY_MATCH_STR_V2, STAT_BY_MATCH_STR_ALL, normalizeMatchStr } from '@/assets/data'
 import type { StatMatcher, Stat, StatGroup, StatOrGroup } from '@/assets/data'
 import type { ModifierType } from './modifiers'
 import { type ItemCategory, ARMOUR, WEAPON, HEIST_EQUIPMENT } from './meta'
+
+// Whitespace in mod text varies between client builds (`Grants Level 30 精准`
+// on one line, `Grants Level 30 精准` with an ideographic space on another), so
+// a matcher only ever counts as "this line" when the collapsed forms agree.
+function isSameMatchStr (matcher: StatMatcher, matchStr: string) {
+  return normalizeMatchStr(matcher.string ?? matcher.advanced ?? '') === normalizeMatchStr(matchStr)
+}
 
 // This file is a little messy and scary,
 // but that's how stats translations are parsed :-D
@@ -264,7 +271,7 @@ function findAndResolveTranslation (
 
   if (stat) {
     const matcher = stat.matchers.find(m =>
-      m.string === matchStr || m.advanced === matchStr)
+      isSameMatchStr(m, matchStr))
     if (!matcher) return undefined
     return { stat, matcher }
   }
@@ -292,7 +299,7 @@ export function _resolveTranslation (
   if (resolve.strat === 'trivial-merge') {
     const withMatchStr = (matchStr.length)
       ? onTradeStats.filter(stat =>
-          stat.matchers.some(m => m.string === matchStr || m.advanced === matchStr))
+          stat.matchers.some(m => isSameMatchStr(m, matchStr)))
       : onTradeStats
     if (!withMatchStr.length) return undefined
     const merged = withMatchStr[0]
@@ -304,7 +311,7 @@ export function _resolveTranslation (
   } else if (resolve.strat === 'percent-merge') {
     const pctStat = stats[resolve.kind.indexOf('percent')]
     const matcher = pctStat.matchers.find(m =>
-      m.string === matchStr || m.advanced === matchStr)
+      isSameMatchStr(m, matchStr))
     const roll100 = (matcher !== undefined && matcher.value === 100)
     if (roll100) {
       const otherStat = stats[resolve.kind.indexOf('value')]
@@ -313,7 +320,7 @@ export function _resolveTranslation (
       return pctStat
     }
     return stats.find(stat =>
-      stat.matchers.some(m => m.string === matchStr || m.advanced === matchStr))
+      stat.matchers.some(m => isSameMatchStr(m, matchStr)))
   } else if (resolve.strat === 'flag-merge') {
     if (roll === undefined) return undefined
     const valStat = stats[resolve.kind.indexOf('value')]
