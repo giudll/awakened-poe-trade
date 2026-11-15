@@ -1,7 +1,7 @@
 {
  "meta": {
   "note": "Content the English skeleton does not ship yet, recovered from the official trade API. Additive only: `build-all` skips any entry the base data already has, and never takes Chinese from here. Regenerate with `node refresh-overlay.mjs`; deleting the file degrades to upstream-only. See lib/overlay.mjs.",
-  "generatedAt": "2026-11-15T11:27:16.445Z",
+  "generatedAt": "2026-11-15T12:31:19.991Z",
   "patch": {
    "version": "unknown",
    "md5": "b736acea711a05aa2fbf2b4db103694b"
@@ -12,15 +12,21 @@
   },
   "sources": [
    {
-    "url": "..\\..\\..\\trade-items.json",
+    "url": "..\\repro\\trade-items.json",
     "counts": {
+     "Accessories (unique)": 21,
+     "Armour (unique)": 53,
+     "Flasks (unique)": 1,
+     "Jewels (unique)": 82,
+     "Maps (unique)": 5,
+     "Weapons (unique)": 56,
      "Graft": 17,
      "Wombgift": 1,
      "Viscera": 161
     }
    },
    {
-    "url": "..\\..\\..\\trade-stats.json",
+    "url": "..\\repro\\trade-stats.json",
     "texts": 12021
    }
   ],
@@ -42,14 +48,56 @@
    "group": "Graft"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Agnerod",
+   "unique": {
+    "base": "Imperial Staff"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Al-Hezmin's Head",
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Amplification Rod",
+   "unique": {
+    "base": "Spiraled Wand"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Anatomical Knowledge",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Ancestor's Club",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Ancient Waystones",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Angler's Plait",
+   "unique": {
+    "base": "Unset Ring"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Apparitions",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -82,6 +130,34 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Asenath's Chant",
+   "unique": {
+    "base": "Iron Circlet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Ashes of the Sun",
+   "unique": {
+    "base": "Driftwood Club"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Assassin's Haste",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Atziri's Mirror",
+   "unique": {
+    "base": "Golden Buckler"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Bandit Rogue's Head",
    "group": "Viscera"
@@ -95,6 +171,13 @@
    "namespace": "ITEM",
    "refName": "Bandit Witch's Head",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Bane of the Apostate",
+   "unique": {
+    "base": "Judgement Staff"
+   }
   },
   {
    "namespace": "ITEM",
@@ -132,6 +215,27 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Blood Sacrifice",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Blood of Summer",
+   "unique": {
+    "base": "Rusted Sword"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Bloodboil",
+   "unique": {
+    "base": "Coral Ring"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Bloodied Arm",
    "group": "Viscera"
@@ -145,6 +249,27 @@
    "namespace": "ITEM",
    "refName": "Bonestalker's Ribcage",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Brawn",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Brittle Barrier",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Broadstroke",
+   "unique": {
+    "base": "Heavy Quiver"
+   }
   },
   {
    "namespace": "ITEM",
@@ -172,6 +297,13 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Chaber Cairn",
+   "unique": {
+    "base": "Great Mallet"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Champion's Banner",
    "group": "Viscera"
@@ -185,6 +317,13 @@
    "namespace": "ITEM",
    "refName": "Charred Leg",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Cheap Construction",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -202,9 +341,30 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Chitus' Needle",
+   "unique": {
+    "base": "Elegant Foil"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Clear Mind",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Coagulated Essence",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Coated Shrapnel",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -212,9 +372,51 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Cold Steel",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Collateral Damage",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Combustibles",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Conjoined Hound Head",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Conqueror's Efficiency",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Conqueror's Longevity",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Conqueror's Potency",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -227,14 +429,42 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Corona Solaris",
+   "unique": {
+    "base": "Crystal Wand"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Corpse Rose",
+   "unique": {
+    "base": "Imbued Wand"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Corrupted Carapace",
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Corrupted Energy",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Coven Queen's Crown",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Cragfall",
+   "unique": {
+    "base": "Serrated Arrow Quiver"
+   }
   },
   {
    "namespace": "ITEM",
@@ -247,14 +477,105 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Crystal Vault",
+   "unique": {
+    "base": "Latticed Ringmail"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Cutthroat's Head",
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Death's Opus",
+   "unique": {
+    "base": "Death Bow"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Defaced Bust",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Deidbellow",
+   "unique": {
+    "base": "Gilded Sallet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Authority",
+   "unique": {
+    "base": "Golden Blade"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Beacon",
+   "unique": {
+    "base": "Golden Flame"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Bounty",
+   "unique": {
+    "base": "Golden Obi"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Dominance",
+   "unique": {
+    "base": "Golden Mantle"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Eye",
+   "unique": {
+    "base": "Golden Hoop"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Immortality",
+   "unique": {
+    "base": "Golden Visage"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Presence",
+   "unique": {
+    "base": "Gold Amulet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Stride",
+   "unique": {
+    "base": "Golden Caligae"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Touch",
+   "unique": {
+    "base": "Golden Bracers"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Demigod's Triumph",
+   "unique": {
+    "base": "Golden Wreath"
+   }
   },
   {
    "namespace": "ITEM",
@@ -265,6 +586,13 @@
    "namespace": "ITEM",
    "refName": "Desert Sword",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Deshret's Vise",
+   "unique": {
+    "base": "Steel Gauntlets"
+   }
   },
   {
    "namespace": "ITEM",
@@ -292,9 +620,51 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Divine Inferno",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Doedre's Malevolence",
+   "unique": {
+    "base": "Velvet Gloves"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Doomfletch's Prism",
+   "unique": {
+    "base": "Royal Bow"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Draining Eshgraft",
    "group": "Graft"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Dreadbeak",
+   "unique": {
+    "base": "Rusted Sword"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Dreadmaidens' Sacrament",
+   "unique": {
+    "base": "Basalt Flask"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Dreadsurge",
+   "unique": {
+    "base": "Cleaver"
+   }
   },
   {
    "namespace": "ITEM",
@@ -302,9 +672,23 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Duskblight",
+   "unique": {
+    "base": "Ironscale Boots"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Eater of Worlds' Head",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "El'Abin's Visage",
+   "unique": {
+    "base": "Fencer Helm"
+   }
   },
   {
    "namespace": "ITEM",
@@ -312,9 +696,23 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Eldritch Knowledge",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Elemental Essence",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Endless Misery",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -335,6 +733,34 @@
    "namespace": "ITEM",
    "refName": "Erupting Xophgraft",
    "group": "Graft"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Ezomyte Hold",
+   "unique": {
+    "base": "Iron Hat"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Fight for Survival",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Fireborn",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "First Snow",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -377,9 +803,65 @@
    "group": "Graft"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Fleshrender",
+   "unique": {
+    "base": "Exquisite Blade"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Fortified Legion",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Fox's Fortune",
+   "unique": {
+    "base": "Wild Leather"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Fragile Bloom",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Fragment of Eternity",
+   "unique": {
+    "base": "Glass Shank"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Freezing Tulgraft",
    "group": "Graft"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "From Dust",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Frostferno",
+   "unique": {
+    "base": "Leather Hood"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Frozen Trail",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -407,6 +889,20 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Geofri's Devotion",
+   "unique": {
+    "base": "Brass Maul"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Geofri's Legacy",
+   "unique": {
+    "base": "Great Crown"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Ghostly Claw",
    "group": "Viscera"
@@ -415,6 +911,13 @@
    "namespace": "ITEM",
    "refName": "Gladiator's Heart",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Glitterdisc",
+   "unique": {
+    "base": "Burnished Spiked Shield"
+   }
   },
   {
    "namespace": "ITEM",
@@ -432,6 +935,20 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Greedtrap",
+   "unique": {
+    "base": "Velvet Slippers"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Growing Agony",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Growing Wombgift",
    "group": "Wombgift"
@@ -447,9 +964,30 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Hair Trigger",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Hardening Uulgraft",
    "group": "Graft"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Hazardous Research",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Hellbringer",
+   "unique": {
+    "base": "Conjurer Gloves"
+   }
   },
   {
    "namespace": "ITEM",
@@ -457,14 +995,63 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Hide of the Vendigo",
+   "unique": {
+    "base": "Exquisite Leather"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Hollowed Skull",
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Honoured Alliance",
+   "unique": {
+    "base": "Coral Ring"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Hotheaded",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Hrimburn",
+   "unique": {
+    "base": "Goathide Gloves"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Hrimnor's Dirge",
+   "unique": {
+    "base": "Sledgehammer"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Hungry Abyss",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Hydra's Head",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Hyrri's Demise",
+   "unique": {
+    "base": "Sharktooth Arrow Quiver"
+   }
   },
   {
    "namespace": "ITEM",
@@ -487,6 +1074,13 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Inevitability",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Infected Leg",
    "group": "Viscera"
@@ -495,6 +1089,13 @@
    "namespace": "ITEM",
    "refName": "Infested Torso",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Infused Beachhead",
+   "unique": {
+    "base": "Map"
+   }
   },
   {
    "namespace": "ITEM",
@@ -507,6 +1108,27 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Iron Heart",
+   "unique": {
+    "base": "Crusader Plate"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Izaro's Dilemma",
+   "unique": {
+    "base": "Imperial Claw"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Izaro's Turmoil",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Jolting Eshgraft",
    "group": "Graft"
@@ -515,6 +1137,41 @@
    "namespace": "ITEM",
    "refName": "Justicar's Helm",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Kaltensoul",
+   "unique": {
+    "base": "Painted Buckler"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Kaom's Way",
+   "unique": {
+    "base": "Coral Ring"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Karui Charge",
+   "unique": {
+    "base": "Jade Amulet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Khatal's Geyser",
+   "unique": {
+    "base": "Lapis Amulet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Khatal's Weeping",
+   "unique": {
+    "base": "Lapis Amulet"
+   }
   },
   {
    "namespace": "ITEM",
@@ -532,9 +1189,44 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Lord of Steel",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Lunar Bow",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Malachai's Awakening",
+   "unique": {
+    "base": "Iron Mask"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Malicious Intent",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Mantle of Dreams",
+   "unique": {
+    "base": "Twilight Regalia"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Mantra of Flames",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -542,14 +1234,49 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Martial Artistry",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Martyr's Crown",
+   "unique": {
+    "base": "Vine Circlet"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Maven's Orrery",
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Might and Influence",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Might in All Forms",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Minotaur's Head",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Mirebough",
+   "unique": {
+    "base": "Gnarled Branch"
+   }
   },
   {
    "namespace": "ITEM",
@@ -562,9 +1289,23 @@
    "group": "Graft"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Mutated Growth",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Necromancer's Mask",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Ngamahu Tiki",
+   "unique": {
+    "base": "Coral Amulet"
+   }
   },
   {
    "namespace": "ITEM",
@@ -597,6 +1338,20 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Omen on the Winds",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Ordered Fate",
+   "unique": {
+    "base": "Walnut Spirit Shield"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Ornate Torso",
    "group": "Viscera"
@@ -617,6 +1372,20 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Overwhelming Odds",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Panquetzaliztli",
+   "unique": {
+    "base": "Jagged Maul"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Phoenix's Head",
    "group": "Viscera"
@@ -625,6 +1394,20 @@
    "namespace": "ITEM",
    "refName": "Pit Fighter's Helm",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Pitch Darkness",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Poacher's Aim",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -652,14 +1435,126 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Pugilist",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Purifier's Head",
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Queen's Escape",
+   "unique": {
+    "base": "Ornate Sword"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Rapid Expansion",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Ravenous Skull",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Realm Ender",
+   "unique": {
+    "base": "Iron Staff"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Reefbane",
+   "unique": {
+    "base": "Fishing Rod"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Relic of the Cycle",
+   "unique": {
+    "base": "Crude Bow"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Remnant of Empires",
+   "unique": {
+    "base": "Goathide Buckler"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Blood Sacrifice",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Cheap Construction",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Conqueror's Efficiency",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Forbidden Shako",
+   "unique": {
+    "base": "Great Crown"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Fragile Bloom",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Hotheaded",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Pure Talent",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Soul Taker",
+   "unique": {
+    "base": "Siege Axe"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Replica Unstable Payload",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -670,6 +1565,62 @@
    "namespace": "ITEM",
    "refName": "Resplendent Sceptre",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Ring of Blades",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Rolling Flames",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Rotting Legion",
+   "unique": {
+    "base": "Loricated Ringmail"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Rust of Winter",
+   "unique": {
+    "base": "Rusted Hatchet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Sacrificial Harvest",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Sanguine Gambol",
+   "unique": {
+    "base": "Skinning Knife"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Saresh's Darkness",
+   "unique": {
+    "base": "Chain Belt"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Scar of Fate",
+   "unique": {
+    "base": "Nailed Fist"
+   }
   },
   {
    "namespace": "ITEM",
@@ -712,6 +1663,13 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Serle's Masterwork",
+   "unique": {
+    "base": "Phantom Mace"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Severed Rhoa Head",
    "group": "Viscera"
@@ -725,6 +1683,27 @@
    "namespace": "ITEM",
    "refName": "Shaper's Head",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Shattered Chains",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Shavronne's Gambit",
+   "unique": {
+    "base": "Scholar Boots"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Silverbough",
+   "unique": {
+    "base": "Crude Bow"
+   }
   },
   {
    "namespace": "ITEM",
@@ -762,6 +1741,20 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Skysunder",
+   "unique": {
+    "base": "Exquisite Blade"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Slivers of Providence",
+   "unique": {
+    "base": "Serrated Arrow Quiver"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Smouldering Leg",
    "group": "Viscera"
@@ -782,6 +1775,27 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Solerai's Radiance",
+   "unique": {
+    "base": "Chain Belt"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Song of the Sirens",
+   "unique": {
+    "base": "Fishing Rod"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Soul's Wick",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Spectral Hood",
    "group": "Viscera"
@@ -797,9 +1811,51 @@
    "group": "Graft"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Spine of the First Claimant",
+   "unique": {
+    "base": "Iron Sceptre"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Spined Claws",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Spire of Stone",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Spirit Guards",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Spirited Response",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Splinter of the Moon",
+   "unique": {
+    "base": "Driftwood Wand"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Spreading Rot",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -812,9 +1868,23 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Static Electricity",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Statue Leg",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Steel Spirit",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -827,6 +1897,13 @@
    "group": "Graft"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Sudden Ignition",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Summoning Tulgraft",
    "group": "Graft"
@@ -837,9 +1914,44 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Sunspite",
+   "unique": {
+    "base": "Clasped Boots"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Survival Instincts",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Survival Secrets",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Survival Skills",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Swordmaster's Blade",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Talisman of the Victor",
+   "unique": {
+    "base": "Jet Amulet"
+   }
   },
   {
    "namespace": "ITEM",
@@ -862,9 +1974,296 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "The Bane of Hope",
+   "unique": {
+    "base": "Maraketh Bow"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Beachhead",
+   "unique": {
+    "base": "Map"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Broken Elegy",
+   "unique": {
+    "base": "Foul Staff"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Cauteriser",
+   "unique": {
+    "base": "Woodsplitter"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Covetous Dark",
+   "unique": {
+    "base": "Eye Gouger"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Dancing Duo",
+   "unique": {
+    "base": "Reaver Sword"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Desecrated Chalice",
+   "unique": {
+    "base": "Coronal Maul"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Effigon",
+   "unique": {
+    "base": "Gold Amulet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Enmity Divine",
+   "unique": {
+    "base": "Imperial Staff"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Flame of Hope",
+   "unique": {
+    "base": "Maraketh Bow"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Flow Untethered",
+   "unique": {
+    "base": "Cloth Belt"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Fracturing Spinner",
+   "unique": {
+    "base": "Blunt Arrow Quiver"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Geomantic Gyre",
+   "unique": {
+    "base": "Highborn Staff"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Goddess Unleashed",
+   "unique": {
+    "base": "Eternal Sword"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Gryphon",
+   "unique": {
+    "base": "Jade Hatchet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Long Winter",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Nomad",
+   "unique": {
+    "base": "Studded Belt"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Oak",
+   "unique": {
+    "base": "Plank Kite Shield"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Perandus Manor",
+   "unique": {
+    "base": "Map"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Peregrine",
+   "unique": {
+    "base": "Visored Sallet"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Redblade",
+   "unique": {
+    "base": "Gladius"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Rippling Thoughts",
+   "unique": {
+    "base": "Legion Sword"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Sacred Chalice",
+   "unique": {
+    "base": "Coronal Maul"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Sands of Time",
+   "unique": {
+    "base": "Tyrant's Sekhem"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Signal Fire",
+   "unique": {
+    "base": "Blazing Arrow Quiver"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Stormwall",
+   "unique": {
+    "base": "Royal Staff"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Sword of Ages",
+   "unique": {
+    "base": "Exquisite Blade"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Tactician",
+   "unique": {
+    "base": "Studded Belt"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Tempest",
+   "unique": {
+    "base": "Long Bow"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Tempest's Binding",
+   "unique": {
+    "base": "Callous Mask"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Tower of Ordeals",
+   "unique": {
+    "base": "Map"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Unshattered Will",
+   "unique": {
+    "base": "Archon Kite Shield"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "The Vigil",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Thirst for Horrors",
+   "unique": {
+    "base": "War Buckler"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Thunder of the Dawn",
+   "unique": {
+    "base": "Corroded Blade"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Timetwist",
+   "unique": {
+    "base": "Moonstone Ring"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Tipua Kaikohuru",
+   "unique": {
+    "base": "Whalebone Rapier"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Titucus Span",
+   "unique": {
+    "base": "Reinforced Tower Shield"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Totemic Visage",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Unstable Payload",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Untainted Paradise",
+   "unique": {
+    "base": "Map"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Unwilling Embrace",
+   "unique": {
+    "base": "Bone Ring"
+   }
   },
   {
    "namespace": "ITEM",
@@ -875,6 +2274,20 @@
    "namespace": "ITEM",
    "refName": "Vaal Appendage",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Vaal Sentencing",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Veil of Flesh",
+   "unique": {
+    "base": "Callous Mask"
+   }
   },
   {
    "namespace": "ITEM",
@@ -892,9 +2305,44 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Vestige of Divinity",
+   "unique": {
+    "base": "Gnarled Branch"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Violent Dead",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Viper's Scales",
+   "unique": {
+    "base": "Full Scale Armour"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Voidbearer's Leg",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Voidheart",
+   "unique": {
+    "base": "Iron Ring"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Volley Fire",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
   },
   {
    "namespace": "ITEM",
@@ -912,14 +2360,98 @@
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Wall of Brambles",
+   "unique": {
+    "base": "Plate Vest"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Warden's Arm",
    "group": "Viscera"
   },
   {
+   "namespace": "UNIQUE",
+   "refName": "Warlord's Reach",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Warrior's Tale",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Weight of Sin",
+   "unique": {
+    "base": "Viridian Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Weight of the Empire",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Whakatutuki o Matua",
+   "unique": {
+    "base": "Tarnished Spirit Shield"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Wildfire",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Wildwrap",
+   "unique": {
+    "base": "Strapped Leather"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Windshriek",
+   "unique": {
+    "base": "Reinforced Greaves"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Winter Burial",
+   "unique": {
+    "base": "Crimson Jewel"
+   }
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Winter's Bounty",
+   "unique": {
+    "base": "Cobalt Jewel"
+   }
+  },
+  {
    "namespace": "ITEM",
    "refName": "Witch's Head",
    "group": "Viscera"
+  },
+  {
+   "namespace": "UNIQUE",
+   "refName": "Worldcarver",
+   "unique": {
+    "base": "Dragonscale Gauntlets"
+   }
   },
   {
    "namespace": "ITEM",
@@ -6081,8 +7613,668 @@
  ],
  "statMatchers": [
   {
+   "ref": "+# Metamorph Monster Samples in your Maps have Rewards",
+   "string": "# Metamorph Monster Samples in your Maps have Rewards"
+  },
+  {
+   "ref": "+# Physical Damage taken from Hits",
+   "string": "# Physical Damage taken from Hits"
+  },
+  {
+   "ref": "+# Physical Damage taken from Hits per Level",
+   "string": "# Physical Damage taken from Hits per Level"
+  },
+  {
+   "ref": "+# metre to Discharge radius",
+   "string": "# metre to Discharge radius"
+  },
+  {
+   "ref": "+# to Accuracy Rating per 2 Dexterity",
+   "string": "# to Accuracy Rating per 2 Dexterity"
+  },
+  {
+   "ref": "+# to Armour if you've Hit an Enemy Recently",
+   "string": "# to Armour if you've Hit an Enemy Recently"
+  },
+  {
+   "ref": "+# to Armour while Fortified",
+   "string": "# to Armour while Fortified"
+  },
+  {
+   "ref": "+# to Evasion Rating if Hit an Enemy Recently",
+   "string": "# to Evasion Rating if Hit an Enemy Recently"
+  },
+  {
+   "ref": "+# to Evasion Rating while you have Phasing",
+   "string": "# to Evasion Rating while you have Phasing"
+  },
+  {
+   "ref": "+# to Global Evasion Rating while moving",
+   "string": "# to Global Evasion Rating while moving"
+  },
+  {
+   "ref": "+# to Level of all Dexterity Skill Gems",
+   "string": "# to Level of all Dexterity Skill Gems"
+  },
+  {
+   "ref": "+# to Level of all Intelligence Skill Gems",
+   "string": "# to Level of all Intelligence Skill Gems"
+  },
+  {
+   "ref": "+# to Level of all Movement Skill Gems",
+   "string": "# to Level of all Movement Skill Gems"
+  },
+  {
+   "ref": "+# to Level of all Strength Skill Gems",
+   "string": "# to Level of all Strength Skill Gems"
+  },
+  {
+   "ref": "+# to Level of all Summon Skeletons Gems",
+   "string": "# to Level of all Summon Skeletons Gems"
+  },
+  {
+   "ref": "+# to Maximum Blood Charges",
+   "string": "# to Maximum Blood Charges"
+  },
+  {
+   "ref": "+# to Maximum number of Bladestorms at a time",
+   "string": "# to Maximum number of Bladestorms at a time"
+  },
+  {
+   "ref": "+# to Minimum Rage",
+   "string": "# to Minimum Rage"
+  },
+  {
+   "ref": "+# to Monster Level of Area",
+   "string": "# to Monster Level of Area"
+  },
+  {
+   "ref": "+# to level of Skills used by this Graft",
+   "string": "# to level of Skills used by this Graft"
+  },
+  {
+   "ref": "+# to maximum number of Flame Walls",
+   "string": "# to maximum number of Flame Walls"
+  },
+  {
+   "ref": "+# to maximum number of Sacred Wisps +# to number of Sacred Wisps Summoned",
+   "string": "# to maximum number of Sacred Wisps # to number of Sacred Wisps Summoned"
+  },
+  {
+   "ref": "+#% Chance to Block Attack Damage if there are at least 5 Enemies within 6 metres",
+   "string": "#% Chance to Block Attack Damage if there are at least 5 Enemies within 6 metres"
+  },
+  {
+   "ref": "+#% Chance to Block Attack Damage if you've Stunned an Enemy Recently",
+   "string": "#% Chance to Block Attack Damage if you've Stunned an Enemy Recently"
+  },
+  {
+   "ref": "+#% Chance to Block Spell Damage if you have not Blocked Recently",
+   "string": "#% Chance to Block Spell Damage if you have not Blocked Recently"
+  },
+  {
+   "ref": "+#% Critical Strike Multiplier while a Rare or Unique Enemy is within 6 metres",
+   "string": "#% Critical Strike Multiplier while a Rare or Unique Enemy is within 6 metres"
+  },
+  {
+   "ref": "+#% Holy Sweep Knockback Chance",
+   "string": "#% Holy Sweep Knockback Chance"
+  },
+  {
    "ref": "+#% Item Rarity",
    "string": "#% to Item Rarity"
+  },
+  {
+   "ref": "+#% Monster Cold Resistance",
+   "string": "#% Monster Cold Resistance"
+  },
+  {
+   "ref": "+#% Monster Fire Resistance",
+   "string": "#% Monster Fire Resistance"
+  },
+  {
+   "ref": "+#% Monster Lightning Resistance",
+   "string": "#% Monster Lightning Resistance"
+  },
+  {
+   "ref": "+#% Monster Mana Leech Resistance",
+   "string": "#% Monster Mana Leech Resistance"
+  },
+  {
+   "ref": "+#% chance to Suppress Spell Damage if you've taken Spell Damage Recently",
+   "string": "#% chance to Suppress Spell Damage if you've taken Spell Damage Recently"
+  },
+  {
+   "ref": "+#% chance to Suppress Spell Damage while moving",
+   "string": "#% chance to Suppress Spell Damage while moving"
+  },
+  {
+   "ref": "+#% increased Flame Golem Elemental Resistances",
+   "string": "#% increased Flame Golem Elemental Resistances"
+  },
+  {
+   "ref": "+#% to Ancestral Protector Totem Elemental Resistances",
+   "string": "#% to Ancestral Protector Totem Elemental Resistances"
+  },
+  {
+   "ref": "+#% to Chaos Damage over Time Multiplier while Poisoned",
+   "string": "#% to Chaos Damage over Time Multiplier while Poisoned"
+  },
+  {
+   "ref": "+#% to Chaos Golem Elemental Resistances",
+   "string": "#% to Chaos Golem Elemental Resistances"
+  },
+  {
+   "ref": "+#% to Cold Damage over Time Multiplier while affected by Malevolence",
+   "string": "#% to Cold Damage over Time Multiplier while affected by Malevolence"
+  },
+  {
+   "ref": "+#% to Critical Strike Chance",
+   "string": "#% to Critical Strike Chance"
+  },
+  {
+   "ref": "+#% to Critical Strike Multiplier while area is not in Lockdown Players have +#% to Critical Strike Multiplier while area is not in Lockdown",
+   "string": "#% to Critical Strike Multiplier while area is not in Lockdown Players have #% to Critical Strike Multiplier while area is not in Lockdown"
+  },
+  {
+   "ref": "+#% to Critical Strike Multiplier with Mines",
+   "string": "#% to Critical Strike Multiplier with Mines"
+  },
+  {
+   "ref": "+#% to Critical Strike Multiplier with Traps",
+   "string": "#% to Critical Strike Multiplier with Traps"
+  },
+  {
+   "ref": "+#% to Fire Damage over Time Multiplier while Ignited",
+   "string": "#% to Fire Damage over Time Multiplier while Ignited"
+  },
+  {
+   "ref": "+#% to Ice Golem Elemental Resistances",
+   "string": "#% to Ice Golem Elemental Resistances"
+  },
+  {
+   "ref": "+#% to Item Rarity during Effect",
+   "string": "#% to Item Rarity during Effect"
+  },
+  {
+   "ref": "+#% to Item Rarity from Hiveborn Monsters",
+   "string": "#% to Item Rarity from Hiveborn Monsters"
+  },
+  {
+   "ref": "+#% to Item Rarity from Slain Rare or Unique Enemies",
+   "string": "#% to Item Rarity from Slain Rare or Unique Enemies"
+  },
+  {
+   "ref": "+#% to Item Rarity from Slain Unique Enemies",
+   "string": "#% to Item Rarity from Slain Unique Enemies"
+  },
+  {
+   "ref": "+#% to Item Rarity per Mana Burn, up to a maximum of 100%",
+   "string": "#% to Item Rarity per Mana Burn, up to a maximum of 100%"
+  },
+  {
+   "ref": "+#% to Item Rarity per White Socket",
+   "string": "#% to Item Rarity per White Socket"
+  },
+  {
+   "ref": "+#% to Item Rarity when on Low Life",
+   "string": "#% to Item Rarity when on Low Life"
+  },
+  {
+   "ref": "+#% to Item Rarity with a Normal Item Equipped",
+   "string": "#% to Item Rarity with a Normal Item Equipped"
+  },
+  {
+   "ref": "+#% to Lightning Golem Elemental Resistances",
+   "string": "#% to Lightning Golem Elemental Resistances"
+  },
+  {
+   "ref": "+#% to Maximum Effect of Chill",
+   "string": "#% to Maximum Effect of Chill"
+  },
+  {
+   "ref": "+#% to Non-Ailment Chaos Damage over Time Multiplier",
+   "string": "#% to Non-Ailment Chaos Damage over Time Multiplier"
+  },
+  {
+   "ref": "+#% to Off Hand Critical Strike Chance while Dual Wielding",
+   "string": "#% to Off Hand Critical Strike Chance while Dual Wielding"
+  },
+  {
+   "ref": "+#% to Off Hand Critical Strike Multiplier per Murderous Eye Jewel affecting you, up to a maximum of +100%",
+   "string": "#% to Off Hand Critical Strike Multiplier per Murderous Eye Jewel affecting you, up to a maximum of +100%"
+  },
+  {
+   "ref": "+#% to Physical Damage over Time Multiplier while Bleeding",
+   "string": "#% to Physical Damage over Time Multiplier while Bleeding"
+  },
+  {
+   "ref": "+#% to Quality",
+   "string": "#% to Quality"
+  },
+  {
+   "ref": "+#% to Quality of Maps offered by Kirac Missions in your Maps",
+   "string": "#% to Quality of Maps offered by Kirac Missions in your Maps"
+  },
+  {
+   "ref": "+#% to Raised Spectre Elemental Resistances",
+   "string": "#% to Raised Spectre Elemental Resistances"
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Enemies killed with a Critical Strike",
+   "string": "#% to Rarity of Items Dropped by Enemies killed with a Critical Strike"
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Frozen Enemies",
+   "string": "#% to Rarity of Items Dropped by Frozen Enemies"
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Slain Magic Enemies",
+   "string": "#% to Rarity of Items Dropped by Slain Magic Enemies"
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Slain Shocked Enemies",
+   "string": "#% to Rarity of Items Dropped by Slain Shocked Enemies"
+  },
+  {
+   "ref": "+#% to Stone Golem Elemental Resistances",
+   "string": "#% to Stone Golem Elemental Resistances"
+  },
+  {
+   "ref": "Allies within 3 metres have +# Fortification",
+   "string": "Allies within 3 metres have # Fortification"
+  },
+  {
+   "ref": "Allies within 3 metres have +#% to Critical Strike Multiplier",
+   "string": "Allies within 3 metres have #% to Critical Strike Multiplier"
+  },
+  {
+   "ref": "Allies within 6 metres have +#% to Critical Strike Multiplier per 100 Dexterity you have",
+   "string": "Allies within 6 metres have #% to Critical Strike Multiplier per 100 Dexterity you have"
+  },
+  {
+   "ref": "Arc has +#% chance to Shock",
+   "string": "Arc has #% chance to Shock"
+  },
+  {
+   "ref": "Area has +#% chance to contain Ritual Altars",
+   "string": "Area has #% chance to contain Ritual Altars"
+  },
+  {
+   "ref": "Area has +#% chance to contain an Ultimatum Encounter",
+   "string": "Area has #% chance to contain an Ultimatum Encounter"
+  },
+  {
+   "ref": "Attacks Exerted by Ambush have +#% to Critical Strike Multiplier",
+   "string": "Attacks Exerted by Ambush have #% to Critical Strike Multiplier"
+  },
+  {
+   "ref": "Blade Trap rotates +# times",
+   "string": "Blade Trap rotates # times"
+  },
+  {
+   "ref": "Blade Vortex has +#% to Critical Strike Multiplier for each blade",
+   "string": "Blade Vortex has #% to Critical Strike Multiplier for each blade"
+  },
+  {
+   "ref": "Bone Offering grants an additional +#% Chance to Block Attack Damage",
+   "string": "Bone Offering grants an additional #% Chance to Block Attack Damage"
+  },
+  {
+   "ref": "Buff granted by Tender Embrace used by this Graft grants +# Endurance Charge when gained",
+   "string": "Buff granted by Tender Embrace used by this Graft grants # Endurance Charge when gained"
+  },
+  {
+   "ref": "Buff granted by Tender Embrace used by this Graft grants +#% chance to Block Attack Damage",
+   "string": "Buff granted by Tender Embrace used by this Graft grants #% chance to Block Attack Damage"
+  },
+  {
+   "ref": "Call the Pyre used by this Graft creates +# Ashen Pillar",
+   "string": "Call the Pyre used by this Graft creates # Ashen Pillar"
+  },
+  {
+   "ref": "Chain Hook has +# metre to radius per 12 Rage",
+   "string": "Chain Hook has # metre to radius per 12 Rage"
+  },
+  {
+   "ref": "Charged Dash has +# metre to radius of each Wave's last damage Area",
+   "string": "Charged Dash has # metre to radius of each Wave's last damage Area"
+  },
+  {
+   "ref": "Corrupting Fever has +#% chance to inflict an additional Corrupted Blood Debuff",
+   "string": "Corrupting Fever has #% chance to inflict an additional Corrupted Blood Debuff"
+  },
+  {
+   "ref": "Crucible Passive Skills on Forged Items have +#% chance for tiers to be upgraded",
+   "string": "Crucible Passive Skills on Forged Items have #% chance for tiers to be upgraded"
+  },
+  {
+   "ref": "Dance in the White used by this Graft has +# to maximum Tornados",
+   "string": "Dance in the White used by this Graft has # to maximum Tornados"
+  },
+  {
+   "ref": "Dash has +# Cooldown Use",
+   "string": "Dash has # Cooldown Use"
+  },
+  {
+   "ref": "Earthshatter creates +# fissures",
+   "string": "Earthshatter creates # fissures"
+  },
+  {
+   "ref": "Enemies Drenched by Hydrosphere have Cold and Lightning Exposure, applying +#% to Resistances",
+   "string": "Enemies Drenched by Hydrosphere have Cold and Lightning Exposure, applying #% to Resistances"
+  },
+  {
+   "ref": "Enemies within 6 metres have +#% to Chaos Resistance",
+   "string": "Enemies within 6 metres have #% to Chaos Resistance"
+  },
+  {
+   "ref": "Enemies within 6 metres have +#% to Cold Resistance",
+   "string": "Enemies within 6 metres have #% to Cold Resistance"
+  },
+  {
+   "ref": "Enemies within 6 metres have +#% to Fire Resistance",
+   "string": "Enemies within 6 metres have #% to Fire Resistance"
+  },
+  {
+   "ref": "Enemies within 6 metres have +#% to Lightning Resistance",
+   "string": "Enemies within 6 metres have #% to Lightning Resistance"
+  },
+  {
+   "ref": "Expeditions in Area have +# Remnants",
+   "string": "Expeditions in Area have # Remnants"
+  },
+  {
+   "ref": "Fire Exposure you inflict applies an extra +#% to Fire Resistance",
+   "string": "Fire Exposure you inflict applies an extra #% to Fire Resistance"
+  },
+  {
+   "ref": "Frost Shield has +# Cooldown Use",
+   "string": "Frost Shield has # Cooldown Use"
+  },
+  {
+   "ref": "Frost Shield has +# to maximum Life per Stage",
+   "string": "Frost Shield has # to maximum Life per Stage"
+  },
+  {
+   "ref": "Frostbolt has +#% chance to Freeze",
+   "string": "Frostbolt has #% chance to Freeze"
+  },
+  {
+   "ref": "Frozen Legion has +# Cooldown Use",
+   "string": "Frozen Legion has # Cooldown Use"
+  },
+  {
+   "ref": "General's Cry has +# to maximum number of Mirage Warriors",
+   "string": "General's Cry has # to maximum number of Mirage Warriors"
+  },
+  {
+   "ref": "Glacial Hammer has +#% chance to Freeze",
+   "string": "Glacial Hammer has #% chance to Freeze"
+  },
+  {
+   "ref": "Goreblossom has +# maximum Bloom",
+   "string": "Goreblossom has # maximum Bloom"
+  },
+  {
+   "ref": "Hexblast has +#% chance to remove a Hex",
+   "string": "Hexblast has #% chance to remove a Hex"
+  },
+  {
+   "ref": "Hits have +#% additional Critical Strike Chance against you",
+   "string": "Hits have #% additional Critical Strike Chance against you"
+  },
+  {
+   "ref": "Icicle Mine has +#% to Critical Strike Multiplier",
+   "string": "Icicle Mine has #% to Critical Strike Multiplier"
+  },
+  {
+   "ref": "If you've Attacked Recently, you and Allies within 6 metres have +#% Chance to Block Attack Damage",
+   "string": "If you've Attacked Recently, you and Allies within 6 metres have #% Chance to Block Attack Damage"
+  },
+  {
+   "ref": "If you've Cast a Spell Recently, you and Allies within 6 metres have +#% Chance to Block Spell Damage",
+   "string": "If you've Cast a Spell Recently, you and Allies within 6 metres have #% Chance to Block Spell Damage"
+  },
+  {
+   "ref": "Incinerate has +# to maximum stages",
+   "string": "Incinerate has # to maximum stages"
+  },
+  {
+   "ref": "Jolt granted by this Graft grants +#% increased Damage taken",
+   "string": "Jolt granted by this Graft grants #% increased Damage taken"
+  },
+  {
+   "ref": "Jolt granted by this Graft grants +#% more Maximum Attack Damage",
+   "string": "Jolt granted by this Graft grants #% more Maximum Attack Damage"
+  },
+  {
+   "ref": "Jolt granted by this Graft grants +#% to Critical Strike Multiplier",
+   "string": "Jolt granted by this Graft grants #% to Critical Strike Multiplier"
+  },
+  {
+   "ref": "Lancing Steel's additional Projectiles have +#% chance to Impale Enemies",
+   "string": "Lancing Steel's additional Projectiles have #% chance to Impale Enemies"
+  },
+  {
+   "ref": "Minions have +# to Accuracy Rating",
+   "string": "Minions have # to Accuracy Rating"
+  },
+  {
+   "ref": "Minions have +#% to Damage over Time Multiplier per Ghastly Eye Jewel affecting you, up to a maximum of +30%",
+   "string": "Minions have #% to Damage over Time Multiplier per Ghastly Eye Jewel affecting you, up to a maximum of +30%"
+  },
+  {
+   "ref": "Monsters have +#% Chance to Block Spell Damage",
+   "string": "Monsters have #% Chance to Block Spell Damage"
+  },
+  {
+   "ref": "Monsters have +#% to all maximum Elemental Resistances",
+   "string": "Monsters have #% to all maximum Elemental Resistances"
+  },
+  {
+   "ref": "Monsters prevent +#% of Suppressed Spell Damage",
+   "string": "Monsters prevent #% of Suppressed Spell Damage"
+  },
+  {
+   "ref": "On non-channelling Attack, set a Life Flask with greater than 50% of maximum Charges remaining to 50% For each Charge removed this way, that Attack gains +#% to Damage over time Multiplier",
+   "string": "On non-channelling Attack, set a Life Flask with greater than 50% of maximum Charges remaining to 50% For each Charge removed this way, that Attack gains #% to Damage over time Multiplier"
+  },
+  {
+   "ref": "Overcharged Sinews used by this Graft can apply +# maximum Jolt Buffs",
+   "string": "Overcharged Sinews used by this Graft can apply # maximum Jolt Buffs"
+  },
+  {
+   "ref": "Perforate creates +# Spike",
+   "string": "Perforate creates # Spike"
+  },
+  {
+   "ref": "Plague Bearer Buff grants +#% to Poison Damage over Time Multiplier while Infecting",
+   "string": "Plague Bearer Buff grants #% to Poison Damage over Time Multiplier while Infecting"
+  },
+  {
+   "ref": "Players have +# to Accuracy Rating for each Empty Green Socket on any Equipped Item",
+   "string": "Players have # to Accuracy Rating for each Empty Green Socket on any Equipped Item"
+  },
+  {
+   "ref": "Players have +# to maximum Life for each Empty Red Socket on any Equipped Item",
+   "string": "Players have # to maximum Life for each Empty Red Socket on any Equipped Item"
+  },
+  {
+   "ref": "Players have +# to maximum Mana for each Empty Blue Socket on any Equipped Item",
+   "string": "Players have # to maximum Mana for each Empty Blue Socket on any Equipped Item"
+  },
+  {
+   "ref": "Players have +# to maximum number of Summoned Totems",
+   "string": "Players have # to maximum number of Summoned Totems"
+  },
+  {
+   "ref": "Players have +#% chance to Block Attack Damage while in Nightmare",
+   "string": "Players have #% chance to Block Attack Damage while in Nightmare"
+  },
+  {
+   "ref": "Players have +#% chance to Evade Attack Hits while in Nightmare",
+   "string": "Players have #% chance to Evade Attack Hits while in Nightmare"
+  },
+  {
+   "ref": "Players have +#% chance to Suppress Spell Damage while in Nightmare",
+   "string": "Players have #% chance to Suppress Spell Damage while in Nightmare"
+  },
+  {
+   "ref": "Players have +#% to Item Rarity per 15 Rampage Kills",
+   "string": "Players have #% to Item Rarity per 15 Rampage Kills"
+  },
+  {
+   "ref": "Players have +#% to all Elemental Resistances for each Empty White Socket on any Equipped Item",
+   "string": "Players have #% to all Elemental Resistances for each Empty White Socket on any Equipped Item"
+  },
+  {
+   "ref": "Preserving Stillness used by this Graft also grants +#% to all Elemental Resistances",
+   "string": "Preserving Stillness used by this Graft also grants #% to all Elemental Resistances"
+  },
+  {
+   "ref": "Preserving Stillness used by this Graft also grants +#% to all maximum Elemental Resistances",
+   "string": "Preserving Stillness used by this Graft also grants #% to all maximum Elemental Resistances"
+  },
+  {
+   "ref": "Prevent +#% of Reflected Elemental Damage you would take while affected by Purity of Elements",
+   "string": "Prevent #% of Reflected Elemental Damage you would take while affected by Purity of Elements"
+  },
+  {
+   "ref": "Projectiles Split towards +# targets",
+   "string": "Projectiles Split towards # targets"
+  },
+  {
+   "ref": "Rage Vortex Sacrifices +#% of Rage",
+   "string": "Rage Vortex Sacrifices #% of Rage"
+  },
+  {
+   "ref": "Raised Zombies have +#% to Elemental Resistances",
+   "string": "Raised Zombies have #% to Elemental Resistances"
+  },
+  {
+   "ref": "Scourge Arrow creates +# Spore Pod",
+   "string": "Scourge Arrow creates # Spore Pod"
+  },
+  {
+   "ref": "Seize the Flesh used by this Graft creates +# Spire",
+   "string": "Seize the Flesh used by this Graft creates # Spire"
+  },
+  {
+   "ref": "Skills used by this Graft have +#% to Critical Strike Multiplier",
+   "string": "Skills used by this Graft have #% to Critical Strike Multiplier"
+  },
+  {
+   "ref": "Spectral Helix Projectile spirals through +# rotations",
+   "string": "Spectral Helix Projectile spirals through # rotations"
+  },
+  {
+   "ref": "Spirit Offering grants +#% of Physical Damage as Extra Chaos Damage",
+   "string": "Spirit Offering grants #% of Physical Damage as Extra Chaos Damage"
+  },
+  {
+   "ref": "Spirit Offering grants +#% to Critical Strike Multiplier",
+   "string": "Spirit Offering grants #% to Critical Strike Multiplier"
+  },
+  {
+   "ref": "Static Strike has +# maximum Beam Target",
+   "string": "Static Strike has # maximum Beam Target"
+  },
+  {
+   "ref": "Summoned Carrion Golems have +#% to all Elemental Resistances",
+   "string": "Summoned Carrion Golems have #% to all Elemental Resistances"
+  },
+  {
+   "ref": "Summoned Reaper has +#% to Physical Damage over Time Multiplier",
+   "string": "Summoned Reaper has #% to Physical Damage over Time Multiplier"
+  },
+  {
+   "ref": "Tectonic Slam has +#% fissure branching chance",
+   "string": "Tectonic Slam has #% fissure branching chance"
+  },
+  {
+   "ref": "The Grey Wind Howls used by this Graft also grants +#% to all Elemental Resistances",
+   "string": "The Grey Wind Howls used by this Graft also grants #% to all Elemental Resistances"
+  },
+  {
+   "ref": "The Grey Wind Howls used by this Graft grants +#% additional Physical Damage gained as Extra Elemental Damage",
+   "string": "The Grey Wind Howls used by this Graft grants #% additional Physical Damage gained as Extra Elemental Damage"
+  },
+  {
+   "ref": "Triggers Level 20 Spectral Spirits when Equipped +# to maximum number of Spectral Spirits",
+   "string": "Triggers Level 20 Spectral Spirits when Equipped # to maximum number of Spectral Spirits"
+  },
+  {
+   "ref": "Unearth Spawns corpses with +# Level",
+   "string": "Unearth Spawns corpses with # Level"
+  },
+  {
+   "ref": "Violent Desire used by this Graft grants +#% increased effect of Impale",
+   "string": "Violent Desire used by this Graft grants #% increased effect of Impale"
+  },
+  {
+   "ref": "Wave of Conviction's Exposure applies an extra +#% to Elemental Resistance",
+   "string": "Wave of Conviction's Exposure applies an extra #% to Elemental Resistance"
+  },
+  {
+   "ref": "Winter Orb has +# Maximum Stages",
+   "string": "Winter Orb has # Maximum Stages"
+  },
+  {
+   "ref": "Wintertide Brand has +# to maximum Stages",
+   "string": "Wintertide Brand has # to maximum Stages"
+  },
+  {
+   "ref": "With 40 total Dexterity and Strength in Radius, Spectral Shield Throw Chains +# times",
+   "string": "With 40 total Dexterity and Strength in Radius, Spectral Shield Throw Chains # times"
+  },
+  {
+   "ref": "With at least 40 Dexterity in Radius, Dual Strike has +#% to Critical Strike Multiplier while wielding a Dagger",
+   "string": "With at least 40 Dexterity in Radius, Dual Strike has #% to Critical Strike Multiplier while wielding a Dagger"
+  },
+  {
+   "ref": "With at least 40 Strength in Radius, +#% to Rarity of Items dropped by Enemies Shattered by Glacial Hammer",
+   "string": "With at least 40 Strength in Radius, #% to Rarity of Items dropped by Enemies Shattered by Glacial Hammer"
+  },
+  {
+   "ref": "You and Allies near your Banner have +#% to Damage over Time Multiplier per 2 Valour consumed for that Banner",
+   "string": "You and Allies near your Banner have #% to Damage over Time Multiplier per 2 Valour consumed for that Banner"
+  },
+  {
+   "ref": "You and Allies within 6 metres have +#% to Elemental Resistances",
+   "string": "You and Allies within 6 metres have #% to Elemental Resistances"
+  },
+  {
+   "ref": "You and Allies within 6 metres have +#% to Item Rarity",
+   "string": "You and Allies within 6 metres have #% to Item Rarity"
+  },
+  {
+   "ref": "Your Maps have +#% chance to be haunted by a Tormented Spirit",
+   "string": "Your Maps have #% chance to be haunted by a Tormented Spirit"
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain Breaches",
+   "string": "Your Maps have #% chance to contain Breaches"
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain a Rogue Exile",
+   "string": "Your Maps have #% chance to contain a Rogue Exile"
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain a Shrine",
+   "string": "Your Maps have #% chance to contain a Shrine"
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain an Imprisoned Monster",
+   "string": "Your Maps have #% chance to contain an Imprisoned Monster"
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain other Extra Content that can be turned off through Atlas Passives",
+   "string": "Your Maps have #% chance to contain other Extra Content that can be turned off through Atlas Passives"
+  },
+  {
+   "ref": "Your Maps have +#% chance to grant an Atlas Mission on Completion",
+   "string": "Your Maps have #% chance to grant an Atlas Mission on Completion"
   }
  ],
  "stats": [
@@ -12790,11 +14982,180 @@
    }
   },
   {
+   "ref": "+# Metamorph Monster Samples in your Maps have Rewards",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1274902666"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# Physical Damage taken from Hits",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_321765853"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# Physical Damage taken from Hits per Level",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_3652380199"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# metre to Discharge radius",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2716178075"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Accuracy Rating per 2 Dexterity",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_773731062"
+     ],
+     "fractured": [
+      "fractured.stat_773731062"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Armour if you've Hit an Enemy Recently",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2368149582"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Armour while Fortified",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_153004860"
+     ],
+     "enchant": [
+      "enchant.stat_153004860"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Evasion Rating if Hit an Enemy Recently",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2935548106"
+     ]
+    }
+   }
+  },
+  {
    "ref": "+# to Evasion Rating while you have Phasing",
    "trade": {
     "ids": {
      "enchant": [
       "enchant.stat_3169671355"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Global Evasion Rating while moving",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_3825877290"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Level of all Dexterity Skill Gems",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_146924886"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Level of all Intelligence Skill Gems",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_493812998"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Level of all Movement Skill Gems",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2378187488"
+     ],
+     "implicit": [
+      "implicit.stat_2378187488"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Level of all Strength Skill Gems",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2339012908"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Level of all Summon Skeletons Gems",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.indexable_skill_47"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Maximum Blood Charges",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_4218649240"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to Maximum number of Bladestorms at a time",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1662993931"
      ]
     }
    }
@@ -12810,11 +15171,103 @@
    }
   },
   {
+   "ref": "+# to Monster Level of Area",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2629689891"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to level of Skills used by this Graft",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_324804503"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to maximum number of Flame Walls",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1531456858"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+# to maximum number of Sacred Wisps +# to number of Sacred Wisps Summoned",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_13590525"
+     ],
+     "implicit": [
+      "implicit.stat_13590525"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% Chance to Block Attack Damage if there are at least 5 Enemies within 6 metres",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1214532298"
+     ],
+     "fractured": [
+      "fractured.stat_1214532298"
+     ]
+    }
+   }
+  },
+  {
    "ref": "+#% Chance to Block Attack Damage if you've Stunned an Enemy Recently",
    "trade": {
     "ids": {
      "explicit": [
       "explicit.stat_2937199008"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% Chance to Block Spell Damage if you have not Blocked Recently",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3771323968"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% Critical Strike Multiplier while a Rare or Unique Enemy is within 6 metres",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3992439283"
+     ],
+     "fractured": [
+      "fractured.stat_3992439283"
+     ],
+     "crafted": [
+      "crafted.stat_3992439283"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% Holy Sweep Knockback Chance",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_4118537428"
      ]
     }
    }
@@ -12845,6 +15298,412 @@
     "ids": {
      "explicit": [
       "explicit.stat_162742068"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% Monster Mana Leech Resistance",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_918170065"
+     ],
+     "fractured": [
+      "fractured.stat_918170065"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% chance to Suppress Spell Damage if you've taken Spell Damage Recently",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1503864797"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% chance to Suppress Spell Damage while moving",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_2907896585"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% increased Flame Golem Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1298820272"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Ancestral Protector Totem Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1220207954"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Chaos Damage over Time Multiplier while Poisoned",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_3313028660"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Chaos Golem Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1946386823"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Cold Damage over Time Multiplier while affected by Malevolence",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_787958710"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Critical Strike Chance",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1909401378"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Critical Strike Multiplier while area is not in Lockdown Players have +#% to Critical Strike Multiplier while area is not in Lockdown",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3128272024"
+     ],
+     "fractured": [
+      "fractured.stat_3128272024"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Critical Strike Multiplier with Mines",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2529112796"
+     ],
+     "fractured": [
+      "fractured.stat_2529112796"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Critical Strike Multiplier with Traps",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1780168381"
+     ],
+     "fractured": [
+      "fractured.stat_1780168381"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Fire Damage over Time Multiplier while Ignited",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_420435377"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Ice Golem Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2520825974"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity during Effect",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1740200922",
+      "explicit.stat_3251705960"
+     ],
+     "crafted": [
+      "crafted.stat_3251705960"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity from Hiveborn Monsters",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3967804254"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity from Slain Rare or Unique Enemies",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2161689853"
+     ],
+     "fractured": [
+      "fractured.stat_2161689853"
+     ],
+     "crafted": [
+      "crafted.stat_2161689853"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity from Slain Unique Enemies",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_121185030"
+     ],
+     "fractured": [
+      "fractured.stat_121185030"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity per Mana Burn, up to a maximum of 100%",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3226452989"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity per White Socket",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_144675621"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity when on Low Life",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2929867083"
+     ],
+     "implicit": [
+      "implicit.stat_2929867083"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Item Rarity with a Normal Item Equipped",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_4151190513"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Lightning Golem Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2338484156"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Maximum Effect of Chill",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_1400414838"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Non-Ailment Chaos Damage over Time Multiplier",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1653010703"
+     ],
+     "implicit": [
+      "implicit.stat_1653010703"
+     ],
+     "fractured": [
+      "fractured.stat_1653010703"
+     ],
+     "crafted": [
+      "crafted.stat_1653010703"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Off Hand Critical Strike Chance while Dual Wielding",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3547436813"
+     ],
+     "fractured": [
+      "fractured.stat_3547436813"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Off Hand Critical Strike Multiplier per Murderous Eye Jewel affecting you, up to a maximum of +100%",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3699529133"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Physical Damage over Time Multiplier while Bleeding",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_2390518055"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Quality",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2016708976"
+     ],
+     "fractured": [
+      "fractured.stat_2016708976"
+     ],
+     "crafted": [
+      "crafted.stat_2016708976"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Quality of Maps offered by Kirac Missions in your Maps",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_463675009"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Raised Spectre Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_27640220"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Enemies killed with a Critical Strike",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_21824003"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Frozen Enemies",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2138434718"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Slain Magic Enemies",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3433676080"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Rarity of Items Dropped by Slain Shocked Enemies",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3188291252"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "+#% to Stone Golem Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1601558321"
      ]
     }
    }
@@ -13333,6 +16192,26 @@
    }
   },
   {
+   "ref": "Allies within 3 metres have +# Fortification",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_244825991"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Allies within 3 metres have +#% to Critical Strike Multiplier",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3152714748"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Allies within 3 metres have Culling Strike",
    "trade": {
     "ids": {
@@ -13411,6 +16290,16 @@
     "ids": {
      "explicit": [
       "explicit.stat_3767939384"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Allies within 6 metres have +#% to Critical Strike Multiplier per 100 Dexterity you have",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1438488526"
      ]
     }
    }
@@ -13627,6 +16516,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_3998182656"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Arc has +#% chance to Shock",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_195463427"
      ]
     }
    }
@@ -14753,6 +17652,26 @@
    }
   },
   {
+   "ref": "Area has +#% chance to contain Ritual Altars",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1314822783"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Area has +#% chance to contain an Ultimatum Encounter",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1365687125"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Area has no chance to contain Ultimatum Encounters",
    "trade": {
     "ids": {
@@ -15202,6 +18121,16 @@
    }
   },
   {
+   "ref": "Attacks Exerted by Ambush have +#% to Critical Strike Multiplier",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2343571547"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Attacks have #% increased Ignite Duration",
    "trade": {
     "ids": {
@@ -15433,6 +18362,26 @@
     "ids": {
      "enchant": [
       "enchant.stat_3569393676"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Blade Trap rotates +# times",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_4195549152"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Blade Vortex has +#% to Critical Strike Multiplier for each blade",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2583039202"
      ]
     }
    }
@@ -15705,6 +18654,16 @@
     "ids": {
      "explicit": [
       "explicit.stat_3113439544"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Bone Offering grants an additional +#% Chance to Block Attack Damage",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3233607638"
      ]
     }
    }
@@ -16069,6 +19028,26 @@
    }
   },
   {
+   "ref": "Buff granted by Tender Embrace used by this Graft grants +# Endurance Charge when gained",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_994844444"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Buff granted by Tender Embrace used by this Graft grants +#% chance to Block Attack Damage",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2530984421"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Buffs from Active Ancestor Totems Linger for # second",
    "trade": {
     "ids": {
@@ -16094,6 +19073,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_3738339949"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Call the Pyre used by this Graft creates +# Ashen Pillar",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_652310659"
      ]
     }
    }
@@ -16298,6 +19287,16 @@
    }
   },
   {
+   "ref": "Chain Hook has +# metre to radius per 12 Rage",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3269147016"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Chance to Block Projectile Attack Damage is Lucky",
    "trade": {
     "ids": {
@@ -16343,6 +19342,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_797408710"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Charged Dash has +# metre to radius of each Wave's last damage Area",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2898302567"
      ]
     }
    }
@@ -16691,6 +19700,16 @@
    }
   },
   {
+   "ref": "Corrupting Fever has +#% chance to inflict an additional Corrupted Blood Debuff",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3513613206"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Cost of Building and Upgrading Blight Towers in your Maps is doubled",
    "trade": {
     "ids": {
@@ -16809,6 +19828,16 @@
     "ids": {
      "explicit": [
       "explicit.stat_4294430899"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Crucible Passive Skills on Forged Items have +#% chance for tiers to be upgraded",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_4226044796"
      ]
     }
    }
@@ -16982,6 +20011,26 @@
     "ids": {
      "explicit": [
       "explicit.stat_2372432170"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Dance in the White used by this Graft has +# to maximum Tornados",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1180345918"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Dash has +# Cooldown Use",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_4172171622"
      ]
     }
    }
@@ -17342,6 +20391,16 @@
    }
   },
   {
+   "ref": "Earthshatter creates +# fissures",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_701215561"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Earthshatter deals #% increased Damage",
    "trade": {
     "ids": {
@@ -17443,6 +20502,16 @@
     "ids": {
      "implicit": [
       "implicit.stat_3723063276"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Enemies Drenched by Hydrosphere have Cold and Lightning Exposure, applying +#% to Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3831546273"
      ]
     }
    }
@@ -17819,6 +20888,70 @@
    }
   },
   {
+   "ref": "Enemies within 6 metres have +#% to Chaos Resistance",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1902595112"
+     ],
+     "fractured": [
+      "fractured.stat_1902595112"
+     ],
+     "scourge": [
+      "scourge.stat_1902595112"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Enemies within 6 metres have +#% to Cold Resistance",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2674336304"
+     ],
+     "fractured": [
+      "fractured.stat_2674336304"
+     ],
+     "scourge": [
+      "scourge.stat_2674336304"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Enemies within 6 metres have +#% to Fire Resistance",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3914021960"
+     ],
+     "fractured": [
+      "fractured.stat_3914021960"
+     ],
+     "scourge": [
+      "scourge.stat_3914021960"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Enemies within 6 metres have +#% to Lightning Resistance",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1849749435"
+     ],
+     "fractured": [
+      "fractured.stat_1849749435"
+     ],
+     "scourge": [
+      "scourge.stat_1849749435"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Enemies within 6 metres have Lightning Resistance equal to yours",
    "trade": {
     "ids": {
@@ -18097,6 +21230,16 @@
    }
   },
   {
+   "ref": "Expeditions in Area have +# Remnants",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3753446846"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Explosive Arrow deals #% increased Damage",
    "trade": {
     "ids": {
@@ -18325,6 +21468,16 @@
      ],
      "fractured": [
       "fractured.stat_1775318819"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Fire Exposure you inflict applies an extra +#% to Fire Resistance",
+   "trade": {
+    "ids": {
+     "implicit": [
+      "implicit.stat_2356684802"
      ]
     }
    }
@@ -18657,6 +21810,26 @@
    }
   },
   {
+   "ref": "Frost Shield has +# Cooldown Use",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_915160899"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Frost Shield has +# to maximum Life per Stage",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2511493969"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Frost Wall has #% increased Cooldown Recovery Rate",
    "trade": {
     "ids": {
@@ -18697,11 +21870,31 @@
    }
   },
   {
+   "ref": "Frostbolt has +#% chance to Freeze",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2774873427"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Frozen Legion has #% increased Cooldown Recovery Rate",
    "trade": {
     "ids": {
      "enchant": [
       "enchant.stat_3809563078"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Frozen Legion has +# Cooldown Use",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2876793597"
      ]
     }
    }
@@ -18950,6 +22143,16 @@
    }
   },
   {
+   "ref": "General's Cry has +# to maximum number of Mirage Warriors",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2889995769"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Geysers created by this Graft fire # additional Projectile when you Warcry",
    "trade": {
     "ids": {
@@ -18965,6 +22168,26 @@
     "ids": {
      "enchant": [
       "enchant.stat_3492427828"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Glacial Hammer has +#% chance to Freeze",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_288248772"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Goreblossom has +# maximum Bloom",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1597503116"
      ]
     }
    }
@@ -19633,6 +22856,16 @@
    }
   },
   {
+   "ref": "Hexblast has +#% chance to remove a Hex",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_120598364"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Hinders Enemies within 3 metres with #% reduced Movement Speed if used while not on Full Life",
    "trade": {
     "ids": {
@@ -19744,6 +22977,16 @@
     "ids": {
      "implicit": [
       "implicit.stat_2705969278"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Hits have +#% additional Critical Strike Chance against you",
+   "trade": {
+    "ids": {
+     "scourge": [
+      "scourge.stat_4152537231"
      ]
     }
    }
@@ -19902,6 +23145,16 @@
    }
   },
   {
+   "ref": "Icicle Mine has +#% to Critical Strike Multiplier",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1555251"
+     ]
+    }
+   }
+  },
+  {
    "ref": "If there is fewer than 1 monster remaining in your Maps, Final Map Bosses are Empowered by Wildwood Wisps",
    "trade": {
     "ids": {
@@ -19937,6 +23190,26 @@
     "ids": {
      "explicit": [
       "explicit.stat_176085824"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "If you've Attacked Recently, you and Allies within 6 metres have +#% Chance to Block Attack Damage",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1453771408"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "If you've Cast a Spell Recently, you and Allies within 6 metres have +#% Chance to Block Spell Damage",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1952992278"
      ]
     }
    }
@@ -20115,6 +23388,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_2562208244"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Incinerate has +# to maximum stages",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3867484047"
      ]
     }
    }
@@ -20556,6 +23839,36 @@
    }
   },
   {
+   "ref": "Jolt granted by this Graft grants +#% increased Damage taken",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3853303544"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Jolt granted by this Graft grants +#% more Maximum Attack Damage",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3955143601"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Jolt granted by this Graft grants +#% to Critical Strike Multiplier",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3905327148"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Keystone Passive Skills in Radius can be Allocated without being connected to your tree Passage",
    "trade": {
     "ids": {
@@ -20671,6 +23984,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_2891251105"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Lancing Steel's additional Projectiles have +#% chance to Impale Enemies",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_618920318"
      ]
     }
    }
@@ -21559,6 +24882,29 @@
    }
   },
   {
+   "ref": "Minions have +# to Accuracy Rating",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1661151735"
+     ],
+     "fractured": [
+      "fractured.stat_1661151735"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Minions have +#% to Damage over Time Multiplier per Ghastly Eye Jewel affecting you, up to a maximum of +30%",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_613055432"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Minions summoned by this Graft deal #% increased Damage",
    "trade": {
     "ids": {
@@ -22058,6 +25404,26 @@
    }
   },
   {
+   "ref": "Monsters have +#% Chance to Block Spell Damage",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_395617565"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Monsters have +#% to all maximum Elemental Resistances",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_3783555531"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Monsters in Nightmare Regenerate #% of Life per second",
    "trade": {
     "ids": {
@@ -22143,6 +25509,16 @@
     "ids": {
      "explicit": [
       "explicit.stat_2473016979"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Monsters prevent +#% of Suppressed Spell Damage",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1260060682"
      ]
     }
    }
@@ -22499,6 +25875,16 @@
    }
   },
   {
+   "ref": "On non-channelling Attack, set a Life Flask with greater than 50% of maximum Charges remaining to 50% For each Charge removed this way, that Attack gains +#% to Damage over time Multiplier",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1341154644"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Only Shift into and out of Nightmare randomly",
    "trade": {
     "ids": {
@@ -22614,6 +26000,16 @@
     "ids": {
      "explicit": [
       "explicit.stat_2888521660"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Overcharged Sinews used by this Graft can apply +# maximum Jolt Buffs",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1601123381"
      ]
     }
    }
@@ -22885,6 +26281,16 @@
    }
   },
   {
+   "ref": "Perforate creates +# Spike",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3342959456"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Perforate deals #% increased Damage",
    "trade": {
     "ids": {
@@ -22961,6 +26367,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_4062159806"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Plague Bearer Buff grants +#% to Poison Damage over Time Multiplier while Infecting",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1967208066"
      ]
     }
    }
@@ -23580,6 +26996,99 @@
    }
   },
   {
+   "ref": "Players have +# to Accuracy Rating for each Empty Green Socket on any Equipped Item",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_4280703528"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +# to maximum Life for each Empty Red Socket on any Equipped Item",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_726359715"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +# to maximum Mana for each Empty Blue Socket on any Equipped Item",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2962020005"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +# to maximum number of Summoned Totems",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2912613786"
+     ],
+     "fractured": [
+      "fractured.stat_2912613786"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +#% chance to Block Attack Damage while in Nightmare",
+   "trade": {
+    "ids": {
+     "scourge": [
+      "scourge.stat_2122435676"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +#% chance to Evade Attack Hits while in Nightmare",
+   "trade": {
+    "ids": {
+     "scourge": [
+      "scourge.stat_3078099912"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +#% chance to Suppress Spell Damage while in Nightmare",
+   "trade": {
+    "ids": {
+     "scourge": [
+      "scourge.stat_1982917702"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +#% to Item Rarity per 15 Rampage Kills",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1489997462"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Players have +#% to all Elemental Resistances for each Empty White Socket on any Equipped Item",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_597739519"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Players have Acceleration Shrine Buff while affected by no Flasks",
    "trade": {
     "ids": {
@@ -24063,11 +27572,41 @@
    }
   },
   {
+   "ref": "Preserving Stillness used by this Graft also grants +#% to all Elemental Resistances",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2134023442"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Preserving Stillness used by this Graft also grants +#% to all maximum Elemental Resistances",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_557952718"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Preserving Stillness used by this Graft can take # additional Damage",
    "trade": {
     "ids": {
      "explicit": [
       "explicit.stat_3725714391"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Prevent +#% of Reflected Elemental Damage you would take while affected by Purity of Elements",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1574578643"
      ]
     }
    }
@@ -24121,6 +27660,16 @@
     "ids": {
      "implicit": [
       "implicit.stat_3019598671"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Projectiles Split towards +# targets",
+   "trade": {
+    "ids": {
+     "scourge": [
+      "scourge.stat_3464380325"
      ]
     }
    }
@@ -24338,6 +27887,16 @@
    }
   },
   {
+   "ref": "Rage Vortex Sacrifices +#% of Rage",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1957790343"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Rage grants Cast Speed instead of Attack Speed",
    "trade": {
     "ids": {
@@ -24383,6 +27942,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_2499559911"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Raised Zombies have +#% to Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2871777604"
      ]
     }
    }
@@ -25395,6 +28964,16 @@
    }
   },
   {
+   "ref": "Scourge Arrow creates +# Spore Pod",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1044970549"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Scourge Arrow deals #% increased Damage",
    "trade": {
     "ids": {
@@ -25460,6 +29039,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_1389191919"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Seize the Flesh used by this Graft creates +# Spire",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_385266470"
      ]
     }
    }
@@ -26131,6 +29720,16 @@
    }
   },
   {
+   "ref": "Skills used by this Graft have +#% to Critical Strike Multiplier",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_4013357916"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Skills used by this Graft penetrate #% Enemy Cold Resistance",
    "trade": {
     "ids": {
@@ -26427,6 +30026,16 @@
    }
   },
   {
+   "ref": "Spectral Helix Projectile spirals through +# rotations",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_4175166318"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Spectral Shield Throw fires an additional Shard Projectile",
    "trade": {
     "ids": {
@@ -26487,6 +30096,26 @@
    }
   },
   {
+   "ref": "Spirit Offering grants +#% of Physical Damage as Extra Chaos Damage",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3229261553"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Spirit Offering grants +#% to Critical Strike Multiplier",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1793005352"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Splinters and Emblems dropped by Legion Monsters are duplicated",
    "trade": {
     "ids": {
@@ -26542,6 +30171,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_1977935782"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Static Strike has +# maximum Beam Target",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_2537202749"
      ]
     }
    }
@@ -26940,6 +30579,16 @@
    }
   },
   {
+   "ref": "Summoned Carrion Golems have +#% to all Elemental Resistances",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_59544006"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Summoned Holy Relics deal #% increased Damage",
    "trade": {
     "ids": {
@@ -26988,6 +30637,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_2516903912"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Summoned Reaper has +#% to Physical Damage over Time Multiplier",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1975621585"
      ]
     }
    }
@@ -27186,6 +30845,17 @@
    }
   },
   {
+   "ref": "Tectonic Slam has +#% fissure branching chance",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_1522229796",
+      "enchant.stat_2462686988"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Tempest Effects have #% increased Area of Effect",
    "trade": {
     "ids": {
@@ -27271,6 +30941,26 @@
     "ids": {
      "explicit": [
       "explicit.stat_1761211254"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "The Grey Wind Howls used by this Graft also grants +#% to all Elemental Resistances",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_457484464"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "The Grey Wind Howls used by this Graft grants +#% additional Physical Damage gained as Extra Elemental Damage",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_4234527870"
      ]
     }
    }
@@ -27937,6 +31627,19 @@
    }
   },
   {
+   "ref": "Triggers Level 20 Spectral Spirits when Equipped +# to maximum number of Spectral Spirits",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_470688636"
+     ],
+     "fractured": [
+      "fractured.stat_470688636"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Tul, Creeping Avalanche in your Maps has a #% chance to be Duplicated",
    "trade": {
     "ids": {
@@ -28052,6 +31755,16 @@
     "ids": {
      "explicit": [
       "explicit.stat_3814215147"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Unearth Spawns corpses with +# Level",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_586167247"
      ]
     }
    }
@@ -28360,6 +32073,16 @@
    }
   },
   {
+   "ref": "Violent Desire used by this Graft grants +#% increased effect of Impale",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2000483559"
+     ]
+    }
+   }
+  },
+  {
    "ref": "Vitality has #% reduced Reservation",
    "trade": {
     "ids": {
@@ -28558,6 +32281,16 @@
     "ids": {
      "enchant": [
       "enchant.stat_2412561418"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Wave of Conviction's Exposure applies an extra +#% to Elemental Resistance",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_3139672534"
      ]
     }
    }
@@ -28805,6 +32538,16 @@
    }
   },
   {
+   "ref": "Wintertide Brand has +# to maximum Stages",
+   "trade": {
+    "ids": {
+     "enchant": [
+      "enchant.stat_35081783"
+     ]
+    }
+   }
+  },
+  {
    "ref": "With 40 Intelligence in Radius, #% of Glacial Cascade Physical Damage Converted to Cold Damage",
    "trade": {
     "ids": {
@@ -28890,6 +32633,16 @@
     "ids": {
      "explicit": [
       "explicit.stat_1795260970"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "With at least 40 Dexterity in Radius, Dual Strike has +#% to Critical Strike Multiplier while wielding a Dagger",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1503812817"
      ]
     }
    }
@@ -29009,6 +32762,16 @@
      ],
      "fractured": [
       "fractured.stat_3738331820"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "With at least 40 Strength in Radius, +#% to Rarity of Items dropped by Enemies Shattered by Glacial Hammer",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1250317014"
      ]
     }
    }
@@ -29217,6 +32980,26 @@
      ],
      "enchant": [
       "enchant.stat_3726585224"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "You and Allies within 6 metres have +#% to Elemental Resistances",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_319842716"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "You and Allies within 6 metres have +#% to Item Rarity",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_549203380"
      ]
     }
    }
@@ -30092,6 +33875,66 @@
     "ids": {
      "explicit": [
       "explicit.stat_880963174"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Your Maps have +#% chance to be haunted by a Tormented Spirit",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2750973094"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain Breaches",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_1133841298"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain a Rogue Exile",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2974922599"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain a Shrine",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_2571125745"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain an Imprisoned Monster",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_4098286334"
+     ]
+    }
+   }
+  },
+  {
+   "ref": "Your Maps have +#% chance to contain other Extra Content that can be turned off through Atlas Passives",
+   "trade": {
+    "ids": {
+     "explicit": [
+      "explicit.stat_344979199"
      ]
     }
    }
