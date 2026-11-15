@@ -166,11 +166,24 @@ export default defineComponent({
     return {
       t,
       save () {
-        updateConfig(configClone.value!)
-        saveConfig()
-        pushHostConfig()
-
-        wm.hide(props.config.wmId)
+        const wmId = props.config.wmId
+        try {
+          // `updateConfig` swaps the whole config for the edited copy, so a
+          // throw in any of the three steps below used to leave the window on
+          // screen with no way to close it. The hide is in `finally`.
+          if (configClone.value) {
+            updateConfig(configClone.value)
+            // The settings widget is itself an exclusive widget that is
+            // currently shown, and `saveConfig` refuses to persist while one
+            // is on screen - it would come back open on the next start. Close
+            // it first, then write.
+            wm.hide(wmId)
+            saveConfig()
+            pushHostConfig()
+          }
+        } finally {
+          wm.hide(wmId)
+        }
       },
       cancel () {
         wm.hide(props.config.wmId)

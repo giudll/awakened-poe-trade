@@ -250,6 +250,11 @@ export default defineComponent({
         wm.hide(props.config.wmId)
       } else {
         Host.sendEvent({ name: 'OVERLAY->MAIN::focus-game', payload: undefined })
+        // `focus-game` only hides this widget through `hide-on-blur`, which
+        // needs the overlay to have been interactable in the first place. When
+        // it was not - the window is on screen but clicks already go to the
+        // game - the widget stayed there with no way to dismiss it.
+        wm.hide(props.config.wmId)
       }
     }
 
