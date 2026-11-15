@@ -113,6 +113,38 @@ function lookupGrantedEffect (pairs, effect) {
   return null
 }
 
+/**
+ * Looks a matcher up in the English -> Chinese pair index.
+ *
+ * The skeleton's matchers come from an English client, the pairs come from the
+ * patch, and the two disagree about a leading sign on a handful of stats
+ * (`+# to Agility Level for Heists` in the patch, `# to Agility Level for
+ * Heists` in the skeleton). The sign is cosmetic to the parser, so retry
+ * without it and then with it - but only ever return text the patch actually
+ * contains, so this cannot invent a translation that is not there.
+ */
+function lookupPair (indexes, text) {
+  const seen = new Set()
+  const candidates = []
+  const push = (candidate) => {
+    if (!candidate || seen.has(candidate)) return
+    seen.add(candidate)
+    candidates.push(candidate)
+  }
+  for (const template of [text, toStatTemplate(text)]) {
+    push(template)
+    push(template.replace(/^\+\s*/, ''))
+    if (template.startsWith('#')) push('+' + template)
+  }
+  for (const candidate of candidates) {
+    for (const index of indexes) {
+      const hit = index.get(candidate)
+      if (hit?.size) return hit
+    }
+  }
+  return null
+}
+
 export function synthesizeClusterGrant (pairs, prefixCn, enText) {
   const lines = []
   for (const line of enText.split('\n')) {
@@ -288,7 +320,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     for (const stat of flatten(clone)) {
       const extra = []
       for (const matcher of stat.matchers) {
-        let cn = pairs.get(matcher.string.trim()) ?? untaggedPairs.get(matcher.string.trim())
+        let cn = lookupPair([pairs, untaggedPairs], matcher.string.trim())
         if (!cn && grantPrefixCn && matcher.string.startsWith(GRANT_PREFIX)) {
           const rebuilt = synthesizeClusterGrant(pairs, grantPrefixCn, matcher.string)
           if (rebuilt) {
