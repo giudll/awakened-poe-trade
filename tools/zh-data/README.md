@@ -57,8 +57,8 @@ label. Consequently the bundle must not invent Chinese:
 `refName` but is not present in the patch fails the build. `build-stats.mjs` does the
 same for every Chinese matcher in `stats.ndjson`: the string has to be one of the
 patch strings (or be composed by one of the documented synths - cluster jewel grants,
-anointments, ultimatum mods) or the build stops. That is what makes a
-traditional-to-simplified rewrite impossible to merge by accident.
+anointments, ultimatum mods, ``Grants Level N <skill>``) or the build stops. That is
+what makes a traditional-to-simplified rewrite impossible to merge by accident.
 
 | Output | Source |
 | --- | --- |
@@ -75,6 +75,46 @@ Ids are `GlovesDexInt10`, `BodyStr1`) cannot be paired from the table alone; the
 hint file supplies the candidate, the table decides whether it is real. The common
 "hint dropped a suffix" cases are repaired (`附加混沌伤害` -> `附加混沌伤害(辅)`,
 `塑界守卫` -> `塑界守卫地图`). Rejected hints are listed in the report.
+
+## `Grants Level N <skill>` lines
+
+Some mods do not describe a number, they hand you a skill: Hyrri's Truth, the four
+aspects, Herald rings, every "Grants Level 20 ... Skill" unique. For those the client
+does not read a stat description at all - it composes the line from a ClientString
+plus the skill's **localised name**:
+
+```
+ModGrantsEffectWithLevel = "Grants Level {1} {0}"     ClientStrings.datc64
+                                    level  skill name (Data/<lang>/ActiveSkills.datc64)
+```
+
+which is why a Chinese client prints a half-English line:
+
+```
+Grants Level 30 精准
+```
+
+No matcher derived from the trade site can match that. The trade site files the mod as
+`Grants Level # Precision Skill` (it appends a "Skill" the client never prints, and
+keeps the English skill name), so the Chinese half has no Chinese twin and the English
+half is not the text on screen. `lib/skills.mjs` rebuilds it in three steps:
+
+1. index the patch's English text **without** its `[Id::#|Name]` markup as well, which
+   is what pairs `Grants Level {0} [BattlemagesCry|Battlemage's Cry] Skill` with the
+   trade wording;
+2. drop the trade site's trailing `Skill` and look the line up again - several of these
+   mods *are* described (`Grants Level {0} [Frostbite::{0}|Frostbite]` -> `获得 # 级的
+   主动技能冻伤…`), they only miss because of that one word;
+3. otherwise compose the line from the ClientString read out of the patch and the skill
+   name read out of `ActiveSkills.datc64` (`Precision` -> `precision` -> `精准`). A
+   skill 编年史 has not named yet keeps its English name, which is what the client shows
+   for it.
+
+The template is read from the patch rather than hardcoded, so if 编年史 ever translates
+`ModGrantsEffectWithLevel` (`获得 {1} 级{0}`) the bundle follows without a code change.
+`data/granted-skill-aliases.mjs` covers the handful of skills whose trade name is not
+the internal id spelled out (`Aspect of the Avian` is `aspect_bird`, `Will of the Lords`
+is `breach_hand_trap`, and the game itself misspells `Bestial` as `beastial`).
 
 ## The `.datc64` reader
 

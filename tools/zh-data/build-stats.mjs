@@ -11,10 +11,12 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { listZipEntries, readZipEntry } from './lib/zip.mjs'
 import { parseStatDescriptions, buildTextPairs, detectChineseSlot, DEFAULT_CHINESE_SLOT } from './lib/statdesc.mjs'
+import { readGrantsTemplate, readActiveSkillNames, normalizeSkillKey, grantedSkillOf, formatGrantsLine } from './lib/skills.mjs'
 import { readDatc64 } from './lib/datc64.mjs'
 import { readOverlay, mergeStats } from './lib/overlay.mjs'
 import { getPatchZip } from './lib/patch.mjs'
 import ANOINT_ZH from './data/anoint-zh.mjs'
+import GRANTS_SKILL_ALIASES from './data/granted-skill-aliases.mjs'
 import ULTIMATUM_ZH from './data/ultimatum-zh.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -151,7 +153,57 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     for (const text of block.byLang.get('English') ?? []) patchEn.add(text.trim())
   }
   const stripTags = s => s.replace(/\[[^\]|]*\|([^\]]*)\]/g, '$1')
+
+  // `Grants Level {0} [Frostbite::{0}|Frostbite]` is one line to the client but
+  // the trade site files it under `Grants Level # Frostbite Skill`, a wording no
+  // English string in the patch ever carries. Indexing the tag-free form as well
+  // is what lets those records find their Chinese sentence.
+  const untaggedPairs = new Map()
+  for (const [en, set] of pairs) {
+    const untagged = stripTags(en).trim()
+    if (untagged === en) continue
+    let target = untaggedPairs.get(untagged)
+    if (!target) { target = new Set(); untaggedPairs.set(untagged, target) }
+    for (const text of set) target.add(text)
+  }
+
+  // "Grants Level N <skill>" lines the patch has no description for: the client
+  // composes them from a ClientString plus the localised skill name. Rebuilding
+  // them is the difference between "unrecognised modifier" and a price check on
+  // every unique that hands out a skill (Hyrri's Truth, the aspects, ...).
+  const grantsTemplate = readGrantsTemplate(zipBuffer)
+  const skillNames = readActiveSkillNames(zipBuffer)
+  const synthesizedLines = new Set()
+  const resolveGrantedSkill = (name) => {
+    const id = GRANTS_SKILL_ALIASES[name] ?? normalizeSkillKey(name)
+    return skillNames.get(id) ?? null
+  }
+  const CJK = /[\u4e00-\u9fff]/
+
+  /**
+   * The line the client prints for `Grants Level # <skill> [Skill]`, or `null`.
+   *
+   * Prefers the patch's own sentence: several of these mods *are* described
+   * (`Grants Level {0} [Frostbite::{0}|Frostbite]` -> 获得 # 级的主动技能冻伤…),
+   * the trade site just appends a "Skill" the client never prints, which is why
+   * the plain lookup misses them.
+   */
+  const synthesizeGrantLine = (ref) => {
+    const name = grantedSkillOf(ref)
+    if (!name) return null
+
+    const described = pairs.get(`Grants Level # ${name}`) ?? untaggedPairs.get(`Grants Level # ${name}`)
+    const sentence = described?.values().next().value
+    if (sentence) return sentence
+
+    // No description: the client falls back to the ClientString, with the
+    // localised skill name. Untranslated skills keep their English name, which
+    // is exactly what the client prints for them.
+    return formatGrantsLine(grantsTemplate, resolveGrantedSkill(name) ?? name)
+  }
+
   const isStaleLine = (stat) => !(stat.matchers ?? []).some(m =>
+    synthesizedLines.has(m.string) ||
     patchEn.has(m.string) || patchEn.has(stripTags(m.string).trim()))
   const grantPrefixCn = readClusterGrantPrefix(zipBuffer)
   const allocatesPrefix = (() => {
@@ -189,6 +241,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     enStringCollisions: 0,
     coverageByType: {},
     clusterGrant: { prefix: grantPrefixCn, synthesized: 0, failed: [] },
+    grants: { template: grantsTemplate, skills: skillNames.size, synthesized: 0, unresolved: [] },
     anoints: { prefix: allocatesPrefix, synthesized: 0, known: Object.keys(ANOINT_ZH).length },
     ultimatum: { records: 0 },
     realMods: { total: 0, translated: 0, stale: 0, staleTranslated: 0 },
@@ -235,7 +288,7 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
     for (const stat of flatten(clone)) {
       const extra = []
       for (const matcher of stat.matchers) {
-        let cn = pairs.get(matcher.string.trim())
+        let cn = pairs.get(matcher.string.trim()) ?? untaggedPairs.get(matcher.string.trim())
         if (!cn && grantPrefixCn && matcher.string.startsWith(GRANT_PREFIX)) {
           const rebuilt = synthesizeClusterGrant(pairs, grantPrefixCn, matcher.string)
           if (rebuilt) {
@@ -268,6 +321,23 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
           let set = cnToRecords.get(cnText)
           if (!set) { set = new Set(); cnToRecords.set(cnText, set) }
           set.add(recIdx)
+        }
+      }
+
+      // Nothing the patch says about this line: either it has no description at
+      // all (the client then composes "<template> <skill>") or the trade site
+      // files it under a wording the patch spells differently. Both are rebuilt
+      // here so a unique that hands out a skill stays price-checkable.
+      if (!extra.length && !stat.matchers.some(m => CJK.test(m.string))) {
+        const synthesized = synthesizeGrantLine(stat.ref)
+        if (synthesized) {
+          extra.push({ string: synthesized })
+          if (CJK.test(synthesized)) allowedCn.add(synthesized)
+          synthesizedLines.add(synthesized)
+          report.grants.synthesized += 1
+        } else if (stat.ref.startsWith('Grants Level') && !stat.ref.includes('\n') &&
+          report.grants.unresolved.length < 40) {
+          report.grants.unresolved.push(stat.ref)
         }
       }
       // The Chinese matchers go *first*, not last. `translateStatWithRoll` in
@@ -382,6 +452,9 @@ export async function buildStats ({ zipBuffer, quiet = false }) {
       `${report.clusterGrant.prefix ? '' : ' (WARNING: ClientStrings template not found)'}` +
       `${report.clusterGrant.failed.length ? `, unmatched: ${report.clusterGrant.failed.length}` : ''}`)
     console.log(`ultimatum modifier records created: ${report.ultimatum.records}`)
+    console.log(`"Grants Level" lines rebuilt from ${JSON.stringify(report.grants.template)}: ` +
+      `${report.grants.synthesized} (${report.grants.skills} skill names known)` +
+      `${report.grants.unresolved.length ? `, unresolved: ${report.grants.unresolved.length}` : ''}`)
     console.log(`overlay: ${mergedStats.report.domainsAdded} trade id domains filled in ` +
       `(${mergedStats.report.domainsKept} already upstream), ` +
       `${report.overlay.stats.added} stat records added ` +

@@ -12,7 +12,7 @@
 //
 // `app_i18n.json` (the app's own UI translation) is not generated: it is not part
 // of the game data, it is a hand-maintained translation committed next to it.
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { getPatchZip } from './lib/patch.mjs'
@@ -125,6 +125,17 @@ async function main () {
     `size=${(patch.buffer.length / 1048576).toFixed(1)}MB from ${patch.source}`)
 
   const result = await buildAll({ zipBuffer: patch.buffer, checkOnly })
+
+  // A zip on disk carries no version string, and `zh-cn.yml` numbers the release
+  // after the patch version: stamping "unknown" would push the build out of the
+  // 3.30.x series. When the patch is byte-identical to the one the committed lock
+  // describes, that lock already knows the version.
+  if (!checkOnly && patch.version === 'unknown') {
+    const previous = await readFile(LOCK_PATH, 'utf8').then(JSON.parse).catch(() => null)
+    if (previous?.md5 === patch.md5 && previous.version && previous.version !== 'unknown') {
+      patch.version = previous.version
+    }
+  }
 
   if (!checkOnly) {
     const lock = {
