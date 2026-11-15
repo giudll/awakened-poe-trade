@@ -47,6 +47,23 @@ const arg = (name, fallback = undefined) =>
 const stripTags = (s) => s.replace(/\[[^\]|]*\|([^\]]*)\]/g, '$1')
 const normalize = (s) => s.trim().replace(/\s+/g, ' ')
 
+/**
+ * `+#% to Item Rarity` -> `+#% Item Rarity`, but only when the difference is
+ * exactly one filler `to`. A wider normalisation would merge `(Local)` variants
+ * and multi-line lines whose text merely shares a prefix, and those are
+ * genuinely different trade filters.
+ */
+function findToVariant (text, baseByText) {
+  const words = normalize(stripTags(text)).split(' ')
+  for (let i = 1; i < words.length; i += 1) {
+    if (words[i] !== 'to') continue
+    const without = [...words.slice(0, i), ...words.slice(i + 1)].join(' ')
+    const ref = baseByText.get(without)
+    if (ref) return ref
+  }
+  return undefined
+}
+
 function readNdjson (text) {
   return text.split('\n').filter(l => l.length).map(l => JSON.parse(l))
 }
@@ -139,7 +156,9 @@ async function main () {
   }
 
   const statIds = []
+  const statMatchers = []
   const newStats = []
+  const aliases = []
   let textsKnown = 0
   let textsNotInPatch = 0
   for (const [text, domains] of tradeByText) {
@@ -153,6 +172,25 @@ async function main () {
       }
       continue
     }
+    // Same modifier, one filler word apart. 3.30 rewrote a handful of lines with
+    // a redundant "to" (`+#% to Item Rarity`, printed on grafts) while the
+    // skeleton still carries the old wording (`+#% Item Rarity`). Both are one
+    // entry of the client's stat descriptions, so the trade ids belong on that
+    // record - creating a second record with the same Chinese matcher would make
+    // the match index ambiguous, because it has no grouping for this case.
+    const aliasRef = findToVariant(text, baseByText)
+    if (aliasRef) {
+      aliases.push([text, aliasRef])
+      const stat = baseByRef.get(aliasRef)
+      for (const [domain, ids] of Object.entries(domains)) {
+        if (stat?.trade?.ids?.[domain]?.length) continue
+        statIds.push({ ref: aliasRef, domain, ids: [...new Set(ids)].sort() })
+      }
+      // the client can also print the new wording, so the record has to answer
+      // to it - `+#` is what the index stores for a signed number
+      statMatchers.push({ ref: aliasRef, string: text.replace(/\+#/g, '#') })
+      continue
+    }
     // No record at all: this is the line the app answers "unknown modifier" for.
     // Only accept it when the client can print it verbatim.
     if (!patchEn.has(text) && !patchEn.has(normalize(stripTags(text)))) { textsNotInPatch += 1; continue }
@@ -161,6 +199,7 @@ async function main () {
     newStats.push({ ref: text, trade: { ids } })
   }
   statIds.sort((a, b) => (a.ref === b.ref ? a.domain.localeCompare(b.domain) : a.ref < b.ref ? -1 : 1))
+  statMatchers.sort((a, b) => (a.ref === b.ref ? a.string.localeCompare(b.string) : a.ref < b.ref ? -1 : 1))
   newStats.sort((a, b) => (a.ref < b.ref ? -1 : a.ref > b.ref ? 1 : 0))
 
   const overlay = {
@@ -184,6 +223,7 @@ async function main () {
     },
     items,
     statIds,
+    statMatchers,
     stats: newStats
   }
 
@@ -193,6 +233,7 @@ async function main () {
     `${textsNotInPatch} not printable by this client)`)
   console.log(`trade ids filled in: ${statIds.length} (domains missing on an existing record)`)
   console.log(`stat records added: ${newStats.length}`)
+  for (const [text, ref] of aliases) console.log(`  same modifier, new wording: ${text} -> ${ref}`)
   console.log(`overlay total: ${items.length + statIds.length + newStats.length} entries` +
     ` (${baseItemKeys.size} base item keys checked)`)
 

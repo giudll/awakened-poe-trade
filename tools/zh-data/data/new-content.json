@@ -1,10 +1,10 @@
 {
  "meta": {
   "note": "Content the English skeleton does not ship yet, recovered from the official trade API. Additive only: `build-all` skips any entry the base data already has, and never takes Chinese from here. Regenerate with `node refresh-overlay.mjs`; deleting the file degrades to upstream-only. See lib/overlay.mjs.",
-  "generatedAt": "2026-11-15T11:11:44.356Z",
+  "generatedAt": "2026-11-15T11:27:16.445Z",
   "patch": {
    "version": "unknown",
-   "md5": ""
+   "md5": "b736acea711a05aa2fbf2b4db103694b"
   },
   "base": {
    "items": "f4b2ed5147351da1",
@@ -2547,6 +2547,34 @@
    "domain": "scourge",
    "ids": [
     "scourge.stat_19803471"
+   ]
+  },
+  {
+   "ref": "+#% Item Rarity",
+   "domain": "crafted",
+   "ids": [
+    "crafted.stat_3917489142"
+   ]
+  },
+  {
+   "ref": "+#% Item Rarity",
+   "domain": "explicit",
+   "ids": [
+    "explicit.stat_3917489142"
+   ]
+  },
+  {
+   "ref": "+#% Item Rarity",
+   "domain": "fractured",
+   "ids": [
+    "fractured.stat_3917489142"
+   ]
+  },
+  {
+   "ref": "+#% Item Rarity",
+   "domain": "scourge",
+   "ids": [
+    "scourge.stat_3917489142"
    ]
   },
   {
@@ -6049,6 +6077,12 @@
    "ids": [
     "mercenary.skill_14498"
    ]
+  }
+ ],
+ "statMatchers": [
+  {
+   "ref": "+#% Item Rarity",
+   "string": "#% to Item Rarity"
   }
  ],
  "stats": [

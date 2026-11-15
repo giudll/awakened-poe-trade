@@ -1,22 +1,22 @@
 {
   "version": "3.30.0.2",
   "md5": "b736acea711a05aa2fbf2b4db103694b",
-  "builtAt": "2026-11-15T11:12:07.041Z",
+  "builtAt": "2026-11-15T11:27:24.673Z",
   "zhSlot": "Traditional Chinese",
   "realModsRaw": 0.7971,
   "staleLines": "1382/6560",
   "overlay": {
     "items": 179,
     "statRecords": 2322,
-    "statIdDomains": 731,
+    "statIdDomains": 735,
     "superseded": 0
   },
   "inputs": {
-    "fingerprint": "0c8ce44371293e51",
+    "fingerprint": "741637d34407279c",
     "parts": {
       "en-items": "f4b2ed5147351da1",
       "en-stats": "51adffcb3892b9d1",
-      "overlay": "2c2b4e8cf34b60f2"
+      "overlay": "cfb27658ac88ed03"
     }
   },
   "coverage": {

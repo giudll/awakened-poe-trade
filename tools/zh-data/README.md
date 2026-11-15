@@ -160,6 +160,13 @@ grows), so those modifiers are searchable but get no automatic min/max bounds.
 Upstream carries the real flag, so it comes back the moment the record exists
 there.
 
+A trade line that differs from a known record by exactly one filler `to`
+(`+#% to Item Rarity` on grafts vs the older `+#% Item Rarity`) is the same
+modifier, so its trade ids are added to that record and the new wording is added
+as an extra English matcher (`statMatchers`). It is not a second record: the
+matcher index has no grouping for that case, and two records with one Chinese
+matcher would resolve by whichever line came first.
+
 ## Coverage gates
 
 | Gate | Minimum | Meaning |

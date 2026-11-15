@@ -44,10 +44,11 @@ export const OVERLAY_PATH = path.join(__dirname, '../data/new-content.json')
  * @property {object} meta
  * @property {OverlayItem[]} items
  * @property {OverlayStatId[]} statIds
+ * @property {Array<{ ref: string, string: string }>} statMatchers
  * @property {OverlayStat[]} stats
  */
 
-const EMPTY = { meta: {}, items: [], statIds: [], stats: [] }
+const EMPTY = { meta: {}, items: [], statIds: [], statMatchers: [], stats: [] }
 
 /** @returns {Promise<Overlay>} */
 export async function readOverlay (file = OVERLAY_PATH) {
@@ -57,6 +58,7 @@ export async function readOverlay (file = OVERLAY_PATH) {
       meta: raw.meta ?? {},
       items: Array.isArray(raw.items) ? raw.items : [],
       statIds: Array.isArray(raw.statIds) ? raw.statIds : [],
+      statMatchers: Array.isArray(raw.statMatchers) ? raw.statMatchers : [],
       stats: Array.isArray(raw.stats) ? raw.stats : []
     }
   } catch (err) {
@@ -154,9 +156,27 @@ export function mergeStats (baseRecords, overlay) {
     added += 1
   }
 
+  // Wording the same modifier is printed with in this version but that the base
+  // record does not list. English only - the Chinese matcher always comes from
+  // the patch, so a translation update still wins.
+  let matchersAdded = 0
+  let matchersKept = 0
+  for (const entry of overlay.statMatchers ?? []) {
+    if (!entry?.ref || !entry?.string) continue
+    const stat = byRef.get(entry.ref)
+    if (!stat) continue
+    stat.matchers ??= []
+    if (stat.matchers.some(m => m.string === entry.string || m.advanced === entry.string)) {
+      matchersKept += 1
+      continue
+    }
+    stat.matchers.push({ string: entry.string })
+    matchersAdded += 1
+  }
+
   return {
     records: out,
-    report: { added, superseded, domainsAdded, domainsKept },
+    report: { added, superseded, domainsAdded, domainsKept, matchersAdded, matchersKept },
     addedRefs
   }
 }
