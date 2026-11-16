@@ -148,16 +148,11 @@ export default defineComponent({
       if (topmostWidget.wmZorder === 'exclusive') {
         hide(topmostWidget.wmId)
       }
-      const widget = widgets.value.find(_ => _.wmId === wmId)
-      if (widget) widget.wmWants = 'show'
+      widgets.value.find(_ => _.wmId === wmId)!.wmWants = 'show'
     }
 
     function hide (wmId: WMID) {
-      // After a config reload the widget list is a fresh set of objects; a
-      // stale id must not throw here, or the caller never gets to finish
-      // closing (the settings window stayed on screen because of exactly that).
-      const widget = widgets.value.find(_ => _.wmId === wmId)
-      if (widget) widget.wmWants = 'hide'
+      widgets.value.find(_ => _.wmId === wmId)!.wmWants = 'hide'
     }
 
     function remove (wmId: WMID) {
