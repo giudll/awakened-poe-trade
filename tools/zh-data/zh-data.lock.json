@@ -1,7 +1,7 @@
 {
   "version": "3.30.0.2",
   "md5": "b736acea711a05aa2fbf2b4db103694b",
-  "builtAt": "2026-11-15T12:43:44.375Z",
+  "builtAt": "2026-11-16T03:13:56.383Z",
   "zhSlot": "Traditional Chinese",
   "realModsRaw": 0.83,
   "staleLines": "1329/6560",
@@ -12,10 +12,10 @@
     "superseded": 0
   },
   "inputs": {
-    "fingerprint": "445924131b11b4b5",
+    "fingerprint": "e2037d51e6ee739f",
     "parts": {
-      "en-items": "f4b2ed5147351da1",
-      "en-stats": "51adffcb3892b9d1",
+      "en-items": "af8391e58698dacb",
+      "en-stats": "16fe7b84549d5570",
       "overlay": "c224f149f673030e"
     }
   },
