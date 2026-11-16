@@ -19,17 +19,7 @@ export class OverlayWindow {
   ) {
     this.server.onEventAnyClient('OVERLAY->MAIN::focus-game', this.assertGameActive)
     this.poeWindow.on('active-change', this.handlePoeWindowActiveChange)
-    this.poeWindow.on('target-change', this.handleTargetChange)
     this.poeWindow.onAttach(this.handleOverlayAttached)
-
-    // The library shows this window itself on every `focus`, so a target that
-    // was already dismissed as "not the game" would pop back up every time it
-    // regains focus.
-    OverlayController.events.on('focus', () => {
-      if (this.poeWindow.targetIsGame === false) {
-        this.hideOverlay()
-      }
-    })
 
     this.server.onEventAnyClient('CLIENT->MAIN::used-recently', (e) => {
       this.wasUsedRecently = e.isOverlay
@@ -84,9 +74,6 @@ export class OverlayWindow {
   }
 
   assertOverlayActive = () => {
-    // Nothing to interact with when the attached window is not the game.
-    if (this.poeWindow.targetIsGame === false) return
-
     if (!this.isInteractable) {
       this.isInteractable = true
       OverlayController.activateOverlay()
@@ -97,9 +84,7 @@ export class OverlayWindow {
   assertGameActive = () => {
     if (this.isInteractable) {
       this.isInteractable = false
-      if (this.poeWindow.targetIsGame !== false) {
-        OverlayController.focusTarget()
-      }
+      OverlayController.focusTarget()
       this.poeWindow.isActive = true
     }
   }
@@ -167,21 +152,6 @@ export class OverlayWindow {
         name: 'MAIN->OVERLAY::overlay-attached',
         payload: undefined
       })
-    }
-  }
-
-  private handleTargetChange = (isGame: boolean | null) => {
-    if (isGame !== false) return
-    this.logger.write(
-      'info [Overlay] attached window is not the game (only the title matched); keeping the overlay hidden'
-    )
-    this.isInteractable = false
-    this.hideOverlay()
-  }
-
-  private hideOverlay = () => {
-    if (this.window && !this.window.isDestroyed() && this.window.isVisible()) {
-      this.window.hide()
     }
   }
 
